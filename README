@@ -1,0 +1,15 @@
+# Kyle Deguire – AI Portfolio
+
+This repository powers my personal AI portfolio at [https://kyledeguire.github.io](https://kyledeguire.github.io).
+
+### Featured Projects
+- **AI Weekly Audio Feed** – Agentic workflow turning AI news into weekly audio briefings.
+- **VisionAI: Emotion Detection** – Deep learning model using TensorFlow, Keras, and TFLite to predict emotion from facial expressions.
+- **RAG CIRS (in development)** – Retrieval-Augmented Generation system for compliance lookup across a major federal agency’s technical documents.
+
+### Purpose
+This portfolio showcases hands-on AI builds that bridge business strategy and applied AI development, illustrating both design thinking and technical implementation.
+
+---
+**Connect:**  
+[LinkedIn](https://www.linkedin.com/in/kyledeguire) | [GitHub](https://github.com/kyledeguire)
