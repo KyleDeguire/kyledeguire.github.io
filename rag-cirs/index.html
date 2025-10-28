@@ -40,6 +40,7 @@
       text-decoration: underline;
     }
 
+    /* ---- Document list ---- */
     .doc-list {
       background-color: #f5f8ff;
       border: 1px solid #dbe4ff;
@@ -52,10 +53,6 @@
       line-height: 1.4;
     }
 
-    .doc-item:last-child {
-      margin-bottom: 0;
-    }
-
     .doc-label {
       font-size: 0.9rem;
       color: #666;
@@ -63,38 +60,61 @@
       margin-left: 4px;
     }
 
+    /* ---- Gallery cards ---- */
     .gallery-wrapper {
       background-color: #fafafa;
       border: 1px solid #eee;
       border-radius: 10px;
-      padding: 16px 20px;
+      padding: 24px 20px 30px;
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
     }
 
     .gallery-card {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 12px;
+      background: linear-gradient(180deg, #fdfdfd 0%, #f1f4f8 100%);
+      border: 1px solid #d8e0ee;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
       text-align: center;
+      padding: 18px 10px 22px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .gallery-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 150px;
+      background: linear-gradient(135deg, #e9eef7, #c9d7f0);
+      color: #3e5b88;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-shadow: 0 1px 1px rgba(255,255,255,0.7);
+      margin-bottom: 10px;
+    }
+
+    .gallery-caption {
       font-size: 0.9rem;
       color: #444;
     }
 
-    .gallery-img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background-color: #eaeaea;
-      display: block;
-      margin-bottom: 8px;
+    /* ---- Footer / back link ---- */
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 0.9rem;
     }
 
     footer {
@@ -105,26 +125,20 @@
       color: #666;
       text-align: center;
     }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 24px;
-      font-size: 0.9rem;
-    }
   </style>
 </head>
 <body>
 
   <h1>RAG CIRS (Planned)</h1>
   <p>
-    RAG CIRS (Compliance Information Retrieval System) is a Retrieval-Augmented Generation architecture designed
-    to help regulated organizations instantly locate and verify compliance standards across large document sets.
+    <strong>RAG CIRS (Compliance Information Retrieval System)</strong> is a Retrieval-Augmented Generation architecture
+    designed to help regulated organizations instantly locate and verify compliance standards across large document sets.
     It combines document embedding, retrieval, and LLM-based reasoning to generate validated, citation-backed responses.
   </p>
 
   <p>
-    This version focuses on an FAA-style compliance use case, mapping the ingestion, retrieval, and
-    grounding workflow across advisory circulars and technical manuals.
+    This proof of concept focuses on an FAA-style compliance use case, mapping ingestion, retrieval, and grounding workflows
+    across advisory circulars and technical manuals. The goal is high retrieval accuracy and auditable, explainable responses.
   </p>
 
   <!-- DOCUMENTS SECTION -->
@@ -138,7 +152,7 @@
       </a>
       <span class="doc-label">(Word)</span>
       <div class="doc-label">
-        Executive overview describing the RAG system purpose, user needs, and compliance problem framing.
+        Executive overview describing RAG system objectives, use cases, and compliance pain points.
       </div>
     </div>
 
@@ -149,7 +163,7 @@
       </a>
       <span class="doc-label">(Word)</span>
       <div class="doc-label">
-        Outlines architecture, retriever design, evaluation metrics, and post-deployment feedback loops.
+        Outlines ingestion pipeline, embedding strategy, retrieval logic, and accuracy feedback loop.
       </div>
     </div>
 
@@ -158,7 +172,7 @@
       <a href="#">Compliance QA Benchmark (Coming Soon)</a>
       <span class="doc-label">(Word)</span>
       <div class="doc-label">
-        Planned evaluation framework to measure retrieval accuracy, latency, and citation trust scores.
+        Planned evaluation framework for retrieval precision, latency, and confidence scoring.
       </div>
     </div>
 
@@ -171,31 +185,25 @@
 
       <!-- Screenshot slot 1 -->
       <div class="gallery-card">
-        <img src="screenshot-search-ui.png"
-             alt="Screenshot placeholder - search UI"
-             class="gallery-img">
-        <div>Prototype search interface for document retrieval</div>
+        <div class="gallery-placeholder">Search UI Prototype</div>
+        <div class="gallery-caption">Interactive interface for compliance retrieval and context highlighting</div>
       </div>
 
       <!-- Screenshot slot 2 -->
       <div class="gallery-card">
-        <img src="screenshot-answer-citation.png"
-             alt="Screenshot placeholder - cited answer"
-             class="gallery-img">
-        <div>Example of generated answer with citation to source document</div>
+        <div class="gallery-placeholder">Citation Display</div>
+        <div class="gallery-caption">Generated answers with full source citations and document links</div>
       </div>
 
       <!-- Screenshot slot 3 -->
       <div class="gallery-card">
-        <img src="screenshot-architecture.png"
-             alt="Screenshot placeholder - architecture sketch"
-             class="gallery-img">
-        <div>Proposed RAG architecture pipeline</div>
+        <div class="gallery-placeholder">Architecture Diagram</div>
+        <div class="gallery-caption">System architecture flow (vector DB, retriever, validation layers)</div>
       </div>
 
     </div>
-    <div style="font-size:0.8rem; color:#888; text-align:center; margin-top:12px;">
-      Replace placeholders with uploaded JPG or PNG files in this folder. Filenames must match <code>src=</code> values above.
+    <div style="font-size:0.8rem; color:#888; text-align:center; margin-top:16px;">
+      Replace placeholders with uploaded screenshots (JPG or PNG) in this folder when available.
     </div>
   </div>
 
