@@ -1,67 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyle Deguire | AI & Emerging Tech Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 40px;
-            max-width: 800px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kyle Deguire | AI & Emerging Tech Portfolio</title>
+  <style>
+    :root {
+      --blue-dark: #003366;
+      --blue-link: #0056b3;
+      --bg-card: #ffffff;
+      --bg-page: #f7f9fc;
+      --border-card: #dce3ef;
+      --text-main: #222;
+      --text-dim: #555;
+      --radius-lg: 14px;
+      --radius-sm: 6px;
+    }
 
-        h1 { color: #003366; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+    }
 
-        a { color: #0077cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+    a {
+      color: var(--blue-link);
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        ul { margin-top: 20px; padding-left: 20px; }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        li { margin-bottom: 12px; }
+    /* Top header / hero */
+    .hero {
+      background: radial-gradient(circle at 20% 20%, #eef4ff 0%, #ffffff 60%);
+      border-bottom: 1px solid #e1e8f5;
+      padding: 32px 20px 28px;
+      text-align: center;
+    }
 
-        footer {
-            margin-top: 40px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-            font-size: 0.9em;
-            color: #666;
-        }
-    </style>
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .name {
+      color: var(--blue-dark);
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    /* Portfolio section */
+    main {
+      max-width: 900px;
+      margin: 32px auto 60px;
+      padding: 0 20px 40px;
+    }
+
+    .section-head {
+      color: var(--blue-dark);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    /* Project grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%,360px), 1fr));
+      gap: 20px;
+    }
+
+    /* Card */
+    .project-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      padding: 20px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      min-height: 160px;
+      position: relative;
+      transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 14px 32px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+
+    .project-topline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .project-title a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blue-link);
+      text-decoration: none;
+    }
+
+    .project-title a:hover {
+      text-decoration: underline;
+    }
+
+    .status-pill {
+      background-color: #eef4ff;
+      color: #003d99;
+      border: 1px solid #c9d8ff;
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+      font-weight: 500;
+      line-height: 1.2;
+      padding: 4px 8px;
+      white-space: nowrap;
+    }
+
+    .status-pill.in-progress {
+      background-color: #fff8e0;
+      color: #7a6200;
+      border: 1px solid #f2df91;
+    }
+
+    .status-pill.planned {
+      background-color: #f3f3f3;
+      color: #555;
+      border: 1px solid #d4d4d4;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .tech-line {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* Footer/contact */
+    footer {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 24px 20px 0;
+      border-top: 1px solid #e1e8f5;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    footer a {
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
-    <h1>Kyle Deguire</h1>
-    <p>AI Strategy & Adoption Consultant | Building practical AI solutions through hands-on projects</p>
 
-    <h2>Projects</h2>
-    <ul>
-        <!-- AI Weekly Audio Feed project -->
-        <li>
+  <!-- HERO / INTRO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="name">Kyle Deguire</div>
+      <div class="tagline">
+        AI Strategy & Adoption Consultant. I design and build practical AI workflows that cut manual effort,
+        surface insight faster, and can be deployed in the real world — not just in slides.
+      </div>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <main>
+    <div class="section-head">Projects</div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1: AI Weekly Audio Feed -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
             <a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a>
-            – Agentic workflow turning AI news into weekly executive audio briefings.
-        </li>
+          </div>
+          <div class="status-pill">Live</div>
+        </div>
+        <div class="project-desc">
+          Agentic workflow that collects AI news, filters noise, summarizes what matters,
+          and generates weekly executive audio briefings. Publishes as a private podcast.
+        </div>
+        <div class="tech-line">
+          Output: audio briefings · Stack: LLM summarization, voice synthesis, automated publish pipeline
+        </div>
+      </div>
 
-        <!-- VisionAI project placeholder -->
-        <li>
-            <a href="vision-ai/index.html">VisionAI: Emotion Detection</a>
-            – Deep learning model using TensorFlow, Keras, Pandas, and TFLite to predict emotion from facial expressions.
-        </li>
+      <!-- Project 2: VisionAI -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
+            <a href="vision-ai/">VisionAI: Emotion Detection</a>
+          </div>
+          <div class="status-pill in-progress">Retraining</div>
+        </div>
+        <div class="project-desc">
+          Computer vision model that predicts facial emotion from images. Trained in TensorFlow/Keras,
+          exported to TensorFlow Lite (TFLite), and deployed to iPhone. Currently being retrained to
+          improve classification accuracy.
+        </div>
+        <div class="tech-line">
+          Stack: TensorFlow · Keras · OpenCV · TFLite · iOS deployment
+        </div>
+      </div>
 
-        <!-- RAG CIRS project placeholder -->
-        <li>
-            <a href="rag-cirs/index.html">RAG CIRS (Planned)</a>
-            – Retrieval-Augmented Generation system for compliance lookup across a major federal agency's technical documents.
-        </li>
-    </ul>
+      <!-- Project 3: RAG CIRS -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
+            <a href="rag-cirs/">RAG CIRS</a>
+          </div>
+          <div class="status-pill in-progress">In Progress</div>
+        </div>
+        <div class="project-desc">
+          Retrieval-Augmented Generation (RAG) system for regulated environments. Goal:
+          let safety/compliance teams ask a question in plain language and get a sourced,
+          defensible answer backed by the original documents.
+        </div>
+        <div class="tech-line">
+          Focus: FAA-style compliance lookup · Retrieval + grounding · Traceable citations
+        </div>
+      </div>
 
-    <footer>
-        <p>Connect:
-            <a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> |
-            <a href="https://github.com/kyledeguire">GitHub</a>
-        </p>
-    </footer>
+      <!-- Future Slot / Placeholder -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
+            <a href="#">Process Automation Assistant</a>
+          </div>
+          <div class="status-pill planned">Planned</div>
+        </div>
+        <div class="project-desc">
+          Lightweight internal agent to remove "spreadsheet work" for analysts:
+          summarizing status updates, drafting reports, and surfacing blockers automatically.
+        </div>
+        <div class="tech-line">
+          Targets: repetitive ops / PMO workflows / compliance reporting
+        </div>
+      </div>
 
-    <!-- trigger redeploy -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 Kyle Deguire</div>
+    <div>
+      <a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> ·
+      <a href="https://github.com/kyledeguire">GitHub</a>
+    </div>
+  </footer>
+
 </body>
 </html>
