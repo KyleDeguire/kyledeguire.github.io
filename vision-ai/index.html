@@ -111,16 +111,23 @@
       transform: translateY(-2px);
       box-shadow: 0 3px 10px rgba(10,102,194,.25), var(--shadow);
     }
+
+    /* Elongated image area for confidence visibility */
     .media {
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 3 / 4.5;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
     }
+
     figcaption {
       padding: 10px 12px;
       font-weight: 600;
@@ -178,7 +185,7 @@
 
     <h2 class="subtitle" style="margin-top: 24px;">Examples</h2>
 
-    <!-- 4 on top, 4 on bottom -->
+    <!-- 4 on top -->
     <div class="grid">
       <figure class="card"><div class="media"><img src="AppIcon.png" alt="App Icon" loading="lazy"></div><figcaption>App Icon - Deployment</figcaption></figure>
       <figure class="card"><div class="media"><img src="Happy.JPG" alt="Happy" loading="lazy"></div><figcaption>Happy</figcaption></figure>
@@ -186,6 +193,7 @@
       <figure class="card"><div class="media"><img src="Anger.JPG" alt="Anger" loading="lazy"></div><figcaption>Anger</figcaption></figure>
     </div>
 
+    <!-- 4 on bottom -->
     <div class="grid" style="margin-top:24px;">
       <figure class="card"><div class="media"><img src="Disgust.JPG" alt="Disgust" loading="lazy"></div><figcaption>Disgust</figcaption></figure>
       <figure class="card"><div class="media"><img src="Neutral.JPG" alt="Neutral" loading="lazy"></div><figcaption>Neutral</figcaption></figure>
