@@ -16,6 +16,7 @@
         h1 {
             color: #58a6ff;
             margin-bottom: 10px;
+            font-size: 2em;
         }
         .subtitle {
             color: #8b949e;
@@ -52,8 +53,11 @@
             text-align: center;
         }
         .tile img {
-            max-width: 100%;
+            max-width: 150px;
+            max-height: 150px;
+            width: 100%;
             height: auto;
+            object-fit: contain;
             border-radius: 4px;
         }
         .tile-label {
@@ -72,8 +76,22 @@
             text-align: center;
         }
         @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
             .grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .tile {
+                padding: 10px;
+            }
+            .tile img {
+                max-width: 120px;
+                max-height: 120px;
             }
         }
     </style>
