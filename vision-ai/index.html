@@ -1,81 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>VisionAI Emotion Detection</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --ink:#003366;
-      --link:#007acc;
+      --ink:#0b3a6a;
+      --link:#0d74ce;
       --muted:#555;
-      --bg:#ffffff;
       --card:#f6f9fe;
+      --border:#e5eefc;
     }
     * { box-sizing: border-box; }
     body {
       font-family: Arial, Helvetica, sans-serif;
-      margin: 40px;
+      margin: 28px;
       line-height: 1.6;
-      max-width: 1000px;
       color: #111;
-      background: var(--bg);
+      max-width: 1100px;
     }
-    h1 { color: var(--ink); margin-bottom: 8px; }
-    h2 { color: var(--ink); margin-top: 28px; }
-    p  { margin: 10px 0; }
+    h1 { color: var(--ink); margin: 0 0 8px; }
+    h2 { color: var(--ink); margin: 24px 0 8px; }
+    p  { margin: 8px 0; }
     a  { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .pill {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      background: #eef5ff;
-      color: var(--ink);
-      font-size: 0.9em;
-      margin-left: 8px;
+      display: inline-block; padding: 2px 10px; border-radius: 999px;
+      background:#eef5ff; color: var(--ink); font-size: .9em; margin-left: 8px;
     }
 
-    .meta {
-      color: var(--muted);
-      font-size: 0.95em;
-    }
-
+    /* Fixed 4-column grid as requested: 2 rows of 4 on phones too */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
       margin-top: 12px;
     }
 
     figure {
-      margin: 0;
-      background: var(--card);
-      border-radius: 10px;
-      padding: 10px;
-      border: 1px solid #e5eefc;
+      margin: 0; background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px; height: 100%;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
     img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
+      width: 100%; height: auto; display: block; border-radius: 8px;
+      background: #fff;
     }
-    figcaption {
-      font-size: 0.95em;
-      color: #333;
-      margin-top: 8px;
+    figcaption { font-size: .95em; color: #333; margin-top: 8px; }
+
+    /* App icon tile a bit tighter */
+    .icon img { width: 70%; margin: 8px auto 0; display: block; }
+
+    /* Inactive / under construction tile */
+    .disabled { filter: grayscale(1) opacity(.55); }
+    .disabled figcaption { text-align: center; font-weight: bold; }
+    .disabled .label {
+      display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 999px;
+      background: #ffe9cc; color: #7a4a00; font-size: .85em;
     }
 
     .tools {
-      background: #f8fafc;
-      border: 1px solid #eaeef5;
-      border-radius: 10px;
-      padding: 12px 14px;
+      background:#f8fafc; border:1px solid #eaeef5; border-radius:10px; padding:12px 14px;
     }
 
-    footer { margin-top: 36px; font-size: 0.95em; color: var(--muted); }
+    footer { margin-top: 28px; font-size: .95em; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -87,48 +77,65 @@
   </div>
 
   <h2>Examples</h2>
-  <p class="meta">Each tile shows the model’s top prediction and confidence.</p>
+  <p class="muted">Seven prediction examples plus the iPhone app icon. Grid is fixed to 4 columns so all 8 tiles appear on a phone screen.</p>
 
-  <div class="grid">
-    <figure>
-      <img src="happy1.jpg" alt="Detected: Happy">
-      <figcaption>Prediction: <strong>Happy</strong> • Confidence: 0.97</figcaption>
-    </figure>
-    <figure>
-      <img src="happy2.jpg" alt="Detected: Happy">
-      <figcaption>Prediction: <strong>Happy</strong> • Confidence: 0.93</figcaption>
-    </figure>
-    <figure>
-      <img src="sad1.jpg" alt="Detected: Sad">
-      <figcaption>Prediction: <strong>Sad</strong> • Confidence: 0.92</figcaption>
-    </figure>
-    <figure>
-      <img src="sad2.jpg" alt="Detected: Sad">
-      <figcaption>Prediction: <strong>Sad</strong> • Confidence: 0.90</figcaption>
-    </figure>
-    <figure>
-      <img src="neutral1.jpg" alt="Detected: Neutral">
-      <figcaption>Prediction: <strong>Neutral</strong> • Confidence: 0.78</figcaption>
-    </figure>
-    <figure>
-      <img src="surprise1.jpg" alt="Detected: Surprise">
-      <figcaption>Prediction: <strong>Surprise</strong> • Confidence: 0.84</figcaption>
-    </figure>
-    <figure>
-      <img src="angry1.jpg" alt="Detected: Angry">
-      <figcaption>Prediction: <strong>Angry</strong> • Confidence: 0.76</figcaption>
-    </figure>
-    <figure>
-      <img src="disgust1.jpg" alt="Detected: Disgust">
-      <figcaption>Prediction: <strong>Disgust</strong> • Confidence: 0.71</figcaption>
-    </figure>
-  </div>
+  <!--
+    Edit ONLY the filenames and captions below to match your files in /vision-ai/.
+    Keep exactly 8 items. The first item is the app icon and will render top-left.
+    Example filenames shown; change them to your exact names (case-sensitive).
+  -->
+  <script>
+    const tiles = [
+      // 1) App icon, top-left
+      { src: "app_icon.png", caption: "VisionAI iPhone app icon", type: "icon" },
 
-  <h2>Notes</h2>
-  <ul>
-    <li>Images can be replaced at any time by uploading new files to this folder with the same names.</li>
-    <li>If you use different filenames, update the <code>src="..."</code> in each <code>&lt;img&gt;</code> tag to match.</li>
-  </ul>
+      // 2–8) Seven prediction images
+      { src: "happy1.jpg",    caption: "Prediction: Happy • Confidence: 0.97" },
+      { src: "happy2.jpg",    caption: "Prediction: Happy • Confidence: 0.93" },
+      { src: "sad1.jpg",      caption: "Prediction: Sad • Confidence: 0.92" },
+      { src: "sad2.jpg",      caption: "Prediction: Sad • Confidence: 0.90" },
+      { src: "neutral1.jpg",  caption: "Prediction: Neutral • Confidence: 0.78" },
+      { src: "surprise1.jpg", caption: "Prediction: Surprise • Confidence: 0.84" },
+
+      // Mark this last one as "under construction" if you want the tile grayed out.
+      // Change src to your actual file name for that placeholder image.
+      { src: "model_under_reconstruction.jpg", caption: "Model under re-construction", disabled: true }
+    ];
+
+    // Build the gallery
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
+    tiles.forEach(t => {
+      const fig = document.createElement('figure');
+      if (t.disabled) fig.classList.add('disabled');
+      if (t.type === 'icon') fig.classList.add('icon');
+
+      const img = document.createElement('img');
+      img.src = t.src;
+      img.alt = t.caption || 'VisionAI example';
+
+      const cap = document.createElement('figcaption');
+      cap.innerHTML = t.caption || '';
+
+      if (t.disabled) {
+        // add a little pill label below caption
+        const pill = document.createElement('div');
+        pill.className = 'label';
+        pill.textContent = 'Inactive';
+        cap.appendChild(document.createElement('br'));
+        cap.appendChild(pill);
+      }
+
+      fig.appendChild(img);
+      fig.appendChild(cap);
+      grid.appendChild(fig);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.appendChild(grid);
+    });
+  </script>
 
   <footer>
     <a href="../index.html">← Back to main portfolio</a>
