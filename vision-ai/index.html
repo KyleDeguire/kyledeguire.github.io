@@ -45,16 +45,13 @@
             margin-top: 30px;
         }
         .tile {
-            background: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 8px;
             text-align: center;
         }
         .tile img {
-            width: 180px;
-            height: 180px;
+            width: 360px;
+            height: 360px;
             object-fit: contain;
+            border: 2px solid #0969da;
             border-radius: 4px;
         }
         .tile-label {
@@ -63,22 +60,19 @@
             font-size: 14px;
         }
         .note {
-            margin-top: 40px;
-            padding: 15px;
-            background: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 1.25em;
             font-style: italic;
             color: #57606a;
-            text-align: center;
+            text-align: left;
         }
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .tile img {
-                width: 140px;
-                height: 140px;
+                width: 280px;
+                height: 280px;
             }
         }
     </style>
