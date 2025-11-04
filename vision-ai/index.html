@@ -36,23 +36,16 @@
       background: var(--bg);
     }
 
-    .container {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: clamp(16px, 3vw, 32px);
-    }
+    .container { max-width: var(--maxw); margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
 
     header {
-      position: sticky;
-      top: 0;
+      position: sticky; top: 0; z-index: 10;
       backdrop-filter: saturate(140%) blur(6px);
       background: color-mix(in oklab, var(--bg) 88%, transparent);
       border-bottom: 1px solid var(--border);
-      z-index: 10;
     }
     .topbar {
-      max-width: var(--maxw);
-      margin: 0 auto;
+      max-width: var(--maxw); margin: 0 auto;
       padding: 10px clamp(12px, 2.5vw, 24px);
       display: flex; align-items: center; justify-content: space-between;
     }
@@ -61,36 +54,21 @@
       padding: 8px 12px; border: 1px solid var(--border);
       border-radius: 999px; background: var(--card);
       box-shadow: var(--shadow);
-      text-decoration: none; color: var(--brand);
-      font-weight: 500;
+      text-decoration: none; color: var(--brand); font-weight: 500;
     }
     .crumb svg { width: 16px; height: 16px; opacity: .7; }
 
-    .title {
-      font-size: clamp(22px, 4vw, 34px);
-      color: var(--brand);
-      margin-bottom: 4px;
-    }
+    .title { font-size: clamp(22px, 4vw, 34px); color: var(--brand); margin-bottom: 4px; }
     .subtitle { color: var(--muted); font-size: 16px; margin-bottom: 12px; }
-    .lead {
-      font-size: clamp(15px, 2.8vw, 18px);
-      margin-top: 8px;
-      color: var(--fg);
-      max-width: 70ch;
-    }
+    .lead { font-size: clamp(15px, 2.8vw, 18px); margin-top: 8px; color: var(--fg); max-width: 70ch; }
 
-    .pills {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
-    }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
     .pill {
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--muted);
+      font-size: 12px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--card); color: var(--muted);
     }
 
+    /* Two rows of four */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -107,50 +85,36 @@
       box-shadow: var(--shadow);
       transition: transform .12s ease, box-shadow .12s ease;
     }
-    figure.card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 3px 10px rgba(10,102,194,.25), var(--shadow);
-    }
+    figure.card:hover { transform: translateY(-2px); box-shadow: 0 3px 10px rgba(10,102,194,.25), var(--shadow); }
 
-    /* Elongated image area for confidence visibility */
+    /* Elongated area so the bottom confidence stays visible.
+       Use contain so the full image shows (no cropping). */
     .media {
       aspect-ratio: 3 / 4.5;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--card);
+      display: flex; align-items: center; justify-content: center;
     }
     .media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      width: 100%; height: 100%;
+      object-fit: contain;         /* key fix: show full photo */
+      object-position: center;     /* keep head centered */
       display: block;
     }
 
     figcaption {
       padding: 10px 12px;
-      font-weight: 600;
-      font-size: 14px;
-      text-align: center;
-      color: var(--fg);
+      font-weight: 600; font-size: 14px;
+      text-align: center; color: var(--fg);
       border-top: 1px solid var(--border);
     }
 
     .note {
       font-size: clamp(15px, 2.8vw, 18px);
-      font-style: italic;
-      color: var(--muted);
-      margin-top: 40px;
-      max-width: 70ch;
-      text-align: left;
+      font-style: italic; color: var(--muted);
+      margin-top: 40px; max-width: 70ch; text-align: left;
     }
 
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+    @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
   </style>
 </head>
 
@@ -174,31 +138,26 @@
     </p>
 
     <div class="pills">
-      <span class="pill">TensorFlow</span>
-      <span class="pill">Keras</span>
-      <span class="pill">OpenCV</span>
-      <span class="pill">NumPy</span>
-      <span class="pill">Pandas</span>
-      <span class="pill">TensorFlow Lite</span>
-      <span class="pill">Xcode</span>
+      <span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenCV</span>
+      <span class="pill">NumPy</span><span class="pill">Pandas</span><span class="pill">TensorFlow Lite</span><span class="pill">Xcode</span>
     </div>
 
     <h2 class="subtitle" style="margin-top: 24px;">Examples</h2>
 
-    <!-- 4 on top -->
+    <!-- Top row -->
     <div class="grid">
-      <figure class="card"><div class="media"><img src="AppIcon.png" alt="App Icon" loading="lazy"></div><figcaption>App Icon - Deployment</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Happy.JPG" alt="Happy" loading="lazy"></div><figcaption>Happy</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Sad.JPG" alt="Sad" loading="lazy"></div><figcaption>Sad</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Anger.JPG" alt="Anger" loading="lazy"></div><figcaption>Anger</figcaption></figure>
+      <figure class="card"><div class="media"><img src="AppIcon.png" alt="App Icon" loading="lazy" decoding="async"></div><figcaption>App Icon, Deployment</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Happy.JPG" alt="Happy" loading="lazy" decoding="async"></div><figcaption>Happy</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Sad.JPG" alt="Sad" loading="lazy" decoding="async"></div><figcaption>Sad</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Anger.JPG" alt="Anger" loading="lazy" decoding="async"></div><figcaption>Anger</figcaption></figure>
     </div>
 
-    <!-- 4 on bottom -->
+    <!-- Bottom row -->
     <div class="grid" style="margin-top:24px;">
-      <figure class="card"><div class="media"><img src="Disgust.JPG" alt="Disgust" loading="lazy"></div><figcaption>Disgust</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Neutral.JPG" alt="Neutral" loading="lazy"></div><figcaption>Neutral</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Surprise.JPG" alt="Surprise" loading="lazy"></div><figcaption>Surprise</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Fear.JPG" alt="Fear" loading="lazy"></div><figcaption>Fear</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Disgust.JPG" alt="Disgust" loading="lazy" decoding="async"></div><figcaption>Disgust</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Neutral.JPG" alt="Neutral" loading="lazy" decoding="async"></div><figcaption>Neutral</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Surprise.JPG" alt="Surprise" loading="lazy" decoding="async"></div><figcaption>Surprise</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Fear.JPG" alt="Fear" loading="lazy" decoding="async"></div><figcaption>Fear</figcaption></figure>
     </div>
 
     <p class="note">
