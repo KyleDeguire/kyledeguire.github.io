@@ -1,134 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisionAI: Emotion Detection</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #ffffff;
-            color: #24292f;
-        }
-        h1 {
-            color: #0969da;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            color: #57606a;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #0969da;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        .tools {
-            margin: 20px 0;
-        }
-        .back-link {
-            color: #0969da;
-            text-decoration: none;
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .tile {
-            text-align: center;
-        }
-        .tile img {
-            width: 360px;
-            height: 360px;
-            object-fit: contain;
-            border: 2px solid #0969da;
-            border-radius: 4px;
-            display: block;
-        }
-        .tile-label {
-            margin-top: 8px;
-            color: #24292f;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .note {
-            margin-top: 20px;
-            font-size: 1.125em;
-            font-style: italic;
-            color: #57606a;
-            text-align: left;
-        }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .tile img {
-                width: 280px;
-                height: 280px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>VisionAI: Emotion Detection</title>
+  <meta name="description" content="Mobile-friendly demo of a VisionAI model that predicts facial emotion from images. Trained with TensorFlow/Keras and exported to TFLite for iOS." />
+
+  <!-- Social preview (optional, safe to keep) -->
+  <meta property="og:title" content="VisionAI: Emotion Detection" />
+  <meta property="og:description" content="Emotion detection demo, trained with TensorFlow/Keras, exported to TFLite for iOS." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    /* ====== Design tokens ====== */
+    :root{
+      --bg: #ffffff;
+      --fg: #0f172a;
+      --muted: #64748b;
+      --brand: #0a66c2;
+      --card: #ffffff;
+      --ring: rgba(10,102,194,.25);
+      --border: #e2e8f0;
+      --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
+      --radius: 14px;
+      --maxw: 1120px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #0b1220;
+        --fg: #e6edf3;
+        --muted: #9fb0c0;
+        --brand: #68a5ff;
+        --card: #101827;
+        --ring: rgba(104,165,255,.25);
+        --border: #1f2a3a;
+        --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 24px rgba(0,0,0,.35);
+      }
+    }
+
+    /* ====== Base ====== */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.55;
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a{ color: var(--brand); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: clamp(16px, 3vw, 32px);
+    }
+
+    /* ====== Header / Hero ====== */
+    header{
+      position: sticky;
+      top: 0;
+      backdrop-filter: saturate(140%) blur(6px);
+      background: color-mix(in oklab, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+    .topbar{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 10px clamp(12px, 2.5vw, 24px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .crumb{
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border: 1px solid var(--border);
+      border-radius: 999px; background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .crumb svg{ width: 16px; height: 16px; opacity: .7; }
+
+    .hero{
+      padding: clamp(12px, 3.5vw, 28px) 0;
+    }
+    .title{
+      font-size: clamp(20px, 4.5vw, 34px);
+      letter-spacing: .2px;
+      margin: 0 0 6px;
+      color: var(--brand);
+    }
+    .subtitle{
+      font-size: clamp(12px, 2.7vw, 16px);
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .lead{
+      font-size: clamp(14px, 3vw, 18px);
+      margin: 8px 0 0;
+      color: var(--fg);
+    }
+
+    .pills{
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+    }
+    .pill{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+    }
+
+    /* ====== Responsive grid of cards ====== */
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: clamp(10px, 2.8vw, 18px);
+      margin-top: clamp(12px, 3.5vw, 24px);
+    }
+
+    figure.card{
+      margin: 0;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: clip;
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    figure.card:focus-within, figure.card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px var(--ring), var(--shadow);
+    }
+
+    .media{
+      position: relative;
+      aspect-ratio: 3 / 4;            /* consistent tiles on any screen */
+      overflow: hidden;
+    }
+    .media img{
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    figcaption{
+      padding: 10px 12px;
+      font-weight: 600; font-size: 14px;
+      text-align: center;
+      color: var(--fg);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ====== Footer note ====== */
+    .note{
+      max-width: 60ch;
+      margin: clamp(14px, 3vw, 24px) auto 40px;
+      color: var(--muted);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* ====== Better tap targets on small screens ====== */
+    @media (max-width: 480px){
+      .crumb{ width: 100%; justify-content: center; }
+      .lead{ font-size: 15px; }
+      figcaption{ font-size: 13px; }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>VisionAI: Emotion Detection <span class="subtitle">demo</span></h1>
-    
-    <p>Deep learning model that predicts facial emotion from images. Trained with TensorFlow and Keras, exported to TensorFlow Lite for iPhone deployment in Xcode. OpenCV used for preprocessing and detection during development.</p>
-    
-    <div class="tools">
-        <strong>Tools:</strong> TensorFlow, Keras, OpenCV, NumPy, Pandas, TensorFlow Lite (TFLite), Xcode
+  <header>
+    <div class="topbar">
+      <a class="crumb" href="../index.html" aria-label="Back to main portfolio">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path d="M12.78 4.22a.75.75 0 0 1 0 1.06L8.06 10l4.72 4.72a.75.75 0 1 1-1.06 1.06l-5.25-5.25a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0z"/>
+        </svg>
+        Back to portfolio
+      </a>
+      <!-- Right side left open for future links -->
+      <span aria-hidden="true"></span>
     </div>
-    
-    <h2>Examples</h2>
-    
-    <a href="../index.html" class="back-link">← Back to main portfolio</a>
-    
-    <div class="grid">
-        <div class="tile">
-            <img src="AppIcon.png" alt="VisionAI iPhone app icon">
-            <div class="tile-label">App Icon - Deployment</div>
-        </div>
-        <div class="tile">
-            <img src="Happy.JPG" alt="Happy emotion prediction">
-            <div class="tile-label">Happy</div>
-        </div>
-        <div class="tile">
-            <img src="Sad.JPG" alt="Sad emotion prediction">
-            <div class="tile-label">Sad</div>
-        </div>
-        <div class="tile">
-            <img src="Anger.JPG" alt="Anger emotion prediction">
-            <div class="tile-label">Anger</div>
-        </div>
-        <div class="tile">
-            <img src="Disgust.JPG" alt="Disgust emotion prediction">
-            <div class="tile-label">Disgust</div>
-        </div>
-        <div class="tile">
-            <img src="Neutral.JPG" alt="Neutral emotion prediction">
-            <div class="tile-label">Neutral</div>
-        </div>
-        <div class="tile">
-            <img src="Surprise.JPG" alt="Surprise emotion prediction">
-            <div class="tile-label">Surprise</div>
-        </div>
-        <div class="tile">
-            <img src="Fear.JPG" alt="Fear emotion prediction">
-            <div class="tile-label">Fear</div>
-        </div>
-    </div>
-    
-    <div class="note">
-        If I have to resort to Acting for a living... that's not going to be good for anyone. Just saying.
-    </div>
+  </header>
+
+  <main class="container" id="main">
+    <section class="hero" aria-labelledby="title">
+      <h1 id="title" class="title">VisionAI: Emotion Detection</h1>
+      <p class="subtitle">Demo</p>
+
+      <p class="lead">
+        Deep learning model that predicts facial emotion from images. Trained with TensorFlow and Keras, exported to TensorFlow Lite for iPhone deployment in Xcode. OpenCV used for preprocessing during development.
+      </p>
+
+      <div class="pills" aria-label="Tools used">
+        <span class="pill">TensorFlow</span>
+        <span class="pill">Keras</span>
+        <span class="pill">OpenCV</span>
+        <span class="pill">NumPy</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">TensorFlow Lite</span>
+        <span class="pill">Xcode</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="examples">
+      <h2 id="examples" class="subtitle" style="margin-top:18px">Examples</h2>
+
+      <div class="grid">
+        <figure class="card">
+          <div class="media">
+            <img src="AppIcon.png" alt="VisionAI iPhone app icon" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>App Icon, Deployment</figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="media">
+            <img src="Happy.JPG" alt="Happy emotion prediction" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>Happy</figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="media">
+            <img src="Sad.JPG" alt="Sad emotion prediction" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>Sad</figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="media">
+            <img src="Anger.JPG" alt="Anger emotion prediction" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>Anger</figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="media">
+            <img src="Disgust.JPG" alt="Disgust emotion prediction" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>Disgust</figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="media">
+            <img src="Neutral.JPG" alt="Neutral emotion prediction" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>Neutral</figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="media">
+            <img src="Surprise.JPG" alt="Surprise emotion prediction" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>Surprise</figcaption>
+        </figure>
+
+        <figure class="card">
+          <div class="media">
+            <img src="Fear.JPG" alt="Fear emotion prediction" loading="lazy" decoding="async" />
+          </div>
+          <figcaption>Fear</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <p class="note">
+      If I have to resort to acting for a living, that is not going to be good for anyone. Just saying.
+    </p>
+  </main>
 </body>
 </html>
