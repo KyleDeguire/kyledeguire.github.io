@@ -101,7 +101,6 @@
     }
     figure.card:hover { transform: translateY(-2px); box-shadow: 0 3px 10px rgba(10,102,194,.25), var(--shadow); }
 
-    /* Tall media so bottom confidence stays visible. */
     .media {
       aspect-ratio: 3 / 4.5;
       background: var(--card);
@@ -127,7 +126,7 @@
       margin-top: 16px; max-width: 70ch; text-align: left;
     }
 
-    /* Pills for tech stack, now used under Technical details */
+    /* Pills for tech stack */
     .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .pill {
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
@@ -153,19 +152,18 @@
   <main class="container">
     <h1 class="title">VisionAI: Emotion Detection</h1>
 
-    <!-- Compact standardized overview (keeps demo high for mobile) -->
+    <!-- Standardized Overview Section -->
     <section class="kv" aria-labelledby="overview">
       <h2 id="overview" class="subtitle" style="margin-bottom:6px;">Overview</h2>
 
-      <h3>What it is:</h3>
+      <h3>Solution summary:</h3>
       <p>A mobile Vision AI app that analyzes facial expressions in real time to classify emotions using an optimized TensorFlow Lite model in SwiftUI. Built for fast, private, on-device inference without an internet connection.</p>
 
-      <h3>Why it matters:</h3>
-      <p>Gives UX and product teams a quick, privacy-safe way to capture emotion insights for personalization and interface improvement.</p>
+      <h3>Business Impact:</h3>
+      <p>Provides UX and product teams a quick, privacy-safe way to capture emotion insights for personalization and interface improvement.</p>
 
       <h3>My role:</h3>
-      <p><strong>Strategy → architecture → build → test</strong><br>
-      Trained the emotion-classification model using FERPlus and RAF-DB datasets, optimized it for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
+      <p><strong>Strategy → architecture → build → test</strong></p>
 
       <h3>Scalability:</h3>
       <p>Extends to real-time sentiment tracking, adaptive UX feedback, and integrations with AR/VR or education use cases.</p>
@@ -174,10 +172,9 @@
       <p><em>See below</em></p>
     </section>
 
-    <!-- Demo stays near the top -->
+    <!-- Demo Section -->
     <h2 class="subtitle" style="margin-top: 24px;">Demo</h2>
 
-    <!-- Top row -->
     <div class="grid">
       <figure class="card"><div class="media"><img src="AppIcon.png" alt="App Icon" loading="lazy" decoding="async"></div><figcaption>App Icon, Deployment</figcaption></figure>
       <figure class="card"><div class="media"><img src="Happy.JPG" alt="Happy" loading="lazy" decoding="async"></div><figcaption>Happy</figcaption></figure>
@@ -185,7 +182,6 @@
       <figure class="card"><div class="media"><img src="Anger.JPG" alt="Anger" loading="lazy" decoding="async"></div><figcaption>Anger</figcaption></figure>
     </div>
 
-    <!-- Bottom row -->
     <div class="grid" style="margin-top:24px;">
       <figure class="card"><div class="media"><img src="Disgust.JPG" alt="Disgust" loading="lazy" decoding="async"></div><figcaption>Disgust</figcaption></figure>
       <figure class="card"><div class="media"><img src="Neutral.JPG" alt="Neutral" loading="lazy" decoding="async"></div><figcaption>Neutral</figcaption></figure>
@@ -197,7 +193,7 @@
       If I have to resort to acting for a living, that’s not going to be good for anyone. Just saying.
     </p>
 
-    <!-- Repeated technical details below demo -->
+    <!-- Technical Details Section -->
     <section class="kv" aria-labelledby="details" style="margin-top:22px;">
       <h2 id="details" class="subtitle" style="margin-bottom:6px;">Technical details</h2>
       <ul style="margin: 0; padding-left: 1.1rem;">
@@ -208,7 +204,6 @@
         <li><strong>Xcode</strong> – build, signing, and on-device deployment for iOS testing</li>
       </ul>
 
-      <!-- Optional: stack tags as pills for quick scanning -->
       <div class="pills">
         <span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenCV</span>
         <span class="pill">NumPy</span><span class="pill">Pandas</span><span class="pill">TensorFlow Lite</span><span class="pill">Xcode</span>
