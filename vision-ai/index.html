@@ -19,7 +19,7 @@
       --fg: #0f172a;
       --muted: #64748b;
       --brand: #0a66c2;
-      --tint: #eef6ff; /* Slightly darker professional blue */
+      --tint: #eef6ff;   /* professional blue tint */
       --card: #ffffff;
       --border: #d7e3f3;
       --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
@@ -70,7 +70,7 @@
     .title { font-size: clamp(22px, 4vw, 34px); color: var(--brand); margin-bottom: 4px; }
     .subtitle { color: var(--muted); font-size: 16px; margin: 0 0 12px 0; }
 
-    /* Info card */
+    /* Overview card */
     .info-card {
       border: 1px solid var(--border);
       background: var(--tint);
@@ -92,7 +92,6 @@
       border: 1px solid var(--border); background: var(--card); color: var(--muted);
     }
 
-    /* body layout */
     .info-body {
       display: grid;
       grid-template-columns: 1fr;
@@ -100,15 +99,12 @@
       padding: 18px 20px;
     }
     @media (min-width: 900px) {
-      .info-body {
-        grid-template-columns: 1fr 1fr;
-        column-gap: 60px;
-      }
+      .info-body { grid-template-columns: 1fr 1fr; column-gap: 60px; }
     }
 
     .info-section h3 {
       font-size: 0.95rem;
-      margin: 0 0 4px; /* reduced vertical spacing between title and text */
+      margin: 0 0 4px; /* tight: category name to explanation */
       color: var(--fg);
     }
     .info-section p {
@@ -117,7 +113,12 @@
     }
     .inline-role { font-weight: 600; letter-spacing: 0.3px; }
 
-    /* gallery */
+    /* Make the final Technical details row span full width and sit at the bottom */
+    .info-full { grid-column: 1 / -1; margin-top: -6px; }
+    /* optional tiny divider look */
+    .info-full h3 { margin-top: 2px; }
+
+    /* Gallery */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -182,27 +183,28 @@
       </div>
 
       <div class="info-body">
-        <!-- Left column -->
+        <!-- Left column: grouped sections -->
         <div class="info-section">
           <h3>Project overview</h3>
-          <p>
-            Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed<br>and privacy.
-          </p>
+          <p>Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed<br>and privacy.</p>
 
           <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
           <p>Trained the model with FERPlus and RAF-DB, optimized for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
-
-          <h3>Technical details</h3>
-          <p><em>See below</em></p>
         </div>
 
-        <!-- Right column -->
+        <!-- Right column: grouped sections -->
         <div class="info-section">
           <h3>Business impact</h3>
           <p>Delivers quick emotion signals to guide UX decisions and personalization without sending video off the device.</p>
 
           <h3>Scalability</h3>
           <p>Extend to sentiment tracking, adaptive UI feedback, and AR/VR analysis.</p>
+        </div>
+
+        <!-- Full-width final row: Technical details (moved to bottom) -->
+        <div class="info-section info-full">
+          <h3>Technical details</h3>
+          <p><em>See below</em></p>
         </div>
       </div>
     </section>
