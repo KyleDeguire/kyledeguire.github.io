@@ -19,6 +19,7 @@
       --fg: #0f172a;
       --muted: #64748b;
       --brand: #0a66c2;
+      --tint: #f7faff;              /* blue-tinted background */
       --card: #ffffff;
       --border: #e2e8f0;
       --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
@@ -31,6 +32,7 @@
         --fg: #e6edf3;
         --muted: #9fb0c0;
         --brand: #68a5ff;
+        --tint: #101827;
         --card: #101827;
         --border: #1f2a3a;
         --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 24px rgba(0,0,0,.35);
@@ -68,10 +70,10 @@
     .title { font-size: clamp(22px, 4vw, 34px); color: var(--brand); margin-bottom: 4px; }
     .subtitle { color: var(--muted); font-size: 16px; margin: 0 0 12px 0; }
 
-    /* Refined info card */
+    /* Info card with tint background */
     .info-card {
       border: 1px solid var(--border);
-      background: var(--card);
+      background: var(--tint);
       border-radius: 16px;
       box-shadow: var(--shadow);
       padding: 0;
@@ -81,41 +83,31 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
-      padding: 12px 14px;
+      padding: 14px 18px 10px;
       border-bottom: 1px solid var(--border);
     }
-    /* chips row for quick scan */
     .chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip {
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       border: 1px solid var(--border); background: var(--card); color: var(--muted);
     }
 
-    /* two-column details on desktop, single on mobile */
     .info-body {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 12px 14px;
+      gap: 18px;
+      padding: 14px 18px 16px;
     }
     .info-group h3 {
       font-size: 0.95rem; margin: 0 0 4px; color: var(--fg);
     }
-    .info-group p {
-      margin: 0; line-height: 1.45;
-    }
+    .info-group p { margin: 0; line-height: 1.45; }
     .inline-role { font-weight: 600; letter-spacing: 0.3px; }
 
-    /* compact expander to keep demo high on phones */
-    details.more {
-      border-top: 1px dashed var(--border);
-      padding-top: 10px; margin-top: 8px;
+    /* Wider gap for desktop columns */
+    @media (min-width: 900px) {
+      .info-body { grid-template-columns: 1fr 1fr; column-gap: 40px; }
     }
-    details.more summary {
-      cursor: pointer; list-style: none; color: var(--brand); font-weight: 600;
-    }
-    details.more summary::-webkit-details-marker { display: none; }
-    details.more[open] summary { margin-bottom: 6px; }
 
     /* Gallery */
     .grid {
@@ -147,14 +139,7 @@
       border: 1px solid var(--border); background: var(--card); color: var(--muted);
     }
 
-    /* Desktop refinements */
-    @media (min-width: 900px) {
-      .info-head { grid-template-columns: auto 1fr; align-items: center; }
-      .info-body { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
   </style>
 </head>
 
@@ -173,7 +158,7 @@
   <main class="container">
     <h1 class="title">VisionAI: Emotion Detection</h1>
 
-    <!-- Compact, polished info card -->
+    <!-- Sleek overview card -->
     <section class="info-card" aria-labelledby="overview">
       <div class="info-head">
         <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
@@ -187,37 +172,22 @@
 
       <div class="info-body">
         <div class="info-group">
-          <h3>Project Overview</h3>
+          <h3>Project overview</h3>
           <p>Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed and privacy.</p>
-        </div>
 
-        <div class="info-group">
-          <h3>Business Impact</h3>
-          <p>Delivers quick emotion signals to guide UX decisions and personalization without sending video off the device.</p>
-        </div>
-
-        <div class="info-group">
           <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
           <p>Trained the model with FERPlus and RAF-DB, optimized for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
+
+          <h3>Technical details</h3>
+          <p><em>See below</em></p>
         </div>
 
         <div class="info-group">
+          <h3>Business impact</h3>
+          <p>Delivers quick emotion signals to guide UX decisions and personalization without sending video off the device.</p>
+
           <h3>Scalability</h3>
           <p>Extend to sentiment tracking, adaptive UI feedback, and AR/VR analysis.</p>
-        </div>
-
-        <!-- Optional extra copy, collapsed by default to keep it light on phones -->
-        <details class="more">
-          <summary>More details</summary>
-          <p style="margin:6px 0 0; color: var(--muted);">
-            Supports offline use cases and low-latency inference paths for field testing. Architecture allows Core ML conversion and custom label sets.
-          </p>
-        </details>
-
-        <!-- Placement requirement -->
-        <div class="info-group" style="grid-column: 1 / -1;">
-          <h3>Technical details</h3>
-          <p><em>See below</em></p>
         </div>
       </div>
     </section>
