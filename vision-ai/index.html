@@ -104,7 +104,7 @@
 
     .info-section h3 {
       font-size: 0.95rem;
-      margin: 0 0 4px; /* tight: category name to explanation */
+      margin: 0 0 4px; /* tightened */
       color: var(--fg);
     }
     .info-section p {
@@ -113,10 +113,13 @@
     }
     .inline-role { font-weight: 600; letter-spacing: 0.3px; }
 
-    /* Make the final Technical details row span full width and sit at the bottom */
-    .info-full { grid-column: 1 / -1; margin-top: -6px; }
-    /* optional tiny divider look */
-    .info-full h3 { margin-top: 2px; }
+    /* Ensure even spacing on mobile */
+    @media (max-width: 899px) {
+      .info-section { margin-bottom: 4px; } /* evens spacing between stacked sections */
+    }
+
+    /* Full-width Technical details row */
+    .info-full { grid-column: 1 / -1; margin-top: -4px; }
 
     /* Gallery */
     .grid {
@@ -183,7 +186,7 @@
       </div>
 
       <div class="info-body">
-        <!-- Left column: grouped sections -->
+        <!-- Left column -->
         <div class="info-section">
           <h3>Project overview</h3>
           <p>Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed<br>and privacy.</p>
@@ -192,7 +195,7 @@
           <p>Trained the model with FERPlus and RAF-DB, optimized for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
         </div>
 
-        <!-- Right column: grouped sections -->
+        <!-- Right column -->
         <div class="info-section">
           <h3>Business impact</h3>
           <p>Delivers quick emotion signals to guide UX decisions and personalization without sending video off the device.</p>
@@ -201,7 +204,7 @@
           <p>Extend to sentiment tracking, adaptive UI feedback, and AR/VR analysis.</p>
         </div>
 
-        <!-- Full-width final row: Technical details (moved to bottom) -->
+        <!-- Technical details full-width -->
         <div class="info-section info-full">
           <h3>Technical details</h3>
           <p><em>See below</em></p>
