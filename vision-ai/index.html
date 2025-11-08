@@ -19,7 +19,7 @@
       --fg: #0f172a;
       --muted: #64748b;
       --brand: #0a66c2;
-      --tint: #eef6ff;              /* Slightly darker professional blue */
+      --tint: #eef6ff; /* Slightly darker professional blue */
       --card: #ffffff;
       --border: #d7e3f3;
       --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
@@ -96,7 +96,7 @@
     .info-body {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 24px;
       padding: 18px 20px;
     }
     @media (min-width: 900px) {
@@ -108,11 +108,11 @@
 
     .info-section h3 {
       font-size: 0.95rem;
-      margin: 0 0 8px;
+      margin: 0 0 4px; /* reduced vertical spacing between title and text */
       color: var(--fg);
     }
     .info-section p {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       line-height: 1.48;
     }
     .inline-role { font-weight: 600; letter-spacing: 0.3px; }
@@ -185,7 +185,9 @@
         <!-- Left column -->
         <div class="info-section">
           <h3>Project overview</h3>
-          <p>Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed and privacy.</p>
+          <p>
+            Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed<br>and privacy.
+          </p>
 
           <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
           <p>Trained the model with FERPlus and RAF-DB, optimized for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
