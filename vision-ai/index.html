@@ -5,26 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VisionAI: Emotion Detection</title>
 
-  <!-- Privacy-friendly analytics by Plausible -->
-  <script async src="https://plausible.io/js/pa-RA69z8VuW_SdU9foaJWrk.js"></script>
-  <script>
-    window.plausible = window.plausible || function(){ (plausible.q = plausible.q || []).push(arguments) }
-    plausible.init = plausible.init || function(options){ plausible.o = options || {} }
-    plausible.init();
-  </script>
-
   <style>
     :root {
       --bg: #ffffff;
       --fg: #0f172a;
       --muted: #64748b;
       --brand: #0a66c2;
-      --tint: #eef6ff;            /* professional blue tint */
-      --card: #ffffff;
+      --tint: #eef6ff;
       --border: #d7e3f3;
-      --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
+      --card: #ffffff;
       --radius: 14px;
-      --maxw: 1120px;
+      --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
+      --section-gap: 12px;  /* uniform section spacing */
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -33,96 +25,75 @@
         --muted: #9fb0c0;
         --brand: #68a5ff;
         --tint: #152235;
-        --card: #101827;
         --border: #1f2a3a;
+        --card: #101827;
         --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 24px rgba(0,0,0,.35);
       }
     }
 
     body {
       margin: 0;
-      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
-      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
       background: var(--bg);
+      color: var(--fg);
     }
-    .container { max-width: var(--maxw); margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
 
-    header {
-      position: sticky; top: 0; z-index: 10;
-      backdrop-filter: saturate(140%) blur(6px);
-      background: color-mix(in oklab, var(--bg) 88%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-    .topbar {
-      max-width: var(--maxw); margin: 0 auto;
-      padding: 10px clamp(12px, 2.5vw, 24px);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .crumb {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 12px; border: 1px solid var(--border);
-      border-radius: 999px; background: var(--card);
-      box-shadow: var(--shadow);
-      text-decoration: none; color: var(--brand); font-weight: 500;
-    }
-    .crumb svg { width: 16px; height: 16px; opacity: .7; }
+    .container { max-width: 1120px; margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
 
-    .title { font-size: clamp(22px, 4vw, 34px); color: var(--brand); margin-bottom: 4px; }
+    .title { color: var(--brand); font-size: clamp(22px, 4vw, 34px); margin-bottom: 6px; }
     .subtitle { color: var(--muted); font-size: 16px; margin: 0 0 12px 0; }
 
-    /* Overview card */
+    /* Overview box */
     .info-card {
-      border: 1px solid var(--border);
       background: var(--tint);
+      border: 1px solid var(--border);
       border-radius: 16px;
       box-shadow: var(--shadow);
-      overflow: hidden;
       padding: 0;
-    }
-    .info-head {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      padding: 14px 18px 10px;
-      border-bottom: 1px solid var(--border);
-    }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip {
-      font-size: 12px; padding: 6px 10px; border-radius: 999px;
-      border: 1px solid var(--border); background: var(--card); color: var(--muted);
+      overflow: hidden;
     }
 
-    /* Body layout + consistent spacing */
+    .info-head {
+      border-bottom: 1px solid var(--border);
+      padding: 14px 18px 10px;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: 12px; padding: 6px 10px;
+      border: 1px solid var(--border); border-radius: 999px;
+      background: var(--card); color: var(--muted);
+    }
+
     .info-body {
       display: grid;
       grid-template-columns: 1fr;
-      row-gap: 16px;                /* tighter, even vertical rhythm (mobile & desktop rows) */
-      padding: 16px 20px 18px;
+      gap: var(--section-gap);
+      padding: 18px 20px;
     }
     @media (min-width: 900px) {
       .info-body {
         grid-template-columns: 1fr 1fr;
-        column-gap: 60px;           /* desktop breathing room between columns */
+        column-gap: 60px;
       }
     }
 
     .info-section h3 {
+      margin: 0 0 4px;
       font-size: 0.95rem;
-      margin: 0 0 4px;              /* tight: category → explanation */
-      color: var(--fg);
     }
     .info-section p {
-      margin: 0 0 10px;             /* uniform paragraph bottom spacing */
+      margin: 0 0 var(--section-gap);
       line-height: 1.48;
     }
     .inline-role { font-weight: 600; letter-spacing: 0.3px; }
 
-    /* Full-width Technical details row (sits directly after Scalability with SAME row gap) */
-    .info-full { grid-column: 1 / -1; margin-top: 0; }
+    .info-full { grid-column: 1 / -1; }
 
-    /* Small assist on mobile to remove any extra stacking gap */
+    /* Adjust even rhythm on mobile */
     @media (max-width: 899px) {
-      .info-section { margin: 0; }  /* prevent div margins from adding phantom space */
+      .info-body { gap: var(--section-gap); }
+      .info-section p { margin-bottom: var(--section-gap); }
     }
 
     /* Gallery */
@@ -133,54 +104,33 @@
       margin-top: clamp(16px, 3vw, 30px);
     }
     figure.card {
-      margin: 0;
       border: 1px solid var(--border);
-      background: var(--card);
       border-radius: 14px;
+      background: var(--card);
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform .12s ease, box-shadow .12s ease;
     }
-    figure.card:hover { transform: translateY(-2px); box-shadow: 0 3px 10px rgba(10,102,194,.25), var(--shadow); }
-    .media { aspect-ratio: 3 / 4.5; display: flex; align-items: center; justify-content: center; }
-    .media img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
-    figcaption { padding: 10px 12px; font-weight: 600; font-size: 14px; text-align: center; color: var(--fg); border-top: 1px solid var(--border); }
+    .media { aspect-ratio: 3/4.5; display: flex; justify-content: center; align-items: center; }
+    .media img { width: 100%; height: 100%; object-fit: contain; }
+    figcaption { text-align: center; font-weight: 600; font-size: 14px; padding: 10px 12px; color: var(--fg); border-top: 1px solid var(--border); }
 
-    .note {
-      font-size: clamp(15px, 2.8vw, 18px);
-      font-style: italic; color: var(--muted);
-      margin-top: 16px; max-width: 70ch; text-align: left;
-    }
+    .note { font-style: italic; color: var(--muted); margin-top: 16px; }
 
     .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .pill {
       font-size: 12px; padding: 6px 10px; border-radius: 999px;
       border: 1px solid var(--border); background: var(--card); color: var(--muted);
     }
-
-    @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="topbar">
-      <a class="crumb" href="../index.html">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M12.78 4.22a.75.75 0 0 1 0 1.06L8.06 10l4.72 4.72a.75.75 0 1 1-1.06 1.06l-5.25-5.25a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0z"/>
-        </svg>
-        Back to portfolio
-      </a>
-    </div>
-  </header>
-
   <main class="container">
     <h1 class="title">VisionAI: Emotion Detection</h1>
 
-    <!-- Overview Card -->
-    <section class="info-card" aria-labelledby="overview">
+    <section class="info-card">
       <div class="info-head">
-        <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
+        <h2 class="subtitle" style="margin:0;">Overview</h2>
         <div class="chips">
           <span class="chip">On-device</span>
           <span class="chip">Real-time</span>
@@ -190,7 +140,6 @@
       </div>
 
       <div class="info-body">
-        <!-- Left column -->
         <div class="info-section">
           <h3>Project overview</h3>
           <p>Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed<br>and privacy.</p>
@@ -199,7 +148,6 @@
           <p>Trained the model with FERPlus and RAF-DB, optimized for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
         </div>
 
-        <!-- Right column -->
         <div class="info-section">
           <h3>Business impact</h3>
           <p>Delivers quick emotion signals to guide UX decisions and personalization without sending video off the device.</p>
@@ -208,7 +156,6 @@
           <p>Extend to sentiment tracking, adaptive UI feedback, and AR/VR analysis.</p>
         </div>
 
-        <!-- Full-width final row -->
         <div class="info-section info-full">
           <h3>Technical details</h3>
           <p><em>See below</em></p>
@@ -216,31 +163,29 @@
       </div>
     </section>
 
-    <!-- Demo Section -->
-    <h2 class="subtitle" style="margin-top: 24px;">Demo</h2>
+    <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
 
     <div class="grid">
-      <figure class="card"><div class="media"><img src="AppIcon.png" alt="App Icon" loading="lazy" decoding="async"></div><figcaption>App Icon, Deployment</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Happy.JPG" alt="Happy" loading="lazy" decoding="async"></div><figcaption>Happy</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Sad.JPG" alt="Sad" loading="lazy" decoding="async"></div><figcaption>Sad</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Anger.JPG" alt="Anger" loading="lazy" decoding="async"></div><figcaption>Anger</figcaption></figure>
+      <figure class="card"><div class="media"><img src="AppIcon.png" alt="App Icon"></div><figcaption>App Icon, Deployment</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Happy.JPG" alt="Happy"></div><figcaption>Happy</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Sad.JPG" alt="Sad"></div><figcaption>Sad</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Anger.JPG" alt="Anger"></div><figcaption>Anger</figcaption></figure>
     </div>
 
     <div class="grid" style="margin-top:24px;">
-      <figure class="card"><div class="media"><img src="Disgust.JPG" alt="Disgust" loading="lazy" decoding="async"></div><figcaption>Disgust</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Neutral.JPG" alt="Neutral" loading="lazy" decoding="async"></div><figcaption>Neutral</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Surprise.JPG" alt="Surprise" loading="lazy" decoding="async"></div><figcaption>Surprise</figcaption></figure>
-      <figure class="card"><div class="media"><img src="Fear.JPG" alt="Fear" loading="lazy" decoding="async"></div><figcaption>Fear</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Disgust.JPG" alt="Disgust"></div><figcaption>Disgust</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Neutral.JPG" alt="Neutral"></div><figcaption>Neutral</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Surprise.JPG" alt="Surprise"></div><figcaption>Surprise</figcaption></figure>
+      <figure class="card"><div class="media"><img src="Fear.JPG" alt="Fear"></div><figcaption>Fear</figcaption></figure>
     </div>
 
     <p class="note">
       If I have to resort to acting for a living, that’s not going to be good for anyone. Just saying.
     </p>
 
-    <!-- Technical Details Section -->
-    <section class="info-card" aria-labelledby="details" style="margin-top:22px;">
+    <section class="info-card" style="margin-top:22px;">
       <div class="info-head">
-        <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+        <h2 class="subtitle" style="margin:0;">Technical details</h2>
         <div class="chips">
           <span class="chip">TensorFlow Lite</span>
           <span class="chip">SwiftUI</span>
@@ -249,14 +194,16 @@
           <span class="chip">Xcode</span>
         </div>
       </div>
-      <div class="info-body" style="grid-template-columns: 1fr;">
-        <ul style="margin: 0; padding-left: 1.1rem;">
+
+      <div class="info-body" style="grid-template-columns:1fr;">
+        <ul style="margin:0; padding-left:1.1rem;">
           <li><strong>TensorFlow Lite</strong> – fast, lightweight inference optimized for mobile</li>
           <li><strong>SwiftUI</strong> – live camera pipeline and real-time UI updates</li>
           <li><strong>FERPlus / RAF-DB</strong> – diverse emotion datasets for model training</li>
           <li><strong>Core ML bridge</strong> – future path to Apple-native model tooling</li>
           <li><strong>Xcode</strong> – build, signing, and on-device deployment for iOS testing</li>
         </ul>
+
         <div class="pills">
           <span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenCV</span>
           <span class="pill">NumPy</span><span class="pill">Pandas</span><span class="pill">TensorFlow Lite</span><span class="pill">Xcode</span>
