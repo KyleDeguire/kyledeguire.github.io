@@ -18,18 +18,14 @@
       --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
       --maxw:1120px;
       --section-gap:12px;
-      /* lighter amber that reads on white/blue and still pops on black */
-      --hint: #f59e0b; /* amber-500 */
-      /* overlay neutral blacks to “paint out” parts of the screenshot */
-      --overlay-black: rgba(0,0,0,0.92);
-      --overlay-black-strong: rgba(0,0,0,0.96);
+      --hint:#f59e0b; /* lighter amber tone */
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg:#0b1220; --fg:#e6edf3; --muted:#9fb0c0; --brand:#68a5ff;
         --tint:#152235; --border:#1f2a3a; --card:#101827;
         --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 24px rgba(0,0,0,.35);
-        --hint:#f59e0b; /* keep hint consistent in dark mode */
+        --hint:#f59e0b;
       }
     }
 
@@ -39,7 +35,9 @@
     .subtitle {color:var(--muted);font-size:16px;margin:0 0 12px;}
 
     /* Mobile-only "Scroll down for Demo" hint */
-    .scroll-hint { display:none; }
+    .scroll-hint {
+      display:none;
+    }
     @media (max-width:899px){
       .scroll-hint{
         display:block;
@@ -69,55 +67,16 @@
     /* Demo cards */
     .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
     figure.card {border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden;box-shadow:var(--shadow);}
-    .media {padding:14px;text-align:center;position:relative;}
+    .media {padding:14px;text-align:center;}
     audio {width:100%;}
     figcaption {padding:8px 12px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
     .note {font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
 
-    /* Phone screenshot sizing */
-    .shot-wrap{position:relative;display:inline-block;}
-    .phone-shot{width:100%;height:auto;border-radius:10px;display:block;margin:0 auto 12px;}
+    /* Phone screenshot size */
+    .phone-shot{width:100%;height:auto;border-radius:10px;margin:0 auto 12px;display:block;}
     @media (min-width:900px){
       .phone-shot{max-width:360px;}
     }
-
-    /* Responsive overlays to tweak visible parts of the screenshot
-       Positions are percentages so they scale with the image.
-       Adjust the --* vars if the date/triangle sits a tad off on your screen. */
-    .overlay { position:absolute; pointer-events:none; }
-    .patch { background: var(--overlay-black); border-radius:3px; }
-
-    /* Tweakable variables (relative to the .shot-wrap box) */
-    .shot-wrap{
-      --date1-left: 8%;   /* "- 13 Oct, 2025" area */
-      --date1-bottom: 18%;
-      --date1-w: 38%;
-      --date1-h: 9%;
-
-      --date2-left: 10%;  /* "October 13" area below it */
-      --date2-bottom: 10%;
-      --date2-w: 28%;
-      --date2-h: 8%;
-
-      --play-left: 4%;    /* inactive play triangle patch */
-      --play-bottom: 18.5%;
-      --play-w: 5.5%;
-      --play-h: 9%;
-    }
-
-    .patch-date1{ left:var(--date1-left); bottom:var(--date1-bottom); width:var(--date1-w); height:var(--date1-h); }
-    .patch-date2{ left:var(--date2-left); bottom:var(--date2-bottom); width:var(--date2-w); height:var(--date2-h); }
-    .patch-play { left:var(--play-left);  bottom:var(--play-bottom);  width:var(--play-w);  height:var(--play-h); background:var(--overlay-black-strong); }
-
-    /* Replacement text on top of patches */
-    .label{
-      color:#ffffff; font-weight:600; letter-spacing:.2px;
-      font-size: clamp(10px, 2.7vw, 13px);
-      line-height:1;
-      text-shadow: 0 1px 1px rgba(0,0,0,.5);
-    }
-    .text-date1{ left:calc(var(--date1-left) + 2%); bottom:calc(var(--date1-bottom) + 3%); }
-    .text-date2{ left:calc(var(--date2-left) + 2%); bottom:calc(var(--date2-bottom) + 2%); }
 
     .pills {display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
     .pill {font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
@@ -174,22 +133,8 @@
     <div class="grid">
       <figure class="card">
         <div class="media">
-          <!-- Screenshot with overlays -->
-          <span class="shot-wrap">
-            <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast Screenshot" loading="lazy" decoding="async">
-
-            <!-- Paint out old text + triangle -->
-            <span class="overlay patch patch-date1"></span>
-            <span class="overlay patch patch-date2"></span>
-            <span class="overlay patch patch-play"></span>
-
-            <!-- Replacement labels -->
-            <span class="overlay label text-date1">- 27 Oct, 2025</span>
-            <span class="overlay label text-date2">October 27</span>
-          </span>
-
-          <!-- Audio -->
-          <audio controls preload="none" style="margin-top:12px;">
+          <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast Screenshot" loading="lazy" decoding="async">
+          <audio controls preload="none">
             <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251027.mp3?t=1761578921" type="audio/mpeg">
             Your browser does not support audio playback.
           </audio>
