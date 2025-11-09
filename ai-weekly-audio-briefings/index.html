@@ -62,9 +62,11 @@
     .inline-role {font-weight:600;letter-spacing:.3px;}
     .info-full {grid-column:1 / -1;}
 
-    /* ✅ Pull the 'Technical details' row up by exactly one grid gap on desktop */
+    /* Pull 'Technical details' up a touch more on desktop for uniform spacing */
     @media (min-width:900px){
-      .info-section.info-full{ margin-top: calc(-1 * var(--section-gap)); }
+      .info-section.info-full{ 
+        margin-top: calc(-1 * var(--section-gap) - 6px); /* was -var(--section-gap); now ~one-and-a-half lines tighter */
+      }
     }
 
     /* Demo cards */
