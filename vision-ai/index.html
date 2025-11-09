@@ -16,8 +16,9 @@
       --shadow:0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
       --radius:14px;
       --maxw:1120px;
-      --tint:#eef6ff;
-      --hint:#f59e0b; /* lighter amber tone */
+      --tint:#eef6ff;   /* same overview/tech card tint as other pages */
+      --hint:#f59e0b;   /* mobile “scroll” hint */
+      --section-gap:12px;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -64,16 +65,18 @@
     .chips { display:flex; flex-wrap:wrap; gap:8px; }
     .chip { font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--card); color:var(--muted); }
 
-    .info-body { display:grid; grid-template-columns:1fr; row-gap:12px; padding:18px 20px; }
+    .info-body { display:grid; grid-template-columns:1fr; row-gap:var(--section-gap); padding:18px 20px; }
     @media (min-width:900px){ .info-body { grid-template-columns:1fr 1fr; column-gap:60px; } }
 
     .info-section h3 { font-size:.95rem; margin:0 0 4px; color:var(--fg); }
-    .info-section p { margin:0 0 12px; line-height:1.48; }
+    .info-section p { margin:0 0 var(--section-gap); line-height:1.48; }
     .info-section p:last-child { margin-bottom:0; }
     .inline-role { font-weight:600; letter-spacing:.3px; }
     .info-full { grid-column:1 / -1; }
+    /* small nudge to keep “Technical details (See below)” spacing consistent on desktop */
+    @media (min-width:900px){ .info-section.info-full{ margin-top:6px; } }
 
-    /* Demo Grid */
+    /* Demo Grid (images) */
     .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:clamp(10px,2vw,18px); margin-top:clamp(16px,3vw,30px); }
     figure.card {
       margin:0;
@@ -100,6 +103,7 @@
   <main class="container">
     <h1 class="title">VisionAI: Emotion Detection</h1>
 
+    <!-- Overview -->
     <section class="info-card" aria-labelledby="overview">
       <div class="info-head">
         <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
@@ -115,6 +119,7 @@
         <!-- Left Column -->
         <div class="info-section">
           <p class="scroll-hint">Scroll down for Demo</p>
+
           <h3>Project overview</h3>
           <p>Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed and privacy.</p>
 
@@ -125,7 +130,7 @@
         <!-- Right Column -->
         <div class="info-section">
           <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
-          <p>Trained the model with FERPlus and RAF-DB, optimized for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
+          <p>Trained the model using FERPlus and RAF-DB datasets, optimized it for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
 
           <h3>Scalability</h3>
           <p>Extend to sentiment tracking, adaptive UI feedback, and AR/VR analysis.</p>
@@ -139,6 +144,7 @@
       </div>
     </section>
 
+    <!-- Demo -->
     <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
 
     <div class="grid">
@@ -146,11 +152,39 @@
       <figure class="card"><div class="media"><img src="Happy.JPG" alt="Happy" loading="lazy" decoding="async"></div><figcaption>Happy</figcaption></figure>
       <figure class="card"><div class="media"><img src="Sad.JPG" alt="Sad" loading="lazy" decoding="async"></div><figcaption>Sad</figcaption></figure>
       <figure class="card"><div class="media"><img src="Anger.JPG" alt="Anger" loading="lazy" decoding="async"></div><figcaption>Anger</figcaption></figure>
+
       <figure class="card"><div class="media"><img src="Disgust.JPG" alt="Disgust" loading="lazy" decoding="async"></div><figcaption>Disgust</figcaption></figure>
       <figure class="card"><div class="media"><img src="Neutral.JPG" alt="Neutral" loading="lazy" decoding="async"></div><figcaption>Neutral</figcaption></figure>
       <figure class="card"><div class="media"><img src="Surprise.JPG" alt="Surprise" loading="lazy" decoding="async"></div><figcaption>Surprise</figcaption></figure>
       <figure class="card"><div class="media"><img src="Fear.JPG" alt="Fear" loading="lazy" decoding="async"></div><figcaption>Fear</figcaption></figure>
     </div>
+
+    <!-- Technical Details (added, consistent tint and layout) -->
+    <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+      <div class="info-head">
+        <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+        <div class="chips">
+          <span class="chip">TensorFlow Lite</span>
+          <span class="chip">SwiftUI</span>
+          <span class="chip">FERPlus</span>
+          <span class="chip">RAF-DB</span>
+          <span class="chip">On-device inference</span>
+          <span class="chip">Privacy-first</span>
+          <span class="chip">Xcode</span>
+        </div>
+      </div>
+
+      <div class="info-body" style="grid-template-columns:1fr;">
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li><strong>Model training</strong> – trained the emotion-classification model using FERPlus and RAF-DB for seven core emotions; balanced classes and validated with holdout images.</li>
+          <li><strong>Optimization</strong> – converted and quantized for TensorFlow Lite to improve speed and reduce model size while preserving accuracy.</li>
+          <li><strong>On-device processing</strong> – full inference runs locally for low latency and privacy; no video leaves the device.</li>
+          <li><strong>Architecture</strong> – SwiftUI app with AVFoundation camera stream and preprocessing; TFLite interpreter for real-time predictions.</li>
+          <li><strong>Deployment</strong> – packaged and installed via Xcode for on-device testing and demo.</li>
+          <li><strong>Next steps</strong> – add trend tracking, adaptive UI reactions, and optional Core ML conversion for Apple silicon optimization.</li>
+        </ul>
+      </div>
+    </section>
 
     <p class="note">
       If I have to resort to acting for a living, that’s not going to be good for anyone. Just saying.
