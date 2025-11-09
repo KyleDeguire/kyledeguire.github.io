@@ -45,7 +45,7 @@
     .info-section p:last-child{margin-bottom:0;}
     .inline-role{font-weight:600;letter-spacing:.3px;}
     .info-full{grid-column:1/-1;}
-    /* Keep the “Technical details → See below” spacing consistent with VisionAI */
+    /* Match VisionAI spacing for the 'Technical details → See below' line */
     @media (min-width:900px){ .info-section.info-full{ margin-top:6px; } }
 
     /* Demo grid */
@@ -103,7 +103,7 @@
           <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
         </div>
 
-        <!-- Keep this small notice with consistent spacing -->
+        <!-- Consistent spacer and label -->
         <div class="info-section info-full">
           <h3>Technical details</h3>
           <p><em>See below</em></p>
@@ -114,21 +114,22 @@
     <!-- Demo -->
     <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
     <div class="grid">
-      <!-- Screenshot card (restored) -->
+      <!-- Screenshot card (correct path) -->
       <figure class="card">
         <div class="media">
-          <img class="phone-shot" src="assets/podcast-screenshot.png" alt="Podcast screenshot" loading="lazy">
+          <!-- Your repo shows the file at the root of this folder, not /assets -->
+          <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot" loading="lazy">
         </div>
         <figcaption>Podcast feed example</figcaption>
       </figure>
 
-      <!-- Audio sample card (restored) -->
+      <!-- Audio sample card (absolute URL to the working feed repo) -->
       <figure class="card">
         <div class="media" style="padding:16px;">
           <div style="width:100%;">
             <div class="demo-audio">
               <audio controls preload="metadata">
-                <source src="audio/ai_news_20251027.mp3" type="audio/mpeg">
+                <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251027.mp3?t=1" type="audio/mpeg">
               </audio>
             </div>
           </div>
