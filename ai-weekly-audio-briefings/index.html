@@ -150,28 +150,29 @@
 
     <p class="note">Demo episode shown for sample playback. Full library available via RSS feed.</p>
 
-   <!-- Technical Details (CONSISTENT FORMAT) -->
+  <!-- Technical details (FINAL – GitHub pipeline) -->
 <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
   <div class="info-head">
     <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
     <div class="chips">
       <span class="chip">OpenAI</span>
       <span class="chip">ElevenLabs</span>
-      <span class="chip">Make / n8n</span>
+      <span class="chip">Python</span>
+      <span class="chip">GitHub Actions</span>
       <span class="chip">GitHub Pages</span>
       <span class="chip">RSS / feed.xml</span>
-      <span class="chip">GitHub Actions</span>
     </div>
   </div>
 
   <div class="info-body" style="grid-template-columns:1fr;">
     <ul style="margin:0; padding-left:1.1rem;">
-      <li><strong>Data & inputs</strong> – weekly scrape/ingest of seven AI publications.</li>
-      <li><strong>Model & processing</strong> – OpenAI condenses and structures briefs by five business criteria.</li>
-      <li><strong>Runtime</strong> – workflow orchestration in Make or n8n for scrape → summarize → TTS → publish.</li>
-      <li><strong>Audio & delivery</strong> – ElevenLabs TTS outputs MP3; transcript and citations generated alongside.</li>
-      <li><strong>Hosting & distribution</strong> – MP3s and <code>feed.xml</code> hosted on GitHub Pages for podcast apps.</li>
-      <li><strong>Automation</strong> – optional GitHub Actions to schedule weekly builds and publishing.</li>
+      <li><strong>Data & inputs</strong> – weekly automated collection of seven leading AI publications.</li>
+      <li><strong>Model & processing</strong> – OpenAI condenses and structures updates into a brief using five business criteria.</li>
+      <li><strong>Runtime</strong> – implemented as a <strong>GitHub Actions</strong> workflow that runs Python scripts
+        (<code>scripts/generate_brief.py</code>, <code>scripts/update_feed.py</code>) on a Monday schedule to generate the MP3 and update <code>feed.xml</code>.</li>
+      <li><strong>Audio & delivery</strong> – ElevenLabs TTS produces the MP3; transcript is generated alongside for reference and QC.</li>
+      <li><strong>Hosting & distribution</strong> – MP3s and the podcast <code>feed.xml</code> are hosted on <strong>GitHub Pages</strong> for subscription in podcast apps.</li>
+      <li><strong>Versioning & publish</strong> – the workflow commits audio and feed changes back to the repo using git automation for a repeatable release.</li>
     </ul>
   </div>
 </section>
