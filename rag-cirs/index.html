@@ -28,7 +28,9 @@ body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe 
 /* Mobile-only hint */
 .scroll-hint{display:none;}
 @media (max-width:899px){
-  .scroll-hint{display:block;font-size:.95rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;}
+  .scroll-hint{
+    display:block;font-size:.95rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;
+  }
 }
 
 /* Overview card */
@@ -101,7 +103,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 
     <div class="info-body">
       <div class="info-section">
-        <p class="scroll-hint">Scroll down for planning docs / system dev in-progress</p>
+        <p class="scroll-hint">Scroll down for planning docs<br>- System development in progress</p>
         <h3>Project overview</h3>
         <p>A retrieval-augmented assistant for FAA Advisory Circulars. PDFs are parsed, cleaned, chunked, and embedded in Pinecone; a LangChain retriever routes queries to OpenAI and returns cited answers with source snippets.</p>
 
@@ -127,12 +129,11 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   <!-- Demo -->
   <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
   <div class="grid">
-    <!-- 1) Planning documents FIRST (left on desktop, top on mobile). Entire card clickable. -->
+    <!-- Planning documents FIRST -->
     <figure class="card">
       <a class="card-link" href="Airline%20FAA%20RAG%20–%20Summary.docx" download>
         <div class="media doc-tile">
           <div class="doc-icon">
-            <!-- simple doc icon -->
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/>
               <path d="M14 3v5h5" stroke="white" stroke-width="1.6"/>
@@ -159,7 +160,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
       <figcaption>Planning document</figcaption>
     </figure>
 
-    <!-- 2) Professional “In progress” tiles -->
+    <!-- Professional “In progress” tiles -->
     <figure class="card">
       <div class="media placeholder">
         <div class="placeholder-inner">
