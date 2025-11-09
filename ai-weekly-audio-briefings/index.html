@@ -32,6 +32,12 @@
     .title {color:var(--brand);font-size:clamp(22px,4vw,34px);margin:0 0 6px;}
     .subtitle {color:var(--muted);font-size:16px;margin:0 0 12px;}
 
+    /* Small, mobile-only hint */
+    .mobile-hint {display:none;}
+    @media (max-width: 899px){
+      .mobile-hint{display:block;font-size:12px;color:var(--muted);margin:4px 0 10px;}
+    }
+
     /* Overview card */
     .info-card {background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
     .info-head {border-bottom:1px solid var(--border);padding:14px 18px 10px;}
@@ -55,6 +61,12 @@
     figcaption {padding:8px 12px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
     .note {font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
 
+    /* Phone screenshot: keep mobile as-is, constrain desktop to "actual size" */
+    .phone-shot{width:100%;height:auto;border-radius:10px;margin:0 auto 12px;display:block;}
+    @media (min-width: 900px){
+      .phone-shot{max-width: 360px;} /* ~actual iPhone screen width on desktop */
+    }
+
     .pills {display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
     .pill {font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
   </style>
@@ -63,6 +75,7 @@
 <body>
   <main class="container">
     <h1 class="title">AI Weekly Audio Feed</h1>
+    <p class="mobile-hint">Scroll down for Demo</p>
 
     <!-- Overview Card -->
     <section class="info-card" aria-labelledby="overview">
@@ -109,8 +122,13 @@
     <div class="grid">
       <figure class="card">
         <div class="media">
-          <img src="podcast-screenshot.png" alt="Podcast Screenshot" style="width:100%;border-radius:10px;margin-bottom:12px;" loading="lazy" decoding="async">
-          <audio controls preload="none" src="episodes/latest.mp3"></audio>
+          <!-- Keep mobile size; constrain desktop via CSS above -->
+          <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast Screenshot" loading="lazy" decoding="async">
+          <!-- Use proper MP3 URL and explicit source type -->
+          <audio controls preload="none">
+            <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251027.mp3?t=1761578921" type="audio/mpeg">
+            Your browser does not support audio playback.
+          </audio>
         </div>
         <figcaption>AI Weekly Audio Brief — Sample Episode</figcaption>
       </figure>
