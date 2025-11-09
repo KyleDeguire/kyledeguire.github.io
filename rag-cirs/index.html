@@ -186,28 +186,31 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 
   <p class="note">Citations display embedded source segments for transparency and verification.</p>
 
-  <!-- Technical Details -->
-  <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
-    <div class="info-head">
-      <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
-      <div class="chips">
-        <span class="chip">OpenAI</span><span class="chip">LangChain</span>
-        <span class="chip">Pinecone</span><span class="chip">PDF ingestion</span>
-        <span class="chip">Chunking + Embeddings</span><span class="chip">Citations</span>
-      </div>
+  <!-- Technical Details (CONSISTENT FORMAT) -->
+<section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+  <div class="info-head">
+    <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+    <div class="chips">
+      <span class="chip">OpenAI</span>
+      <span class="chip">LangChain</span>
+      <span class="chip">Pinecone</span>
+      <span class="chip">PDF ingestion</span>
+      <span class="chip">Chunking + Embeddings</span>
+      <span class="chip">Citations</span>
     </div>
+  </div>
 
-    <div class="info-body" style="grid-template-columns:1fr;">
-      <ul style="margin:0;padding-left:1.1rem;">
-        <li><strong>Ingestion</strong> – parse FAA Advisory Circular PDFs and normalize metadata</li>
-        <li><strong>Chunking</strong> – structure-aware splits preserve headings and context</li>
-        <li><strong>Embeddings → Pinecone</strong> – vectors with document and section metadata</li>
-        <li><strong>Retriever + QA chain</strong> – LangChain queries vectors and composes cited answers</li>
-        <li><strong>Evaluation</strong> – spot checks to tune chunk size and prompt design</li>
-        <li><strong>Front end</strong> – lightweight demo with answer + sources view</li>
-      </ul>
-    </div>
-  </section>
+  <div class="info-body" style="grid-template-columns:1fr;">
+    <ul style="margin:0; padding-left:1.1rem;">
+      <li><strong>Data & inputs</strong> – FAA Advisory Circular PDFs parsed, cleaned, and normalized with document metadata.</li>
+      <li><strong>Model & processing</strong> – structure-aware chunking; embeddings created and stored with section-level metadata.</li>
+      <li><strong>Vector store</strong> – Pinecone index for high-recall semantic retrieval.</li>
+      <li><strong>Retriever & QA</strong> – LangChain pipeline queries vectors and composes grounded answers with citations.</li>
+      <li><strong>Evaluation</strong> – spot checks with held-out questions to tune chunk sizes and prompts.</li>
+      <li><strong>Interface</strong> – lightweight demo surface showing answer plus linked source passages.</li>
+    </ul>
+  </div>
+</section>
 </main>
 </body>
 </html>
