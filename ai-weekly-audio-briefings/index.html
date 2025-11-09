@@ -33,13 +33,13 @@
     .subtitle {color:var(--muted);font-size:16px;margin:0 0 12px;}
 
     /* Overview card */
-    .info-card {background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+    .info-card {background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
     .info-head {border-bottom:1px solid var(--border);padding:14px 18px 10px;}
     .chips {display:flex;flex-wrap:wrap;gap:8px;}
     .chip {font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--muted);}
 
     .info-body {display:grid;grid-template-columns:1fr;row-gap:var(--section-gap);padding:18px 20px;}
-    @media (min-width:900px) {.info-body {grid-template-columns:1fr 1fr;column-gap:60px;}}
+    @media (min-width:900px){.info-body{grid-template-columns:1fr 1fr;column-gap:60px;}}
 
     .info-section h3 {font-size:.95rem;margin:0 0 4px;color:var(--fg);}
     .info-section p {margin:0 0 var(--section-gap);line-height:1.48;}
@@ -47,18 +47,19 @@
     .inline-role {font-weight:600;letter-spacing:.3px;}
     .info-full {grid-column:1 / -1;}
 
-    /* Audio cards */
+    /* Demo cards */
     .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
     figure.card {border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden;box-shadow:var(--shadow);}
-    .media {padding:14px;}
+    .media {padding:14px;text-align:center;}
     audio {width:100%;}
     figcaption {padding:8px 12px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
+    .note {font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
 
-    .note {font-style:italic;color:var(--muted);margin-top:16px;}
     .pills {display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
     .pill {font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
   </style>
 </head>
+
 <body>
   <main class="container">
     <h1 class="title">AI Weekly Audio Feed</h1>
@@ -79,22 +80,22 @@
         <!-- Left column -->
         <div class="info-section">
           <h3>Project overview</h3>
-          <p>Automated weekly review of seven leading AI publications. This agentic workflow curates, summarizes, and narrates major updates using GPT-driven analysis structured around five business criteria. Generates a weekly podcast with transcript and citations for reference or deeper research.</p>
+          <p>Automated weekly scan of seven top AI publications. An agentic workflow curates, summarizes, and narrates updates with GPT, organized by five business criteria. Outputs a podcast with transcript and citations.</p>
 
           <h3>Business impact</h3>
-          <p>Keeps busy executives current by converting fast-moving, complex AI developments into concise audio briefings—reducing screen time, improving retention, and enabling hands-free learning during commutes or travel.</p>
+          <p>Keeps executives current by turning complex AI news into short audio briefs, cutting screen time and boosting retention, ideal for commutes.</p>
         </div>
 
         <!-- Right column -->
         <div class="info-section">
           <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
-          <p>Designed and deployed the end-to-end agentic workflow linking GPT summarization, ElevenLabs TTS, and Make automations. Built logic for data collection, summarization, and publishing, and tested the full pipeline from input sources to RSS distribution.</p>
+          <p>Designed and shipped the agentic workflow: GPT summarization, ElevenLabs TTS, and Make automations. Built data collection, summarization, and publishing logic and validated the full pipeline to RSS.</p>
 
           <h3>Scalability</h3>
-          <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
+          <p>Flexible: vary topics, cadence, and length for finance, healthcare, education, or policy; support regional versions, sponsor reads, and multi-language feeds.</p>
         </div>
 
-        <!-- Full-width bottom row -->
+        <!-- Full-width bottom -->
         <div class="info-section info-full">
           <h3>Technical details</h3>
           <p><em>See below</em></p>
@@ -103,32 +104,19 @@
     </section>
 
     <!-- Demo Section -->
-    <h2 class="subtitle" style="margin-top:24px;">Latest episodes</h2>
+    <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
 
     <div class="grid">
       <figure class="card">
         <div class="media">
+          <img src="podcast-screenshot.png" alt="Podcast Screenshot" style="width:100%;border-radius:10px;margin-bottom:12px;" loading="lazy" decoding="async">
           <audio controls preload="none" src="episodes/latest.mp3"></audio>
         </div>
-        <figcaption>Latest Weekly Brief</figcaption>
-      </figure>
-
-      <figure class="card">
-        <div class="media">
-          <audio controls preload="none" src="episodes/2025-10-31.mp3"></audio>
-        </div>
-        <figcaption>Oct 31, 2025</figcaption>
-      </figure>
-
-      <figure class="card">
-        <div class="media">
-          <audio controls preload="none" src="episodes/2025-10-24.mp3"></audio>
-        </div>
-        <figcaption>Oct 24, 2025</figcaption>
+        <figcaption>AI Weekly Audio Brief — Sample Episode</figcaption>
       </figure>
     </div>
 
-    <p class="note">Only 2–3 episodes should remain visible to keep the layout clean; archive older ones within your RSS feed.</p>
+    <p class="note">Demo episode shown for sample playback. Full library available via RSS feed.</p>
 
     <!-- Technical Details -->
     <section class="info-card" aria-labelledby="details" style="margin-top:22px;">
@@ -143,20 +131,15 @@
           <span class="chip">GitHub Actions</span>
         </div>
       </div>
+
       <div class="info-body" style="grid-template-columns:1fr;">
         <ul style="margin:0; padding-left:1.1rem;">
           <li><strong>OpenAI (GPT)</strong> – condenses articles and drafts a natural, listenable script</li>
-          <li><strong>ElevenLabs TTS</strong> – generates clear narration as MP3</li>
-          <li><strong>Make / n8n</strong> – automates scraping, summarization, TTS, and file publishing</li>
+          <li><strong>ElevenLabs TTS</strong> – generates narration as MP3</li>
+          <li><strong>Make / n8n</strong> – automates scraping, summarization, TTS, and publishing</li>
           <li><strong>GitHub Pages + RSS (feed.xml)</strong> – hosts MP3s and enables podcast subscriptions</li>
           <li><strong>GitHub Actions (optional)</strong> – automates weekly builds and publishing</li>
         </ul>
-
-        <div class="pills">
-          <span class="pill">OpenAI</span><span class="pill">ElevenLabs</span>
-          <span class="pill">Make</span><span class="pill">n8n</span>
-          <span class="pill">GitHub Pages</span><span class="pill">RSS</span><span class="pill">GitHub Actions</span>
-        </div>
       </div>
     </section>
   </main>
