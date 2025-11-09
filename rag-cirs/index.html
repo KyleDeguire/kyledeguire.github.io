@@ -6,142 +6,207 @@
 <title>RAG CIRS: FAA Compliance Assistant</title>
 
 <style>
-:root {
+:root{
   --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --brand:#0a66c2;
-  --card:#ffffff; --border:#e2e8f0; --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
+  --card:#ffffff; --border:#e2e8f0; --shadow:0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
   --radius:14px; --maxw:1120px; --tint:#eef6ff; --hint:#f59e0b;
+  --neutral:#f4f6f8; --neutral-dark:#1b2433; --pill:#eaf2ff;
 }
 @media (prefers-color-scheme: dark){
-  :root{--bg:#0b1220;--fg:#e6edf3;--muted:#9fb0c0;--brand:#68a5ff;
-  --card:#101827;--border:#1f2a3a;--shadow:0 1px 2px rgba(0,0,0,.4),0 6px 24px rgba(0,0,0,.35);
-  --tint:#152235;--hint:#f59e0b;}
+  :root{
+    --bg:#0b1220; --fg:#e6edf3; --muted:#9fb0c0; --brand:#68a5ff;
+    --card:#101827; --border:#1f2a3a; --tint:#152235; --hint:#f59e0b;
+    --neutral:#0f1726; --neutral-dark:#0f1726; --pill:#102040;
+  }
 }
-body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;color:var(--fg);background:var(--bg);}
+*{box-sizing:border-box}
+body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;background:var(--bg);color:var(--fg);}
 .container{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,32px);}
 .title{font-size:clamp(22px,4vw,34px);color:var(--brand);margin:0 0 6px;}
 .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
-.scroll-hint{display:none;}
-@media (max-width:899px){.scroll-hint{display:block;font-size:.95rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;}}
 
+/* Mobile-only hint */
+.scroll-hint{display:none;}
+@media (max-width:899px){
+  .scroll-hint{display:block;font-size:.95rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;}
+}
+
+/* Overview card */
 .info-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
 .info-head{border-bottom:1px solid var(--border);padding:14px 18px 10px;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
 .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
 .info-body{display:grid;grid-template-columns:1fr;row-gap:12px;padding:18px 20px;}
 @media (min-width:900px){.info-body{grid-template-columns:1fr 1fr;column-gap:60px;}}
-.info-section h3{font-size:.95rem;margin:0 0 4px;color:var(--fg);}
+.info-section h3{font-size:.95rem;margin:0 0 4px;}
 .info-section p{margin:0 0 12px;line-height:1.48;}
 .info-section p:last-child{margin-bottom:0;}
 .inline-role{font-weight:600;letter-spacing:.3px;}
 .info-full{grid-column:1/-1;}
+/* match spacing rhythm above Technical details on desktop */
 @media (min-width:900px){.info-section.info-full{margin-top:6px;}}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
-figure.card{position:relative;margin:0;border:1px solid var(--border);background:var(--card);
-border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
-transition:transform .12s ease,box-shadow .12s ease;}
-figure.card:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);}
+/* Demo grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
+figure.card{
+  position:relative;margin:0;border:1px solid var(--border);background:var(--card);
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+figure.card:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(10,102,194,.25), var(--shadow);}
 .media{aspect-ratio:16/10;background:var(--card);display:flex;align-items:center;justify-content:center;}
 .media img{width:100%;height:100%;object-fit:cover;display:block;}
-figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
-.badge{position:absolute;top:8px;left:8px;background:rgba(10,102,194,.9);color:#fff;
-font-size:.75rem;padding:4px 8px;border-radius:6px;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.3);}
-.note{font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
+figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;border-top:1px solid var(--border);}
 
-a.download-link{text-decoration:none;color:var(--brand);}
-a.download-link:hover{text-decoration:underline;}
+/* Full-card link for documents */
+.card a.card-link{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none;color:inherit;}
+.doc-tile{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(180deg, var(--pill), transparent 60%);
+}
+.doc-icon{width:56px;height:56px;border-radius:12px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:10px;box-shadow:0 4px 16px rgba(10,102,194,.25);}
+.doc-name{font-weight:600;text-align:center;padding:0 10px}
+
+/* Professional “In progress” tiles */
+.placeholder{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(100% 100% at 0% 0%, #e9eef7 0%, #dfe7f5 35%, #cfdcf0 100%);
+  color:#0b1b34;
+}
+@media (prefers-color-scheme: dark){
+  .placeholder{background:radial-gradient(100% 100% at 0% 0%, #0e1a2a 0%, #0c1726 40%, #0a1420 100%);color:#dce6ff;}
+}
+.placeholder-inner{display:flex;flex-direction:column;align-items:center;text-align:center;padding:18px}
+.ph-title{font-weight:700;margin:0 0 6px}
+.ph-sub{font-size:.9rem;opacity:.9;margin:0}
+.ph-badge{margin-top:10px;padding:6px 10px;border-radius:999px;background:rgba(10,102,194,.12);color:var(--brand);font-weight:700;font-size:.8rem;border:1px solid rgba(10,102,194,.25);}
 </style>
 </head>
 
 <body>
 <main class="container">
-<h1 class="title">RAG CIRS: FAA Compliance Assistant</h1>
+  <h1 class="title">RAG CIRS: FAA Compliance Assistant</h1>
 
-<section class="info-card" aria-labelledby="overview">
-<div class="info-head">
-  <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
-  <div class="chips">
-    <span class="chip">Compliance</span><span class="chip">RAG + Citations</span>
-    <span class="chip">Pinecone + LangChain</span><span class="chip">FAA Advisory Circulars</span>
-  </div>
-</div>
-
-<div class="info-body">
-  <div class="info-section">
-    <p class="scroll-hint">Scroll down for Demo</p>
-    <h3>Project overview</h3>
-    <p>Retrieval-augmented assistant for FAA Advisory Circulars. Documents are parsed, cleaned, chunked, and embedded in Pinecone; a LangChain retriever routes queries to OpenAI and returns cited answers with source snippets.</p>
-
-    <h3>Business impact</h3>
-    <p>Helps aviation teams find and interpret regulations faster with cited, readable summaries that improve audit readiness and decision confidence.</p>
-  </div>
-
-  <div class="info-section">
-    <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
-    <p>Built the ingestion pipeline for AC PDFs, text cleaning and chunking, embedding to Pinecone, and a LangChain QA chain with citations. Added evaluation spot-checks and a light demo interface.</p>
-
-    <h3>Scalability</h3>
-    <p>Extend across airline ops, manuals, training, and regulatory reporting—or adapt to any compliance-heavy domain (finance, healthcare, energy).</p>
-  </div>
-
-  <div class="info-section info-full">
-    <h3>Technical details</h3>
-    <p><em>See below</em></p>
-  </div>
-</div>
-</section>
-
-<h2 class="subtitle" style="margin-top:28px;">Demo</h2>
-<div class="grid">
-  <!-- Functional screenshots with overlay -->
-  <figure class="card">
-    <span class="badge">In Progress</span>
-    <div class="media"><img src="rag-demo-1.png" alt="Query with cited FAA sources" loading="lazy"></div>
-    <figcaption>Query with cited FAA sources</figcaption>
-  </figure>
-
-  <figure class="card">
-    <span class="badge">In Progress</span>
-    <div class="media"><img src="rag-demo-2.png" alt="Document viewer and chunk inspection" loading="lazy"></div>
-    <figcaption>Document viewer and chunk inspection</figcaption>
-  </figure>
-
-  <!-- Two planning documents -->
-  <figure class="card">
-    <div class="media"><img src="doc-icon.png" alt="Airline FAA RAG – Summary" loading="lazy" style="object-fit:contain;padding:20px;"></div>
-    <figcaption><a class="download-link" href="Airline%20FAA%20RAG%20–%20Summary.docx" download>Airline FAA RAG – Summary.docx</a></figcaption>
-  </figure>
-
-  <figure class="card">
-    <div class="media"><img src="doc-icon.png" alt="Airline FAA RAG – Tech plan" loading="lazy" style="object-fit:contain;padding:20px;"></div>
-    <figcaption><a class="download-link" href="Airline%20FAA%20RAG%20–%20Tech%20plan.docx" download>Airline FAA RAG – Tech plan.docx</a></figcaption>
-  </figure>
-</div>
-
-<p class="note">Citations display embedded source segments for transparency and verification.</p>
-
-<section class="info-card" aria-labelledby="details" style="margin-top:26px;">
-  <div class="info-head">
-    <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
-    <div class="chips">
-      <span class="chip">OpenAI</span><span class="chip">LangChain</span>
-      <span class="chip">Pinecone</span><span class="chip">PDF ingestion</span>
-      <span class="chip">Chunking + Embeddings</span><span class="chip">Citations</span>
+  <!-- Overview -->
+  <section class="info-card" aria-labelledby="overview">
+    <div class="info-head">
+      <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
+      <div class="chips">
+        <span class="chip">Compliance</span>
+        <span class="chip">RAG + citations</span>
+        <span class="chip">Pinecone + LangChain</span>
+        <span class="chip">FAA Advisory Circulars</span>
+      </div>
     </div>
+
+    <div class="info-body">
+      <div class="info-section">
+        <p class="scroll-hint">Scroll down for Demo</p>
+        <h3>Project overview</h3>
+        <p>A retrieval-augmented assistant for FAA Advisory Circulars. PDFs are parsed, cleaned, chunked, and embedded in Pinecone; a LangChain retriever routes queries to OpenAI and returns cited answers with source snippets.</p>
+
+        <h3>Business impact</h3>
+        <p>Helps aviation teams find and interpret regulations faster with cited, readable summaries that improve audit readiness and decision confidence.</p>
+      </div>
+
+      <div class="info-section">
+        <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
+        <p>Built the ingestion pipeline for AC PDFs, text cleaning and chunking, embeddings to Pinecone, and a LangChain QA chain with citations. Added evaluation spot-checks and a lightweight demo interface.</p>
+
+        <h3>Scalability</h3>
+        <p>Extend across airline operations, maintenance manuals, MELs, training programs, and regulatory reporting—or adapt to other compliance-heavy domains (finance, healthcare, energy).</p>
+      </div>
+
+      <div class="info-section info-full">
+        <h3>Technical details</h3>
+        <p><em>See below</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo -->
+  <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
+  <div class="grid">
+    <!-- 1) Planning documents FIRST (left on desktop, top on mobile). Entire card clickable. -->
+    <figure class="card">
+      <a class="card-link" href="Airline%20FAA%20RAG%20–%20Summary.docx" download>
+        <div class="media doc-tile">
+          <div class="doc-icon">
+            <!-- simple doc icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/>
+              <path d="M14 3v5h5" stroke="white" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="doc-name">Airline FAA RAG – Summary.docx</div>
+        </div>
+      </a>
+      <figcaption>Planning document</figcaption>
+    </figure>
+
+    <figure class="card">
+      <a class="card-link" href="Airline%20FAA%20RAG%20–%20Tech%20plan.docx" download>
+        <div class="media doc-tile">
+          <div class="doc-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/>
+              <path d="M14 3v5h5" stroke="white" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="doc-name">Airline FAA RAG – Tech plan.docx</div>
+        </div>
+      </a>
+      <figcaption>Planning document</figcaption>
+    </figure>
+
+    <!-- 2) Professional “In progress” tiles -->
+    <figure class="card">
+      <div class="media placeholder">
+        <div class="placeholder-inner">
+          <p class="ph-title">Query with cited FAA sources</p>
+          <p class="ph-sub">Answer surface with citations and source snippets</p>
+          <span class="ph-badge">In progress</span>
+        </div>
+      </div>
+      <figcaption>Query with cited FAA sources</figcaption>
+    </figure>
+
+    <figure class="card">
+      <div class="media placeholder">
+        <div class="placeholder-inner">
+          <p class="ph-title">Document viewer and chunk inspection</p>
+          <p class="ph-sub">Side-by-side document and retrieved context</p>
+          <span class="ph-badge">In progress</span>
+        </div>
+      </div>
+      <figcaption>Document viewer and chunk inspection</figcaption>
+    </figure>
   </div>
 
-  <div class="info-body" style="grid-template-columns:1fr;">
-    <ul style="margin:0;padding-left:1.1rem;">
-      <li><strong>Ingestion</strong> – parse FAA Advisory Circular PDFs and normalize metadata.</li>
-      <li><strong>Chunking</strong> – split text using structure-aware rules to preserve context.</li>
-      <li><strong>Embeddings → Pinecone</strong> – store vectors with document and section metadata.</li>
-      <li><strong>Retriever + QA chain</strong> – LangChain queries vectors and composes cited answers.</li>
-      <li><strong>Evaluation</strong> – spot check accuracy to refine chunk size and prompt design.</li>
-      <li><strong>Front end</strong> – lightweight demo surface with answer + source display.</li>
-    </ul>
-  </div>
-</section>
+  <p class="note">Citations display embedded source segments for transparency and verification.</p>
+
+  <!-- Technical Details -->
+  <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+    <div class="info-head">
+      <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+      <div class="chips">
+        <span class="chip">OpenAI</span><span class="chip">LangChain</span>
+        <span class="chip">Pinecone</span><span class="chip">PDF ingestion</span>
+        <span class="chip">Chunking + Embeddings</span><span class="chip">Citations</span>
+      </div>
+    </div>
+
+    <div class="info-body" style="grid-template-columns:1fr;">
+      <ul style="margin:0;padding-left:1.1rem;">
+        <li><strong>Ingestion</strong> – parse FAA Advisory Circular PDFs and normalize metadata</li>
+        <li><strong>Chunking</strong> – structure-aware splits preserve headings and context</li>
+        <li><strong>Embeddings → Pinecone</strong> – vectors with document and section metadata</li>
+        <li><strong>Retriever + QA chain</strong> – LangChain queries vectors and composes cited answers</li>
+        <li><strong>Evaluation</strong> – spot checks to tune chunk size and prompt design</li>
+        <li><strong>Front end</strong> – lightweight demo with answer + sources view</li>
+      </ul>
+    </div>
+  </section>
 </main>
 </body>
 </html>
