@@ -150,30 +150,31 @@
 
     <p class="note">Demo episode shown for sample playback. Full library available via RSS feed.</p>
 
-    <!-- Technical Details -->
-    <section class="info-card" aria-labelledby="details" style="margin-top:22px;">
-      <div class="info-head">
-        <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
-        <div class="chips">
-          <span class="chip">OpenAI</span>
-          <span class="chip">ElevenLabs</span>
-          <span class="chip">Make / n8n</span>
-          <span class="chip">GitHub Pages</span>
-          <span class="chip">RSS / feed.xml</span>
-          <span class="chip">GitHub Actions</span>
-        </div>
-      </div>
+   <!-- Technical Details (CONSISTENT FORMAT) -->
+<section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+  <div class="info-head">
+    <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+    <div class="chips">
+      <span class="chip">OpenAI</span>
+      <span class="chip">ElevenLabs</span>
+      <span class="chip">Make / n8n</span>
+      <span class="chip">GitHub Pages</span>
+      <span class="chip">RSS / feed.xml</span>
+      <span class="chip">GitHub Actions</span>
+    </div>
+  </div>
 
-      <div class="info-body" style="grid-template-columns:1fr;">
-        <ul style="margin:0; padding-left:1.1rem;">
-          <li><strong>OpenAI (GPT)</strong> – condenses articles and drafts a natural, listenable script</li>
-          <li><strong>ElevenLabs TTS</strong> – generates narration as MP3</li>
-          <li><strong>Make / n8n</strong> – automates scraping, summarization, TTS, and publishing</li>
-          <li><strong>GitHub Pages + RSS (feed.xml)</strong> – hosts MP3s and enables podcast subscriptions</li>
-          <li><strong>GitHub Actions (optional)</strong> – automates weekly builds and publishing</li>
-        </ul>
-      </div>
-    </section>
+  <div class="info-body" style="grid-template-columns:1fr;">
+    <ul style="margin:0; padding-left:1.1rem;">
+      <li><strong>Data & inputs</strong> – weekly scrape/ingest of seven AI publications.</li>
+      <li><strong>Model & processing</strong> – OpenAI condenses and structures briefs by five business criteria.</li>
+      <li><strong>Runtime</strong> – workflow orchestration in Make or n8n for scrape → summarize → TTS → publish.</li>
+      <li><strong>Audio & delivery</strong> – ElevenLabs TTS outputs MP3; transcript and citations generated alongside.</li>
+      <li><strong>Hosting & distribution</strong> – MP3s and <code>feed.xml</code> hosted on GitHub Pages for podcast apps.</li>
+      <li><strong>Automation</strong> – optional GitHub Actions to schedule weekly builds and publishing.</li>
+    </ul>
+  </div>
+</section>
   </main>
 </body>
 </html>
