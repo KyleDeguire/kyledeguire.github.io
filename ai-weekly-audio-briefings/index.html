@@ -1,95 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Weekly Audio Briefings | Kyle Deguire</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Weekly Audio Feed</title>
+
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      margin: 40px auto;
-      max-width: 800px;
-      color: #333;
+    :root {
+      --bg:#ffffff;
+      --fg:#0f172a;
+      --muted:#64748b;
+      --brand:#0a66c2;
+      --tint:#eef6ff;
+      --border:#d7e3f3;
+      --card:#ffffff;
+      --radius:16px;
+      --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
+      --maxw:1120px;
+      --section-gap:12px;
     }
-    h1, h2 {
-      color: #0056b3;
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:#0b1220; --fg:#e6edf3; --muted:#9fb0c0; --brand:#68a5ff;
+        --tint:#152235; --border:#1f2a3a; --card:#101827;
+        --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 24px rgba(0,0,0,.35);
+      }
     }
-    a {
-      color: #0056b3;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .screenshot-section {
-      background-color: #f9f9f9;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .screenshot-container img {
-      width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-top: 10px;
-    }
-    .screenshot-caption {
-      font-size: 0.9em;
-      color: #666;
-      margin-top: 8px;
-    }
-    .audio-section {
-      background-color: #f5f8ff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 30px;
-    }
-    audio {
-      display: block;
-      margin: 10px 0;
-    }
-    footer {
-      text-align: center;
-      border-top: 1px solid #ddd;
-      padding-top: 15px;
-      color: #666;
-      font-size: 0.9em;
-    }
+
+    body {margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;background:var(--bg);color:var(--fg);}
+    .container {max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,32px);}
+    .title {color:var(--brand);font-size:clamp(22px,4vw,34px);margin:0 0 6px;}
+    .subtitle {color:var(--muted);font-size:16px;margin:0 0 12px;}
+
+    /* Overview card */
+    .info-card {background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+    .info-head {border-bottom:1px solid var(--border);padding:14px 18px 10px;}
+    .chips {display:flex;flex-wrap:wrap;gap:8px;}
+    .chip {font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--muted);}
+
+    .info-body {display:grid;grid-template-columns:1fr;row-gap:var(--section-gap);padding:18px 20px;}
+    @media (min-width:900px) {.info-body {grid-template-columns:1fr 1fr;column-gap:60px;}}
+
+    .info-section h3 {font-size:.95rem;margin:0 0 4px;color:var(--fg);}
+    .info-section p {margin:0 0 var(--section-gap);line-height:1.48;}
+    .info-section p:last-child {margin-bottom:0;}
+    .inline-role {font-weight:600;letter-spacing:.3px;}
+    .info-full {grid-column:1 / -1;}
+
+    /* Audio cards */
+    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
+    figure.card {border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden;box-shadow:var(--shadow);}
+    .media {padding:14px;}
+    audio {width:100%;}
+    figcaption {padding:8px 12px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
+
+    .note {font-style:italic;color:var(--muted);margin-top:16px;}
+    .pills {display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .pill {font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
   </style>
 </head>
 <body>
-  <h1>AI Weekly Audio Briefings</h1>
-  <p>
-    This automated workflow summarizes top AI developments each week and converts them into short executive briefings using text-to-speech technology.
-  </p>
+  <main class="container">
+    <h1 class="title">AI Weekly Audio Feed</h1>
 
-  <div class="screenshot-section">
-    <h2>Available as a Podcast</h2>
-    <div class="screenshot-container">
-      <img src="podcast-screenshot.png"
-           alt="AI Weekly Briefings Podcast on iPhone"
-           class="phone-screenshot">
-      <p class="screenshot-caption">
-        Weekly briefings automatically published to podcast platforms
-      </p>
+    <!-- Overview Card -->
+    <section class="info-card" aria-labelledby="overview">
+      <div class="info-head">
+        <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
+        <div class="chips">
+          <span class="chip">Automated</span>
+          <span class="chip">Weekly</span>
+          <span class="chip">Agentic workflow</span>
+          <span class="chip">GPT + ElevenLabs</span>
+        </div>
+      </div>
+
+      <div class="info-body">
+        <!-- Left column -->
+        <div class="info-section">
+          <h3>Project overview</h3>
+          <p>Automated weekly review of seven leading AI publications. This agentic workflow curates, summarizes, and narrates major updates using GPT-driven analysis structured around five business criteria. Generates a weekly podcast with transcript and citations for reference or deeper research.</p>
+
+          <h3>Business impact</h3>
+          <p>Keeps busy executives current by converting fast-moving, complex AI developments into concise audio briefings—reducing screen time, improving retention, and enabling hands-free learning during commutes or travel.</p>
+        </div>
+
+        <!-- Right column -->
+        <div class="info-section">
+          <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
+          <p>Designed and deployed the end-to-end agentic workflow linking GPT summarization, ElevenLabs TTS, and Make automations. Built logic for data collection, summarization, and publishing, and tested the full pipeline from input sources to RSS distribution.</p>
+
+          <h3>Scalability</h3>
+          <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
+        </div>
+
+        <!-- Full-width bottom row -->
+        <div class="info-section info-full">
+          <h3>Technical details</h3>
+          <p><em>See below</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Section -->
+    <h2 class="subtitle" style="margin-top:24px;">Latest episodes</h2>
+
+    <div class="grid">
+      <figure class="card">
+        <div class="media">
+          <audio controls preload="none" src="episodes/latest.mp3"></audio>
+        </div>
+        <figcaption>Latest Weekly Brief</figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="media">
+          <audio controls preload="none" src="episodes/2025-10-31.mp3"></audio>
+        </div>
+        <figcaption>Oct 31, 2025</figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="media">
+          <audio controls preload="none" src="episodes/2025-10-24.mp3"></audio>
+        </div>
+        <figcaption>Oct 24, 2025</figcaption>
+      </figure>
     </div>
-  </div>
 
-  <div class="audio-section">
-    <h2>Audio Example (27 Oct 2025)</h2>
-    <p>Experience a sample executive briefing generated by the system:</p>
-    <audio controls>
-      <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251027.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
+    <p class="note">Only 2–3 episodes should remain visible to keep the layout clean; archive older ones within your RSS feed.</p>
 
-  <p><a href="../index.html">← Back to Main Portfolio</a></p>
+    <!-- Technical Details -->
+    <section class="info-card" aria-labelledby="details" style="margin-top:22px;">
+      <div class="info-head">
+        <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+        <div class="chips">
+          <span class="chip">OpenAI</span>
+          <span class="chip">ElevenLabs</span>
+          <span class="chip">Make / n8n</span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">RSS / feed.xml</span>
+          <span class="chip">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="info-body" style="grid-template-columns:1fr;">
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li><strong>OpenAI (GPT)</strong> – condenses articles and drafts a natural, listenable script</li>
+          <li><strong>ElevenLabs TTS</strong> – generates clear narration as MP3</li>
+          <li><strong>Make / n8n</strong> – automates scraping, summarization, TTS, and file publishing</li>
+          <li><strong>GitHub Pages + RSS (feed.xml)</strong> – hosts MP3s and enables podcast subscriptions</li>
+          <li><strong>GitHub Actions (optional)</strong> – automates weekly builds and publishing</li>
+        </ul>
 
-  <footer>
-    <p>&copy; 2025 Kyle Deguire | <a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> | <a href="https://github.com/kyledeguire">GitHub</a></p>
-  </footer>
+        <div class="pills">
+          <span class="pill">OpenAI</span><span class="pill">ElevenLabs</span>
+          <span class="pill">Make</span><span class="pill">n8n</span>
+          <span class="pill">GitHub Pages</span><span class="pill">RSS</span><span class="pill">GitHub Actions</span>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
