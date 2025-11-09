@@ -6,131 +6,73 @@
   <title>VisionAI: Emotion Detection</title>
 
   <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #0f172a;
-      --muted: #64748b;
-      --brand: #0a66c2;
-      --tint: #eef6ff;
-      --border: #d7e3f3;
-      --card: #ffffff;
-      --radius: 14px;
-      --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
-      --section-gap: 12px;  /* uniform section spacing */
+    :root{
+      --bg:#ffffff;
+      --fg:#0f172a;
+      --muted:#64748b;
+      --brand:#0a66c2;
+      --tint:#eef6ff;
+      --border:#d7e3f3;
+      --card:#ffffff;
+      --radius:16px;
+      --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
+      --maxw:1120px;
+
+      /* one source of truth for vertical rhythm */
+      --section-gap:12px;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b1220;
-        --fg: #e6edf3;
-        --muted: #9fb0c0;
-        --brand: #68a5ff;
-        --tint: #152235;
-        --border: #1f2a3a;
-        --card: #101827;
-        --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 24px rgba(0,0,0,.35);
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b1220; --fg:#e6edf3; --muted:#9fb0c0; --brand:#68a5ff;
+        --tint:#152235; --border:#1f2a3a; --card:#101827;
+        --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 24px rgba(0,0,0,.35);
       }
     }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
-      background: var(--bg);
-      color: var(--fg);
-    }
+    body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;background:var(--bg);color:var(--fg);}
+    .container{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,32px);}
+    .title{color:var(--brand);font-size:clamp(22px,4vw,34px);margin:0 0 6px;}
+    .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
 
-    .container { max-width: 1120px; margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
+    /* Overview card */
+    .info-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+    .info-head{border-bottom:1px solid var(--border);padding:14px 18px 10px;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;}
+    .chip{font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--muted);}
 
-    .title { color: var(--brand); font-size: clamp(22px, 4vw, 34px); margin-bottom: 6px; }
-    .subtitle { color: var(--muted); font-size: 16px; margin: 0 0 12px 0; }
+    /* Grid and spacing logic */
+    .info-body{display:grid;grid-template-columns:1fr;row-gap:var(--section-gap);padding:18px 20px;}
+    @media (min-width:900px){.info-body{grid-template-columns:1fr 1fr;column-gap:60px;}}
 
-    /* Overview box */
-    .info-card {
-      background: var(--tint);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      padding: 0;
-      overflow: hidden;
-    }
+    .info-section h3{font-size:.95rem;margin:0 0 4px;color:var(--fg);}
+    /* spacing inside sections */
+    .info-section p{margin:0 0 var(--section-gap);line-height:1.48;}
+    /* critical: prevent double-spacing where a section ends before the next grid row */
+    .info-section p:last-child{margin-bottom:0;}
 
-    .info-head {
-      border-bottom: 1px solid var(--border);
-      padding: 14px 18px 10px;
-    }
+    .inline-role{font-weight:600;letter-spacing:.3px;}
 
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip {
-      font-size: 12px; padding: 6px 10px;
-      border: 1px solid var(--border); border-radius: 999px;
-      background: var(--card); color: var(--muted);
-    }
-
-    .info-body {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--section-gap);
-      padding: 18px 20px;
-    }
-    @media (min-width: 900px) {
-      .info-body {
-        grid-template-columns: 1fr 1fr;
-        column-gap: 60px;
-      }
-    }
-
-    .info-section h3 {
-      margin: 0 0 4px;
-      font-size: 0.95rem;
-    }
-    .info-section p {
-      margin: 0 0 var(--section-gap);
-      line-height: 1.48;
-    }
-    .inline-role { font-weight: 600; letter-spacing: 0.3px; }
-
-    .info-full { grid-column: 1 / -1; }
-
-    /* Adjust even rhythm on mobile */
-    @media (max-width: 899px) {
-      .info-body { gap: var(--section-gap); }
-      .info-section p { margin-bottom: var(--section-gap); }
-    }
+    /* make the final row span full width with no extra margins */
+    .info-full{grid-column:1 / -1;}
 
     /* Gallery */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: clamp(10px, 2vw, 18px);
-      margin-top: clamp(16px, 3vw, 30px);
-    }
-    figure.card {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--card);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .media { aspect-ratio: 3/4.5; display: flex; justify-content: center; align-items: center; }
-    .media img { width: 100%; height: 100%; object-fit: contain; }
-    figcaption { text-align: center; font-weight: 600; font-size: 14px; padding: 10px 12px; color: var(--fg); border-top: 1px solid var(--border); }
-
-    .note { font-style: italic; color: var(--muted); margin-top: 16px; }
-
-    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .pill {
-      font-size: 12px; padding: 6px 10px; border-radius: 999px;
-      border: 1px solid var(--border); background: var(--card); color: var(--muted);
-    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
+    figure.card{border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden;box-shadow:var(--shadow);}
+    .media{aspect-ratio:3/4.5;display:flex;align-items:center;justify-content:center;}
+    .media img{width:100%;height:100%;object-fit:contain;}
+    figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
+    .note{font-style:italic;color:var(--muted);margin-top:16px;}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .pill{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
   </style>
 </head>
-
 <body>
   <main class="container">
     <h1 class="title">VisionAI: Emotion Detection</h1>
 
-    <section class="info-card">
+    <section class="info-card" aria-labelledby="overview">
       <div class="info-head">
-        <h2 class="subtitle" style="margin:0;">Overview</h2>
+        <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
         <div class="chips">
           <span class="chip">On-device</span>
           <span class="chip">Real-time</span>
@@ -140,6 +82,7 @@
       </div>
 
       <div class="info-body">
+        <!-- Left column -->
         <div class="info-section">
           <h3>Project overview</h3>
           <p>Mobile app that classifies facial emotions in real time using a TensorFlow Lite model in SwiftUI. Runs fully on-device for speed<br>and privacy.</p>
@@ -148,6 +91,7 @@
           <p>Trained the model with FERPlus and RAF-DB, optimized for TensorFlow Lite, and integrated live camera inference in SwiftUI.</p>
         </div>
 
+        <!-- Right column -->
         <div class="info-section">
           <h3>Business impact</h3>
           <p>Delivers quick emotion signals to guide UX decisions and personalization without sending video off the device.</p>
@@ -156,6 +100,7 @@
           <p>Extend to sentiment tracking, adaptive UI feedback, and AR/VR analysis.</p>
         </div>
 
+        <!-- Full-width bottom row -->
         <div class="info-section info-full">
           <h3>Technical details</h3>
           <p><em>See below</em></p>
@@ -179,13 +124,11 @@
       <figure class="card"><div class="media"><img src="Fear.JPG" alt="Fear"></div><figcaption>Fear</figcaption></figure>
     </div>
 
-    <p class="note">
-      If I have to resort to acting for a living, that’s not going to be good for anyone. Just saying.
-    </p>
+    <p class="note">If I have to resort to acting for a living, that’s not going to be good for anyone. Just saying.</p>
 
-    <section class="info-card" style="margin-top:22px;">
+    <section class="info-card" aria-labelledby="details" style="margin-top:22px;">
       <div class="info-head">
-        <h2 class="subtitle" style="margin:0;">Technical details</h2>
+        <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
         <div class="chips">
           <span class="chip">TensorFlow Lite</span>
           <span class="chip">SwiftUI</span>
@@ -194,7 +137,6 @@
           <span class="chip">Xcode</span>
         </div>
       </div>
-
       <div class="info-body" style="grid-template-columns:1fr;">
         <ul style="margin:0; padding-left:1.1rem;">
           <li><strong>TensorFlow Lite</strong> – fast, lightweight inference optimized for mobile</li>
@@ -203,7 +145,6 @@
           <li><strong>Core ML bridge</strong> – future path to Apple-native model tooling</li>
           <li><strong>Xcode</strong> – build, signing, and on-device deployment for iOS testing</li>
         </ul>
-
         <div class="pills">
           <span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenCV</span>
           <span class="pill">NumPy</span><span class="pill">Pandas</span><span class="pill">TensorFlow Lite</span><span class="pill">Xcode</span>
