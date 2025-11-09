@@ -18,7 +18,7 @@
       --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
       --maxw:1120px;
       --section-gap:12px;
-      --hint:#f59e0b; /* lighter amber tone */
+      --hint:#f59e0b; /* lighter amber */
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -35,9 +35,7 @@
     .subtitle {color:var(--muted);font-size:16px;margin:0 0 12px;}
 
     /* Mobile-only "Scroll down for Demo" hint */
-    .scroll-hint {
-      display:none;
-    }
+    .scroll-hint { display:none; }
     @media (max-width:899px){
       .scroll-hint{
         display:block;
@@ -64,14 +62,9 @@
     .inline-role {font-weight:600;letter-spacing:.3px;}
     .info-full {grid-column:1 / -1;}
 
-    /* Adjusted spacing for Technical Details (desktop only) */
+    /* ✅ Pull the 'Technical details' row up by exactly one grid gap on desktop */
     @media (min-width:900px){
-      .info-section.info-full h3 {
-        margin-top: 0; /* pull closer by removing any inherited gap */
-      }
-      .info-section.info-full p {
-        margin-top: 2px; /* aligns visually with other category spacing */
-      }
+      .info-section.info-full{ margin-top: calc(-1 * var(--section-gap)); }
     }
 
     /* Demo cards */
