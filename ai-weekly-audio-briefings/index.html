@@ -43,7 +43,7 @@
         display:block;
         font-size:.95rem;
         font-style:italic;
-        font-weight:700; /* bold */
+        font-weight:700;
         color:var(--hint);
         margin-bottom:6px;
       }
@@ -63,6 +63,16 @@
     .info-section p:last-child {margin-bottom:0;}
     .inline-role {font-weight:600;letter-spacing:.3px;}
     .info-full {grid-column:1 / -1;}
+
+    /* Adjusted spacing for Technical Details (desktop only) */
+    @media (min-width:900px){
+      .info-section.info-full h3 {
+        margin-top: 0; /* pull closer by removing any inherited gap */
+      }
+      .info-section.info-full p {
+        margin-top: 2px; /* aligns visually with other category spacing */
+      }
+    }
 
     /* Demo cards */
     .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
