@@ -1,214 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Weekly Audio Briefings</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Weekly Audio Feed</title>
 
-    <!-- Privacy-friendly analytics by Plausible -->
-    <script async src="https://plausible.io/js/pa-RA69z8VuW_SdU9foaJWrk.js"></script>
-    <script>
-      window.plausible = window.plausible || function(){ (plausible.q = plausible.q || []).push(arguments) }
-      plausible.init = plausible.init || function(options){ plausible.o = options || {} }
-      plausible.init();
-    </script>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#0f172a;
+      --muted:#64748b;
+      --brand:#0a66c2;
+      --tint:#eef6ff;
+      --border:#d7e3f3;
+      --card:#ffffff;
+      --radius:16px;
+      --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
+      --maxw:1120px;
+      --section-gap:12px; /* unified vertical rhythm */
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b1220; --fg:#e6edf3; --muted:#9fb0c0; --brand:#68a5ff;
+        --tint:#152235; --border:#1f2a3a; --card:#101827;
+        --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 24px rgba(0,0,0,.35);
+      }
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;background:var(--bg);color:var(--fg);}
+    .container{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,32px);}
+    .title{color:var(--brand);font-size:clamp(22px,4vw,34px);margin:0 0 6px;}
+    .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #ffffff;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    /* Overview card */
+    .info-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+    .info-head{border-bottom:1px solid var(--border);padding:14px 18px 10px;}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;}
+    .chip{font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--muted);}
 
-        h1 {
-            color: #0066cc;
-            font-size: 28px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+    .info-body{display:grid;grid-template-columns:1fr;row-gap:var(--section-gap);padding:18px 20px;}
+    @media (min-width:900px){.info-body{grid-template-columns:1fr 1fr;column-gap:60px;}}
 
-        h2 {
-            color: #0066cc;
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
+    .info-section h3{font-size:.95rem;margin:0 0 4px;color:var(--fg);}
+    .info-section p{margin:0 0 var(--section-gap);line-height:1.48;}
+    .info-section p:last-child{margin-bottom:0;}
+    .inline-role{font-weight:600;letter-spacing:.3px;}
+    .info-full{grid-column:1 / -1;}
 
-        p {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
+    /* Gallery */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
+    figure.card{border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden;box-shadow:var(--shadow);}
+    .media{padding:14px;}
+    audio{width:100%;}
+    figcaption{padding:8px 12px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
 
-        .description {
-            margin-bottom: 35px;
-            line-height: 1.7;
-        }
-
-        .screenshot-section {
-            margin: 35px 0;
-            text-align: center;
-        }
-
-        .screenshot-section h2 {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .screenshot-container {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid #e0e0e0;
-        }
-
-        .phone-screenshot {
-            max-width: 350px;
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            margin: 0 auto;
-            display: block;
-        }
-
-        .screenshot-caption {
-            margin-top: 20px;
-            font-size: 15px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .audio-section {
-            background-color: #f5f5f5;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 35px 0;
-            border: 1px solid #e0e0e0;
-        }
-
-        .audio-intro {
-            font-size: 17px;
-            margin-bottom: 18px;
-            color: #333;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        audio {
-            width: 100%;
-            max-width: 100%;
-            height: 54px;
-            min-height: 54px;
-            display: block;
-            margin-top: 15px;
-            outline: none;
-            border-radius: 5px;
-        }
-
-        audio::-webkit-media-controls-panel {
-            background-color: #fff;
-        }
-
-        .tech-stack {
-            margin: 35px 0;
-        }
-
-        .tech-stack p {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-left: 4px solid #0066cc;
-            border-radius: 5px;
-        }
-
-        .back-link {
-            display: inline-block;
-            color: #0066cc;
-            text-decoration: none;
-            margin-top: 40px;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: #0052a3;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 15px; }
-            h1 { font-size: 24px; }
-            h2 { font-size: 20px; }
-            audio { height: 50px; min-height: 50px; }
-            .audio-section { padding: 20px; }
-            .audio-intro { font-size: 16px; }
-            .tech-stack p { padding: 15px; }
-            .screenshot-container { padding: 20px; }
-            .phone-screenshot { max-width: 280px; }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 12px; }
-            h1 { font-size: 22px; }
-            h2 { font-size: 18px; }
-            p { font-size: 15px; }
-            .audio-section { padding: 18px 15px; }
-            .audio-intro { font-size: 15px; }
-            .screenshot-container { padding: 15px; }
-            .phone-screenshot { max-width: 240px; }
-        }
-    </style>
+    .note{font-style:italic;color:var(--muted);margin-top:16px;}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .pill{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
+  </style>
 </head>
 <body>
-    <h1>AI Weekly Audio Briefings</h1>
-    
-    <div class="description">
-        <p>
-            Agentic workflow that collects AI news, filters noise, summarizes what 
-            matters, and generates weekly executive audio briefings. Cuts research 
-            time by ~98% for busy leaders.
-        </p>
-        <p>
-            For an example of the weekly audio file, please click play (▶️) below the podcast screenshot.
-        </p>
-    </div>
+  <main class="container">
+    <h1 class="title">AI Weekly Audio Feed</h1>
 
-    <div class="screenshot-section">
-        <h2>Available as a Podcast</h2>
-        <div class="screenshot-container">
-            <img src="podcast-screenshot.png" onerror="this.onerror=null; this.src='https://placehold.co/350x600/1E90FF/ffffff?text=Podcast+App+Screenshot';" alt="AI Weekly Briefings Podcast on iPhone" class="phone-screenshot">
-            <p class="screenshot-caption">Weekly briefings automatically published to podcast platforms</p>
+    <!-- Overview -->
+    <section class="info-card" aria-labelledby="overview">
+      <div class="info-head">
+        <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
+        <div class="chips">
+          <span class="chip">Automated</span>
+          <span class="chip">Weekly</span>
+          <span class="chip">RSS-ready</span>
+          <span class="chip">GPT + ElevenLabs</span>
         </div>
+      </div>
+
+      <div class="info-body">
+        <!-- Left column -->
+        <div class="info-section">
+          <h3>Project overview</h3>
+          <p>Automated news-to-audio pipeline that curates, summarizes, scripts, and narrates weekly AI updates. Produces MP3 episodes and an RSS feed for publishing on GitHub Pages and podcast apps.</p>
+
+          <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
+          <p>Implemented source collection, GPT summarization and script generation, ElevenLabs TTS, and automated publishing to GitHub Pages RSS.</p>
+        </div>
+
+        <!-- Right column -->
+        <div class="info-section">
+          <h3>Business impact</h3>
+          <p>Keeps busy professionals informed in minutes by turning complex AI news into concise, high-quality audio briefs.</p>
+
+          <h3>Scalability</h3>
+          <p>Highly flexible — change subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy.</p>
+        </div>
+
+        <!-- Full-width bottom row -->
+        <div class="info-section info-full">
+          <h3>Technical details</h3>
+          <p><em>See below</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo -->
+    <h2 class="subtitle" style="margin-top:24px;">Latest episodes</h2>
+
+    <!-- Replace the src values with your real MP3 paths (e.g., /episodes/2025-11-01.mp3) -->
+    <div class="grid">
+      <figure class="card">
+        <div class="media">
+          <audio controls preload="none" src="episodes/latest.mp3"></audio>
+        </div>
+        <figcaption>Latest weekly brief</figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="media">
+          <audio controls preload="none" src="episodes/2025-10-31.mp3"></audio>
+        </div>
+        <figcaption>Oct 31, 2025</figcaption>
+      </figure>
+
+      <figure class="card">
+        <div class="media">
+          <audio controls preload="none" src="episodes/2025-10-24.mp3"></audio>
+        </div>
+        <figcaption>Oct 24, 2025</figcaption>
+      </figure>
     </div>
 
-    <div class="audio-section">
-        <h2>Audio Example (27 Oct 2025)</h2>
-        <p class="audio-intro">
-            Experience a sample executive briefing generated by the system:
-        </p>
-        <audio controls preload="metadata">
-            <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251027.mp3?t=1761578921" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
+    <p class="note">Tip: keep 2–3 episodes visible; archive the rest on the RSS page to avoid pushing content too far down on mobile.</p>
 
-    <div class="tech-stack">
-        <p>
-            <strong>How it works:</strong> Python + LLM summarization + voice synthesis 
-            (ElevenLabs) + automated publish pipeline.
-        </p>
-    </div>
+    <!-- Technical details -->
+    <section class="info-card" aria-labelledby="details" style="margin-top:22px;">
+      <div class="info-head">
+        <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+        <div class="chips">
+          <span class="chip">OpenAI</span>
+          <span class="chip">ElevenLabs</span>
+          <span class="chip">Make / n8n</span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">RSS / feed.xml</span>
+          <span class="chip">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="info-body" style="grid-template-columns:1fr;">
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li><strong>OpenAI (GPT)</strong> — condenses sources and drafts a natural, listenable script</li>
+          <li><strong>ElevenLabs TTS</strong> — generates clear narration as MP3</li>
+          <li><strong>Make (Integromat) / n8n</strong> — orchestrates scraping, summarization, TTS, and file moves</li>
+          <li><strong>GitHub Pages</strong> — hosts MP3 files and a public <code>feed.xml</code></li>
+          <li><strong>RSS</strong> — enables podcast client subscriptions (Apple/Overcast/etc.)</li>
+          <li><strong>GitHub Actions (optional)</strong> — schedules weekly builds and publishes artifacts</li>
+        </ul>
 
-    <a href="../index.html" class="back-link">← Back to main portfolio</a>
+        <div class="pills">
+          <span class="pill">OpenAI</span><span class="pill">ElevenLabs</span><span class="pill">Make</span>
+          <span class="pill">n8n</span><span class="pill">GitHub Pages</span><span class="pill">GitHub Actions</span>
+          <span class="pill">RSS</span>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
