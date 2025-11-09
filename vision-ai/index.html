@@ -159,32 +159,31 @@
       <figure class="card"><div class="media"><img src="Fear.JPG" alt="Fear" loading="lazy" decoding="async"></div><figcaption>Fear</figcaption></figure>
     </div>
 
-    <!-- Technical Details (added, consistent tint and layout) -->
-    <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
-      <div class="info-head">
-        <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
-        <div class="chips">
-          <span class="chip">TensorFlow Lite</span>
-          <span class="chip">SwiftUI</span>
-          <span class="chip">FERPlus</span>
-          <span class="chip">RAF-DB</span>
-          <span class="chip">On-device inference</span>
-          <span class="chip">Privacy-first</span>
-          <span class="chip">Xcode</span>
-        </div>
-      </div>
+    <!-- Technical Details (CONSISTENT FORMAT) -->
+<section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+  <div class="info-head">
+    <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+    <div class="chips">
+      <span class="chip">TensorFlow Lite</span>
+      <span class="chip">SwiftUI</span>
+      <span class="chip">FERPlus</span>
+      <span class="chip">RAF-DB</span>
+      <span class="chip">On-device inference</span>
+      <span class="chip">Xcode</span>
+    </div>
+  </div>
 
-      <div class="info-body" style="grid-template-columns:1fr;">
-        <ul style="margin:0; padding-left:1.1rem;">
-          <li><strong>Model training</strong> – trained the emotion-classification model using FERPlus and RAF-DB for seven core emotions; balanced classes and validated with holdout images.</li>
-          <li><strong>Optimization</strong> – converted and quantized for TensorFlow Lite to improve speed and reduce model size while preserving accuracy.</li>
-          <li><strong>On-device processing</strong> – full inference runs locally for low latency and privacy; no video leaves the device.</li>
-          <li><strong>Architecture</strong> – SwiftUI app with AVFoundation camera stream and preprocessing; TFLite interpreter for real-time predictions.</li>
-          <li><strong>Deployment</strong> – packaged and installed via Xcode for on-device testing and demo.</li>
-          <li><strong>Next steps</strong> – add trend tracking, adaptive UI reactions, and optional Core ML conversion for Apple silicon optimization.</li>
-        </ul>
-      </div>
-    </section>
+  <div class="info-body" style="grid-template-columns:1fr;">
+    <ul style="margin:0; padding-left:1.1rem;">
+      <li><strong>Data & inputs</strong> – trained the emotion model using FERPlus and RAF-DB images (seven classes), with basic balancing and holdout validation.</li>
+      <li><strong>Model & processing</strong> – preprocessing with grayscale/resize; converted to TensorFlow Lite with size/speed optimizations.</li>
+      <li><strong>Runtime</strong> – on-device TFLite inference for low-latency predictions; no video leaves the phone.</li>
+      <li><strong>App & UI</strong> – SwiftUI interface; AVFoundation camera stream with lightweight frame pipeline.</li>
+      <li><strong>Build & deployment</strong> – packaged and installed via Xcode for device testing and demos.</li>
+      <li><strong>Privacy & performance</strong> – local inference, small model footprint, and consistent real-time FPS on recent iPhones.</li>
+    </ul>
+  </div>
+</section>
 
     <p class="note">
       If I have to resort to acting for a living, that’s not going to be good for anyone. Just saying.
