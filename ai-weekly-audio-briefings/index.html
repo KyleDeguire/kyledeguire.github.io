@@ -36,13 +36,11 @@
     .info-section p:last-child{margin-bottom:0;}
     .inline-role{font-weight:600;letter-spacing:.3px;}
     .info-full{grid-column:1/-1;}
+    @media (min-width:900px){ .info-section.info-full{ margin-top:6px; } }
 
-    /* Demo area: single-column, centered content (this is the mobile-safe layout you liked) */
+    /* Demo area (leave as you currently have it) */
     .grid-demo{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:clamp(10px,2vw,18px);
-      margin-top:clamp(16px,3vw,30px);
+      display:grid;grid-template-columns:1fr;gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);
     }
     figure.card{
       margin:0;border:1px solid var(--border);background:var(--card);
@@ -50,20 +48,39 @@
       transition:transform .12s ease,box-shadow .12s ease;
     }
     figure.card:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);}
-    .media{
-      background:var(--card);
-      display:flex;align-items:center;justify-content:center;
-      padding:16px;
-    }
+    .media{background:var(--card);display:flex;align-items:center;justify-content:center;padding:16px;}
     .phone-shot{width:100%;max-width:380px;height:auto;display:block;object-fit:contain;object-position:center;}
     .demo-audio{display:flex;justify-content:center;width:100%;}
     .demo-audio audio{width:min(680px,100%);}
     figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
-
     .note{font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
 
-    /* Restore earlier “Technical details” spacing */
-    .info-card.details { margin-top:26px; }
+    /* ==== Modal (hidden until link is clicked) ==== */
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(15,23,42,.55);
+      display:none;align-items:center;justify-content:center;z-index:9999;
+    }
+    .modal{
+      background:#fff;width:min(960px,92vw);height:min(80vh,800px);
+      border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;display:flex;flex-direction:column;
+    }
+    .modal-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 14px;border-bottom:1px solid #e5e7eb;background:#f8fafc;
+    }
+    .modal-title{font-weight:600;color:#0f172a;font-size:14px}
+    .modal-close{
+      appearance:none;border:0;background:#0a66c2;color:#fff;border-radius:10px;
+      padding:6px 10px;font-weight:600;cursor:pointer;
+    }
+    .modal-body{flex:1;min-height:0}
+    .modal-body iframe{width:100%;height:100%;border:0;display:block}
+    @media (prefers-color-scheme: dark){
+      .modal{background:#0b1220;color:#e6edf3}
+      .modal-header{background:#0f172a;border-bottom-color:#1f2a3a}
+      .modal-title{color:#e6edf3}
+      .modal-close{background:#68a5ff;color:#0b1220}
+    }
   </style>
 </head>
 <body>
@@ -106,10 +123,10 @@
       </div>
     </section>
 
-    <!-- Demo (stacked, centered) -->
+    <!-- Demo -->
     <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
     <div class="grid-demo">
-      <!-- Screenshot card -->
+      <!-- Screenshot card (unchanged) -->
       <figure class="card">
         <div class="media">
           <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot" loading="lazy">
@@ -117,7 +134,7 @@
         <figcaption>Podcast feed example</figcaption>
       </figure>
 
-      <!-- Audio sample card -->
+      <!-- Audio sample card (unchanged) -->
       <figure class="card">
         <div class="media">
           <div class="demo-audio">
@@ -129,19 +146,24 @@
         <figcaption>Sample episode</figcaption>
       </figure>
 
-      <!-- Email transcript card -->
+      <!-- Email transcript link (same visual link; behavior opens modal) -->
       <figure class="card">
         <div class="media" style="flex-direction:column;gap:12px;">
-          <a href="AI Exec Brief (transcript) - 10 Nov 25.eml" download style="display:inline-block;font-weight:600;color:#0a66c2;text-decoration:none;border:1px solid var(--border);padding:10px 14px;border-radius:10px;background:#fff;">
-            Latest transcript email (EML)
+          <a id="transcript-link"
+             href="transcripts/ai-exec-brief-2025-11-10.html"
+             target="_blank" rel="noopener"
+             style="font-weight:600;color:#0a66c2;text-decoration:underline;">
+            Latest transcript email (HTML)
           </a>
+          <!-- Optional: keep original .eml as a tiny secondary link -->
+          <a href="AI Exec Brief (transcript) - 10 Nov 25.eml" style="font-size:.85rem;color:#64748b;text-decoration:none;">Original .eml</a>
         </div>
         <figcaption>Latest transcript email</figcaption>
       </figure>
     </div>
 
-    <!-- Technical details (bottom) -->
-    <section class="info-card details" aria-labelledby="details">
+    <!-- Technical details (unchanged) -->
+    <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
       <div class="info-head">
         <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
         <div class="chips">
@@ -153,7 +175,6 @@
           <span class="chip">RSS / feed.xml</span>
         </div>
       </div>
-
       <div class="info-body" style="grid-template-columns:1fr;">
         <ul style="margin:0;padding-left:1.1rem;">
           <li><strong>Data & inputs</strong> – weekly automated collection of seven leading AI publications.</li>
@@ -168,5 +189,60 @@
 
     <p class="note">Best experienced with headphones; episodes are ~3–5 minutes.</p>
   </main>
+
+  <!-- Hidden modal (added; doesn’t affect layout) -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Latest transcript email</div>
+        <button class="modal-close" id="modalClose" type="button">Close</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalFrame" src="about:blank"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Intercept transcript link to open in modal for consistent inline viewing
+    (function(){
+      const link = document.getElementById('transcript-link');
+      const backdrop = document.getElementById('modalBackdrop');
+      const frame = document.getElementById('modalFrame');
+      const closeBtn = document.getElementById('modalClose');
+
+      if(!link || !backdrop || !frame || !closeBtn) return;
+
+      function openModal(url){
+        frame.src = url;
+        backdrop.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal(){
+        frame.src = 'about:blank';
+        backdrop.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      link.addEventListener('click', function(e){
+        // Always open modal with the HTML copy, not the .eml
+        const url = link.getAttribute('href');
+        if (url && url.endsWith('.html')) {
+          e.preventDefault();
+          openModal(url);
+        }
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', function(e){
+        if(e.target === backdrop) closeModal();
+      });
+
+      // Escape key closes modal
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
