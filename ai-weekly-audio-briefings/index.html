@@ -68,7 +68,10 @@
     .info-section h3 {font-size:.95rem;margin:0 0 4px;color:var(--fg);}
     .info-section p {margin:0 0 12px;line-height:1.5;}
     .inline-role {font-weight:600;letter-spacing:.3px;}
-    .info-full {grid-column:1/-1;}
+    .info-section.info-full {
+      grid-column:1/-1;
+      margin-top:0 !important; /* tighten vertical spacing */
+    }
 
     /* Demo grid */
     .grid-demo {
@@ -200,8 +203,7 @@
         </div>
 
         <div class="info-section info-full">
-          <h3>Technical details</h3>
-          <p><em>See below</em></p>
+          <h3>Technical details</h3><p><em>See below</em></p>
         </div>
       </div>
     </section>
