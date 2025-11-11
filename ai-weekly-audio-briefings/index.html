@@ -45,34 +45,62 @@
     .info-section p:last-child{margin-bottom:0;}
     .inline-role{font-weight:600;letter-spacing:.3px;}
     .info-full{grid-column:1/-1;}
-    @media (min-width:900px){ .info-section.info-full{ margin-top:6px; } }
+    /* Tighten the “Technical details” header spacing on desktop only */
+    @media (min-width:900px){ .info-section.info-full{ margin-top:4px; } }
 
-    /* Demo area: single-column, centered content */
+    /* Demo area: square-like layout on desktop, stacked on mobile */
     .grid-demo{
       display:grid;
-      grid-template-columns:1fr;   /* single column on all sizes */
       gap:clamp(10px,2vw,18px);
       margin-top:clamp(16px,3vw,30px);
+      grid-template-columns:1fr;   /* mobile default */
+      grid-template-areas:
+        "shot"
+        "audio"
+        "email";
     }
+    @media (min-width:900px){
+      .grid-demo{
+        grid-template-columns: 1.2fr 1fr; /* screenshot gets a bit more width */
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+          "shot email"
+          "shot audio";
+      }
+    }
+
     figure.card{
       margin:0;border:1px solid var(--border);background:var(--card);
       border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
       transition:transform .12s ease,box-shadow .12s ease;
+      display:flex;flex-direction:column;
     }
     figure.card:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);}
     .media{
       background:var(--card);
       display:flex;align-items:center;justify-content:center;
-      padding:16px; /* breathing room around centered content */
+      padding:16px;
     }
     /* Centered phone shot, no cropping */
     .phone-shot{
-      width:100%; max-width:380px; height:auto; display:block;
+      width:100%; max-width:420px; height:auto; display:block;
       object-fit:contain; object-position:center;
     }
-    /* Audio player centered, wide but contained */
+    /* Audio player slightly larger */
     .demo-audio{display:flex;justify-content:center;width:100%;}
-    .demo-audio audio{width:min(680px,100%);}
+    .demo-audio audio{
+      width:min(760px,100%);
+      height:40px; /* some UAs respect this for larger controls */
+    }
+
+    /* Email tile styling */
+    .email-tile{display:flex;align-items:center;gap:12px;}
+    .email-icon{
+      width:42px;height:42px;flex:0 0 42px;border:1px solid var(--border);
+      border-radius:10px;display:grid;place-items:center;background:var(--tint);
+    }
+    .email-link{color:var(--brand);text-decoration:none;font-weight:600;}
+    .email-link:hover{text-decoration:underline;}
 
     figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
 
@@ -111,7 +139,7 @@
           <p>Designed the agentic flow, implemented summarization prompts, integrated ElevenLabs for narration, and automated the weekly build and publish process.</p>
 
           <h3>Scalability</h3>
-          <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
+          <p>Highly flexible, adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
         </div>
 
         <div class="info-section info-full">
@@ -121,23 +149,43 @@
       </div>
     </section>
 
-    <!-- Demo (stacked, centered) -->
-    <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
+    <!-- Demo -->
+    <h2 class="subtitle" style="margin-top:20px;">Demo</h2>
     <div class="grid-demo">
-      <!-- Screenshot card -->
-      <figure class="card">
+      <!-- Screenshot (spans two rows on desktop) -->
+      <figure class="card" style="grid-area:shot;">
         <div class="media">
           <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot" loading="lazy">
         </div>
         <figcaption>Podcast feed example</figcaption>
       </figure>
 
-      <!-- Audio sample card -->
-      <figure class="card">
+      <!-- Email tile (top-right on desktop, third on mobile) -->
+      <figure class="card" style="grid-area:email;">
+        <div class="media">
+          <div class="email-tile">
+            <div class="email-icon" aria-hidden="true">
+              <!-- simple mail icon -->
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:#0a66c2">
+                <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+                <path d="m22 8-10 6L2 8"/>
+              </svg>
+            </div>
+            <div>
+              <a class="email-link" href="AI%20Exec%20Brief%20(transcript)%20-%2010%20Nov%2025.eml" download>AI Exec Brief (transcript) — 10 Nov 25</a>
+              <div style="font-size:12px;color:var(--muted)">.eml • latest transcript email</div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Latest transcript email (EML)</figcaption>
+      </figure>
+
+      <!-- Audio (bottom-right on desktop, second on mobile) -->
+      <figure class="card" style="grid-area:audio;">
         <div class="media">
           <div class="demo-audio">
             <audio controls preload="metadata">
-              <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251027.mp3?t=1" type="audio/mpeg">
+              <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251110.mp3?t=1" type="audio/mpeg">
             </audio>
           </div>
         </div>
@@ -146,7 +194,7 @@
     </div>
 
     <!-- Technical details (bottom) -->
-    <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+    <section class="info-card" aria-labelledby="details" style="margin-top:22px;">
       <div class="info-head">
         <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
         <div class="chips">
