@@ -12,11 +12,14 @@
       --card:#ffffff; --border:#e2e8f0;
       --shadow:0 1px 2px rgba(0,0,0,.06),0 6px 16px rgba(0,0,0,.08);
       --radius:14px; --maxw:1120px; --tint:#eef6ff; --hint:#e39b07;
-      --section-gap:12px;
     }
 
     /* Base */
-    body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;color:var(--fg);background:var(--bg);}
+    html,body{margin:0}
+    body{
+      font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+      color:var(--fg);background:var(--bg);
+    }
     .container{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,32px);}
     .title{font-size:clamp(22px,4vw,34px);color:var(--brand);margin:0 0 6px;}
     .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
@@ -28,48 +31,44 @@
     .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
 
     .info-body{
-      display:grid;grid-template-columns:1fr 1fr;column-gap:60px;row-gap:var(--section-gap);
+      display:grid;grid-template-columns:1fr 1fr;column-gap:60px;row-gap:12px;
       padding:18px 20px;
     }
     @media (max-width:899px){.info-body{grid-template-columns:1fr;}}
     .info-section h3{font-size:.95rem;margin:0 0 4px;color:var(--fg);}
-    .info-section p{margin:0 0 var(--section-gap);line-height:1.48;}
-    .info-section p:last-child{margin-bottom:0;}
+    .info-section p{margin:0 0 12px;line-height:1.48;}
     .inline-role{font-weight:600;letter-spacing:.3px;}
     .info-full{grid-column:1/-1;}
-
-    /* Tighten the top “Technical details” spacing on desktop only */
     @media (min-width:900px){
       .info-section.info-full{ margin-top:6px; }
       .info-section.info-full h3{ margin-top:-2px; }
     }
 
-    /* Demo layout: 2 columns on desktop, 1 on mobile */
+    /* Demo layout */
     .demo-grid{
       display:grid;gap:16px;
-      grid-template-columns:1.4fr 1fr;
+      grid-template-columns:1.35fr 1fr; /* bigger screenshot */
       align-items:start;
     }
     @media (max-width:899px){ .demo-grid{ grid-template-columns:1fr; } }
 
-    /* Card shell */
+    /* Card */
     .card{
       border:1px solid var(--border);background:var(--card);
       border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
       transition:transform .12s ease,box-shadow .12s ease;
     }
     .card:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(10,102,194,.18),var(--shadow);}
-
     .media{padding:14px 14px 10px;}
     .figcap{padding:10px 12px;font-weight:600;font-size:13px;text-align:center;color:var(--muted);border-top:1px solid var(--border);}
 
-    /* Phone screenshot */
-    .phone-shot{width:100%;max-width:380px;height:auto;display:block;margin:0 auto;}
+    /* Screenshot */
+    .phone-shot{width:100%;max-width:460px;height:auto;display:block;margin:0 auto;}
 
-    /* Right column stacked */
+    /* Right column */
     .right-col{display:grid;gap:16px;}
 
-    /* Audio card – hero CTA kept here only */
+    /* Audio hero */
     .audio-hero{
       background:
         radial-gradient(1200px 300px at 50% 0%, rgba(10,102,194,.08), transparent 60%),
@@ -81,17 +80,17 @@
       display:flex;align-items:center;justify-content:space-between;
       gap:12px;margin-bottom:8px;
     }
-    .callout-title{
-      display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:#0b3b72;
+    .pill{
+      display:inline-flex;align-items:center;gap:6px;background:#eef6ff;border:1px solid #d6e7ff;color:#0a66c2;
+      padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700; letter-spacing:.2px;
     }
-    .pill{display:inline-flex;align-items:center;gap:6px;background:#eef6ff;border:1px solid #d6e7ff;color:#0a66c2;
-      padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700; letter-spacing:.2px;}
     .cta{
       display:inline-flex;align-items:center;gap:8px;background:#0a66c2;color:#fff;
-      padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px;
-      box-shadow:0 4px 10px rgba(10,102,194,.22);
+      padding:9px 12px;border-radius:12px;text-decoration:none;font-weight:800;font-size:13px;
+      box-shadow:0 4px 10px rgba(10,102,194,.22); user-select:none;
     }
-    .cta:focus,.cta:hover{filter:brightness(1.05);}
+    .cta:hover,.cta:focus{filter:brightness(1.06);}
+    .cta svg{width:12px;height:12px;fill:#fff;display:block}
 
     .player-wrap{margin:8px 0 6px;}
     .player{width:100%;}
@@ -113,7 +112,6 @@
     .download{margin-left:auto;font-size:13px;font-weight:700;color:#0a66c2;text-decoration:none;padding:6px 8px;border-radius:8px;background:#eef6ff;border:1px solid #d6e7ff;}
     .download:hover{filter:brightness(1.05);}
     .doc-desc{font-size:12px;color:var(--muted);margin:8px 0 10px;}
-
     .bullets{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     @media (max-width:899px){ .bullets{grid-template-columns:1fr;} }
     .chipline{
@@ -128,6 +126,15 @@
 
     /* Bottom details */
     .note{font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
+
+    /* MOBILE: keep it simple (restore original look) */
+    @media (max-width:899px){
+      /* Remove hero gradients for a flatter mobile feel */
+      .audio-hero,.email-card{background:#fff;}
+      .phone-shot{max-width:520px;}
+      /* Stack order: screenshot, audio, email */
+      .demo-grid{grid-auto-flow:row;}
+    }
   </style>
 </head>
 <body>
@@ -173,7 +180,7 @@
     <!-- Demo -->
     <h2 class="subtitle" style="margin-top:20px;">Demo</h2>
     <div class="demo-grid">
-      <!-- Left: phone screenshot ONLY (no CTA here) -->
+      <!-- Left: screenshot ONLY (no CTA here) -->
       <figure class="card">
         <div class="media">
           <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot">
@@ -181,20 +188,22 @@
         <figcaption class="figcap">Podcast feed example</figcaption>
       </figure>
 
-      <!-- Right: stacked cards -->
+      <!-- Right: stacked -->
       <div class="right-col">
-        <!-- Audio hero with the ONLY CTA -->
-        <figure class="card">
+        <!-- Audio hero with the ONLY CTA; clicking plays the on-page player -->
+        <figure class="card" id="audio-card">
           <div class="audio-hero">
             <div class="callout-header">
-              <div class="callout-title">
-                <span class="pill">Latest episode — 10 Nov 2025</span>
-              </div>
-              <a class="cta" href="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251110.mp3?t=1" target="_blank" rel="noopener">Listen now</a>
+              <span class="pill">Latest episode — 10 Nov 2025</span>
+              <a class="cta" href="#player" id="listenNowBtn" aria-controls="player">
+                <!-- white play triangle -->
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                Listen now
+              </a>
             </div>
 
-            <div class="player-wrap">
-              <audio class="player" controls preload="metadata">
+            <div class="player-wrap" id="player">
+              <audio class="player" controls preload="metadata" id="audioEl">
                 <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251110.mp3?t=1" type="audio/mpeg">
               </audio>
               <div class="track-meta">AI News Weekly — Executive Brief • ~4 min</div>
@@ -216,9 +225,9 @@
             <div class="section-label">What’s inside</div>
             <div class="bullets">
               <div class="chipline"><i>•</i> Category headers aligned to on-air pacing</div>
-              <div class="chipline"><i>•</i> Clean paragraphing for readability</div>
+              <div class="chipline"><i>•</i> Paragraphing that mirrors narration</div>
               <div class="chipline"><i>•</i> Source list separated at the bottom</div>
-              <div class="chipline"><i>•</i> Consistent typography and spacing</div>
+              <div class="chipline"><i>•</i> Clean, consistent typography</div>
             </div>
           </div>
           <figcaption class="figcap">Latest transcript email</figcaption>
@@ -226,7 +235,7 @@
       </div>
     </div>
 
-    <!-- Technical details (bottom) -->
+    <!-- Technical details -->
     <section class="info-card" aria-labelledby="details" style="margin-top:18px;">
       <div class="info-head">
         <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
@@ -254,5 +263,21 @@
 
     <p class="note">Best experienced with headphones; episodes are ~3–5 minutes.</p>
   </main>
+
+  <script>
+    // Make the "Listen now" CTA play the on-page audio and scroll into view
+    (function(){
+      const btn = document.getElementById('listenNowBtn');
+      const audio = document.getElementById('audioEl');
+      const player = document.getElementById('player');
+      if(!btn || !audio || !player) return;
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        player.scrollIntoView({behavior:'smooth', block:'center'});
+        // play after a short tick to give browsers time to focus the element
+        setTimeout(()=>{ try { audio.play(); } catch(_){} }, 220);
+      });
+    })();
+  </script>
 </body>
 </html>
