@@ -18,30 +18,33 @@
     .title{font-size:clamp(22px,4vw,34px);color:var(--brand);margin:0 0 6px;}
     .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
 
+    /* Overview card (match RAG spacing) */
     .info-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
     .info-head{border-bottom:1px solid var(--border);padding:14px 18px 10px;}
     .chips{display:flex;flex-wrap:wrap;gap:8px;}
     .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--muted);}
 
     .info-body{
+      /* RAG pattern: single column first, tighter vertical rhythm */
       display:grid;
-      grid-template-columns:1fr 1fr;
-      column-gap:60px;
-      /* ↓ Tighten vertical spacing between grid rows so “Technical details” sits closer */
-      row-gap:8px;
+      grid-template-columns:1fr;
+      row-gap:12px;
       padding:18px 20px;
     }
-    @media (max-width:899px){.info-body{grid-template-columns:1fr;}}
+    @media (min-width:900px){
+      .info-body{
+        grid-template-columns:1fr 1fr;
+        column-gap:60px;
+      }
+      .info-section.info-full{ margin-top:6px; } /* small offset like RAG */
+    }
     .info-section h3{font-size:.95rem;margin:0 0 4px;color:var(--fg);}
-    .info-section p{margin:0 0 var(--section-gap);line-height:1.48;}
+    .info-section p{margin:0 0 12px;line-height:1.48;}
     .info-section p:last-child{margin-bottom:0;}
     .inline-role{font-weight:600;letter-spacing:.3px;}
     .info-full{grid-column:1/-1;}
-    /* ↓ Remove any extra top offset on the full-width row */
-    .info-section.info-full{margin-top:0 !important;}
-    .info-section.info-full h3{margin-top:0;}
-    .info-section.info-full p{margin-top:2px;}
 
+    /* Demo area (unchanged layout) */
     .grid-demo{display:grid;grid-template-columns:1fr;gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
     figure.card{margin:0;border:1px solid var(--border);background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .12s ease,box-shadow .12s ease;}
     figure.card:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);}
@@ -52,7 +55,7 @@
     figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
     .note{font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
 
-    /* Modal (unchanged) */
+    /* Simple modal used only for transcript HTML (unchanged) */
     .modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.55);display:none;align-items:center;justify-content:center;z-index:9999;}
     .modal{background:#fff;width:min(960px,92vw);height:min(80vh,800px);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;display:flex;flex-direction:column;}
     .modal-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #e5e7eb;background:#f8fafc;}
@@ -101,7 +104,7 @@
       </div>
     </section>
 
-    <!-- Demo -->
+    <!-- Demo (unchanged) -->
     <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
     <div class="grid-demo">
       <figure class="card">
@@ -152,6 +155,7 @@
           <span class="chip">RSS / feed.xml</span>
         </div>
       </div>
+
       <div class="info-body" style="grid-template-columns:1fr;">
         <ul style="margin:0;padding-left:1.1rem;">
           <li><strong>Data & inputs</strong> – weekly automated collection of seven leading AI publications.</li>
@@ -167,7 +171,7 @@
     <p class="note">Best experienced with headphones; episodes are ~3–5 minutes.</p>
   </main>
 
-  <!-- Modal (unchanged) -->
+  <!-- Modal JS (unchanged) -->
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal">
       <div class="modal-header">
