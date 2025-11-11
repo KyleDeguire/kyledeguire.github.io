@@ -15,19 +15,11 @@
       --section-gap:12px;
     }
 
+    /* Base */
     body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;color:var(--fg);background:var(--bg);}
     .container{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,32px);}
     .title{font-size:clamp(22px,4vw,34px);color:var(--brand);margin:0 0 6px;}
     .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
-
-    /* Mobile-only scroll hint */
-    .scroll-hint{display:none;}
-    @media (max-width:899px){
-      .scroll-hint{
-        display:block;font-size:.95rem;font-style:italic;font-weight:700;
-        color:var(--hint);margin-bottom:6px;
-      }
-    }
 
     /* Overview card */
     .info-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
@@ -45,64 +37,96 @@
     .info-section p:last-child{margin-bottom:0;}
     .inline-role{font-weight:600;letter-spacing:.3px;}
     .info-full{grid-column:1/-1;}
-    /* tighten spacing so “Technical details” sits closer (desktop only) */
+
+    /* Tighten the top “Technical details” spacing on desktop only */
     @media (min-width:900px){
-      .info-section.info-full{ margin-top:2px; }
-      .info-body{ row-gap:10px; }
+      .info-section.info-full{ margin-top:6px; }
+      .info-section.info-full h3{ margin-top:-2px; }
     }
 
-    /* Demo grid: screenshot left, two stacked tiles right (desktop) */
-    .grid-showcase{
-      display:grid;gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);
-      grid-template-columns:1fr;
+    /* Demo layout: 2 columns on desktop, 1 on mobile */
+    .demo-grid{
+      display:grid;gap:16px;
+      grid-template-columns:1.4fr 1fr;
+      align-items:start;
     }
-    @media (min-width:900px){
-      .grid-showcase{
-        grid-template-columns:1fr 1fr;
-        grid-template-areas:
-          "shot audio"
-          "shot email";
-      }
-      .tile-shot{grid-area:shot;}
-      .tile-audio{grid-area:audio;}
-      .tile-email{grid-area:email;}
-    }
+    @media (max-width:899px){ .demo-grid{ grid-template-columns:1fr; } }
 
-    figure.card{
-      margin:0;border:1px solid var(--border);background:var(--card);
-      border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+    /* Card shell */
+    .card{
+      border:1px solid var(--border);background:var(--card);
+      border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
       transition:transform .12s ease,box-shadow .12s ease;
     }
-    figure.card:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);}
+    .card:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(10,102,194,.18),var(--shadow);}
 
-    .media{background:var(--card);display:flex;align-items:center;justify-content:center;padding:16px;}
-    .phone-shot{width:100%;max-width:380px;height:auto;display:block;object-fit:contain;object-position:center;}
+    .media{padding:14px 14px 10px;}
+    .figcap{padding:10px 12px;font-weight:600;font-size:13px;text-align:center;color:var(--muted);border-top:1px solid var(--border);}
 
-    figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;color:var(--fg);border-top:1px solid var(--border);}
+    /* Phone screenshot */
+    .phone-shot{width:100%;max-width:380px;height:auto;display:block;margin:0 auto;}
 
-    /* AUDIO TILE */
-    .media-audio{padding:18px 18px 14px;background:
-      linear-gradient(180deg, rgba(10,102,194,0.06), rgba(10,102,194,0.02));}
-    .audio-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-    .audio-dot{width:10px;height:10px;border-radius:999px;background:#0a66c2;box-shadow:0 0 0 3px rgba(10,102,194,.15);}
-    .audio-title{font-weight:700;font-size:14px;}
-    .audio-meta{font-size:12px;color:var(--muted);margin:6px 0 0;}
-    .demo-audio{display:flex;justify-content:center;width:100%;margin-top:8px;}
-    .demo-audio audio{width:min(720px,100%);} /* a bit wider so it doesn’t get lost */
+    /* Right column stacked */
+    .right-col{display:grid;gap:16px;}
 
-    /* EMAIL TILE */
-    .media-mail{padding:0;background:
-      repeating-linear-gradient(135deg, #f8fbff, #f8fbff 10px, #f1f7ff 10px, #f1f7ff 20px);}
-    .mail-header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.7);}
-    .mail-icon{width:18px;height:18px;border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:#0a66c2;font-weight:800;}
-    .mail-title{font-weight:700;font-size:14px}
-    .mail-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;}
-    .mail-file{display:flex;align-items:center;gap:10px;}
-    .file-badge{width:28px;height:28px;border-radius:6px;background:#0a66c2;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
-    .file-name{font-size:13px;}
-    .mail-caption{font-size:12px;color:var(--muted);padding:0 16px 14px;}
+    /* Audio card – hero CTA kept here only */
+    .audio-hero{
+      background:
+        radial-gradient(1200px 300px at 50% 0%, rgba(10,102,194,.08), transparent 60%),
+        linear-gradient(180deg,#ffffff 0%,#f8fbff 100%);
+      position:relative;
+      padding:12px 14px 14px;
+    }
+    .callout-header{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;margin-bottom:8px;
+    }
+    .callout-title{
+      display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:#0b3b72;
+    }
+    .pill{display:inline-flex;align-items:center;gap:6px;background:#eef6ff;border:1px solid #d6e7ff;color:#0a66c2;
+      padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700; letter-spacing:.2px;}
+    .cta{
+      display:inline-flex;align-items:center;gap:8px;background:#0a66c2;color:#fff;
+      padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px;
+      box-shadow:0 4px 10px rgba(10,102,194,.22);
+    }
+    .cta:focus,.cta:hover{filter:brightness(1.05);}
 
-    /* Technical details (bottom) */
+    .player-wrap{margin:8px 0 6px;}
+    .player{width:100%;}
+    .track-meta{font-size:12px;color:var(--muted);margin-top:6px;}
+
+    /* Email card */
+    .email-card{
+      background:
+        radial-gradient(500px 140px at 50% 0%, rgba(10,102,194,.06), transparent 65%),
+        linear-gradient(180deg,#ffffff 0%,#f9fbfe 100%);
+      padding:12px 14px 14px;
+    }
+    .row{display:flex;align-items:center;gap:10px;}
+    .badge{
+      width:28px;height:28px;border-radius:8px;background:#eef6ff;border:1px solid #d6e7ff;
+      display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#0a66c2;flex:0 0 auto;
+    }
+    .doc-title{font-weight:700;font-size:14px;color:#0b3b72;margin:0;}
+    .download{margin-left:auto;font-size:13px;font-weight:700;color:#0a66c2;text-decoration:none;padding:6px 8px;border-radius:8px;background:#eef6ff;border:1px solid #d6e7ff;}
+    .download:hover{filter:brightness(1.05);}
+    .doc-desc{font-size:12px;color:var(--muted);margin:8px 0 10px;}
+
+    .bullets{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    @media (max-width:899px){ .bullets{grid-template-columns:1fr;} }
+    .chipline{
+      display:flex;align-items:center;gap:8px;
+      padding:8px;border:1px dashed #dbe7ff;border-radius:10px;background:#f8fbff;
+      font-size:12px;color:#42536a;
+    }
+    .chipline i{font-style:normal;font-weight:800;color:#0a66c2;}
+
+    /* Section labels */
+    .section-label{color:var(--muted);font-size:12px;font-weight:700;margin:10px 0 6px;text-align:center;}
+
+    /* Bottom details */
     .note{font-style:italic;color:var(--muted);margin-top:16px;text-align:center;}
   </style>
 </head>
@@ -124,8 +148,6 @@
 
       <div class="info-body">
         <div class="info-section">
-          <p class="scroll-hint"><strong><em>Scroll down for Demo</em></strong></p>
-
           <h3>Project overview</h3>
           <p>Automated weekly review of leading AI publications. The workflow filters noise, summarizes updates by business criteria, and delivers a concise audio briefing with a transcript and citations.</p>
 
@@ -149,64 +171,63 @@
     </section>
 
     <!-- Demo -->
-    <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
-    <div class="grid-showcase">
-      <!-- Screenshot (left, full height on desktop) -->
-      <figure class="card tile-shot">
+    <h2 class="subtitle" style="margin-top:20px;">Demo</h2>
+    <div class="demo-grid">
+      <!-- Left: phone screenshot ONLY (no CTA here) -->
+      <figure class="card">
         <div class="media">
-          <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot" loading="lazy">
+          <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot">
         </div>
-        <figcaption>Podcast feed example</figcaption>
+        <figcaption class="figcap">Podcast feed example</figcaption>
       </figure>
 
-      <!-- AUDIO tile (now the TOP-right card on desktop) -->
-      <figure class="card tile-audio">
-        <div class="media media-audio">
-          <div style="width:100%;max-width:760px;">
-            <div class="audio-head">
-              <div class="audio-dot" aria-hidden="true"></div>
-              <div class="audio-title">Latest episode — 10 Nov 2025</div>
-            </div>
-
-            <div class="demo-audio">
-              <audio controls preload="metadata">
-                <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251110.mp3?t=3" type="audio/mpeg">
-              </audio>
-            </div>
-
-            <p class="audio-meta">AI News Weekly — Executive Brief • ~4 min</p>
-          </div>
-        </div>
-        <figcaption>Sample episode</figcaption>
-      </figure>
-
-      <!-- EMAIL tile (now the BOTTOM-right card on desktop) -->
-      <figure class="card tile-email">
-        <div class="media media-mail">
-          <div style="width:100%;max-width:760px;background:rgba(255,255,255,.65);">
-            <div class="mail-header">
-              <div class="mail-icon" aria-hidden="true">✉︎</div>
-              <div class="mail-title">AI Exec Brief (transcript) — 10 Nov 25</div>
-            </div>
-
-            <div class="mail-row">
-              <div class="mail-file">
-                <div class="file-badge">EML</div>
-                <div class="file-name">Latest transcript email</div>
+      <!-- Right: stacked cards -->
+      <div class="right-col">
+        <!-- Audio hero with the ONLY CTA -->
+        <figure class="card">
+          <div class="audio-hero">
+            <div class="callout-header">
+              <div class="callout-title">
+                <span class="pill">Latest episode — 10 Nov 2025</span>
               </div>
-              <a href="AI Exec Brief (transcript) - 10 Nov 25.eml" download
-                 style="font-size:13px;color:var(--brand);text-decoration:none;">Download</a>
+              <a class="cta" href="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251110.mp3?t=1" target="_blank" rel="noopener">Listen now</a>
             </div>
 
-            <p class="mail-caption">A quick-reference email version of the brief, with transcript formatting for easy reading.</p>
+            <div class="player-wrap">
+              <audio class="player" controls preload="metadata">
+                <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251110.mp3?t=1" type="audio/mpeg">
+              </audio>
+              <div class="track-meta">AI News Weekly — Executive Brief • ~4 min</div>
+            </div>
           </div>
-        </div>
-        <figcaption>Latest transcript email</figcaption>
-      </figure>
+          <figcaption class="figcap">Sample episode</figcaption>
+        </figure>
+
+        <!-- Email transcript card -->
+        <figure class="card">
+          <div class="email-card">
+            <div class="row">
+              <div class="badge">EML</div>
+              <p class="doc-title">AI Exec Brief (transcript) — 10 Nov 25</p>
+              <a class="download" href="AI%20Exec%20Brief%20(transcript)%20-%2010%20Nov%2025.eml" download>Download</a>
+            </div>
+            <p class="doc-desc">A quick-reference email version of the brief with transcript formatting for easy reading.</p>
+
+            <div class="section-label">What’s inside</div>
+            <div class="bullets">
+              <div class="chipline"><i>•</i> Category headers aligned to on-air pacing</div>
+              <div class="chipline"><i>•</i> Clean paragraphing for readability</div>
+              <div class="chipline"><i>•</i> Source list separated at the bottom</div>
+              <div class="chipline"><i>•</i> Consistent typography and spacing</div>
+            </div>
+          </div>
+          <figcaption class="figcap">Latest transcript email</figcaption>
+        </figure>
+      </div>
     </div>
 
     <!-- Technical details (bottom) -->
-    <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+    <section class="info-card" aria-labelledby="details" style="margin-top:18px;">
       <div class="info-head">
         <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
         <div class="chips">
