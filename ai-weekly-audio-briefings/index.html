@@ -107,7 +107,7 @@ body{
   .info-section.info-full{margin-top:0;} /* removed extra spacing */
 }
 
-/* --- MODIFIED DEMO AREA --- */
+/* MODIFIED DEMO AREA STYLES */
 .grid-demo{
   display:grid;
   grid-template-columns:1fr;
@@ -115,11 +115,11 @@ body{
   margin-top:clamp(16px,3vw,30px);
 }
 
-/* New 2-column layout for desktop */
+/* Apply 2-column layout to grid-demo on desktop */
 @media (min-width: 900px) {
   .grid-demo {
     grid-template-columns: 1fr 1fr;
-    align-items: start; /* Align columns to the top */
+    align-items: start;
   }
 }
 
@@ -130,7 +130,7 @@ figure.card{
   border-radius:var(--radius);
   overflow:hidden;
   box-shadow:var(--shadow);
-  /* Removed hover effect from original screenshot card */
+  /* Reset hover effect for the screenshot card */
   transition:none;
 }
 
@@ -155,7 +155,6 @@ figure.card:hover{
   object-position:center;
 }
 
-/* Original audio player classes (still used) */
 .demo-audio{
   display:flex;
   justify-content:center;
@@ -172,16 +171,21 @@ figcaption{
   color:var(--fg);
   border-top:1px solid var(--border);
 }
-/* --- END OF ORIGINAL STYLES --- */
 
+.note{
+  font-style:italic;
+  color:var(--muted);
+  margin-top:16px;
+  text-align:center;
+}
 
-/* --- NEW STYLES FOR DEMO CARDS --- */
+/* NEW STYLES FOR DEMO CARDS */
 
 /* Wrapper for the right-hand column cards */
 .demo-right-column {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(10px, 2vw, 18px); /* Same gap as main grid */
+  gap: clamp(10px, 2vw, 18px);
 }
 
 /* New card style for "Listen" and "Download" */
@@ -194,7 +198,14 @@ figcaption{
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Spacing between elements inside the card */
+  gap: 16px;
+  /* Add subtle hover to new cards */
+  transition: transform .12s ease,box-shadow .12s ease;
+}
+
+.demo-card:hover {
+  transform:translateY(-2px);
+  box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);
 }
 
 /* Simple icon style (using emoji) */
@@ -227,6 +238,8 @@ figcaption{
   cursor: pointer;
   transition: background-color .15s ease, border-color .15s ease;
   font-size: 0.9rem;
+  /* Ensure proper spacing when buttons stack */
+  margin-top: 8px; 
 }
 
 .demo-btn-primary {
@@ -235,7 +248,7 @@ figcaption{
   border: 1px solid var(--brand);
 }
 .demo-btn-primary:hover {
-  background: #0855a0; /* Darker brand */
+  background: #0855a0;
   border-color: #0855a0;
 }
 
@@ -245,16 +258,7 @@ figcaption{
   border: 1px solid var(--border);
 }
 .demo-btn-secondary:hover {
-  background: var(--bg); /* Light tint on hover */
-}
-/* --- END OF NEW STYLES --- */
-
-
-.note{
-  font-style:italic;
-  color:var(--muted);
-  margin-top:16px;
-  text-align:center;
+  background: var(--bg);
 }
 
 /* Modal for transcript (unchanged) */
@@ -336,7 +340,7 @@ figcaption{
     <div class="info-section info-full">
       <h3>Technical details</h3><p><em>See below</em></p>
     </div>
-  </div>
+    </div>
 </section>
 
 <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
@@ -370,7 +374,8 @@ figcaption{
       <a id="transcript-link"
          href="ai-exec-brief-2025-11-10.html"
          rel="noopener"
-         class="demo-btn demo-btn-primary">
+         class="demo-btn demo-btn-primary"
+         style="margin-top:0;"> 
         View Transcript (HTML)
       </a>
       <a href="AI Exec Brief (transcript) - 10 Nov 25.eml"
@@ -414,7 +419,7 @@ figcaption{
       <button class="modal-close" id="modalClose">Close</button>
     </div>
     <div class="modal-body">
-    _ <iframe id="modalFrame" src="about:blank"></iframe>
+      <iframe id="modalFrame" src="about:blank"></iframe>
     </div>
   </div>
 </div>
