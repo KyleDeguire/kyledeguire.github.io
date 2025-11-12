@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Weekly Audio Briefings</title>
+    <title>AI Weekly Audio Feed</title>
     <style>
         * {
             margin: 0;
@@ -13,54 +13,73 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
         }
 
         header {
             text-align: center;
-            padding: 40px 20px;
-            color: white;
+            padding: 60px 20px 40px;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         header h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-
-        .demo-section {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 40px auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .demo-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             color: #1a1a2e;
         }
 
+        .section {
+            background: white;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .section ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        /* Demo Section Styles */
         .demo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            margin-top: 40px;
         }
 
         .phone-mockup {
@@ -196,26 +215,11 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
 
-        .feature-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-        }
-
         .feature-title {
             font-size: 1.5rem;
             font-weight: 700;
             color: #1a1a2e;
-        }
-
-        .feature-badge {
-            background: #667eea;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            margin-bottom: 25px;
         }
 
         .waveform {
@@ -285,63 +289,16 @@
             box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
         }
 
-        .info-section {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin: 40px auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .info-section h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #1a1a2e;
-        }
-
-        .info-section h3 {
-            font-size: 1.5rem;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: #667eea;
-        }
-
-        .info-section p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #4a4a4a;
-        }
-
-        .info-section ul {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .info-section ul li {
-            padding: 12px 0;
-            font-size: 1.05rem;
-            color: #4a4a4a;
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .info-section ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .info-section ul li strong {
-            color: #1a1a2e;
-        }
-
-        footer {
+        .screenshot {
             text-align: center;
-            padding: 40px 20px;
-            color: white;
-            opacity: 0.8;
+            margin: 40px 0;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         @media (max-width: 968px) {
@@ -354,12 +311,8 @@
                 font-size: 2rem;
             }
 
-            .demo-section {
-                padding: 40px 20px;
-            }
-
-            .info-section {
-                padding: 40px 20px;
+            .section {
+                padding: 30px 20px;
             }
 
             .feature-card {
@@ -370,14 +323,41 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>AI Weekly Audio Briefings</h1>
-            <p>Automated AI news summaries delivered as audio podcasts</p>
-        </div>
+        <h1>AI Weekly Audio Feed</h1>
     </header>
 
     <div class="container">
-        <section class="demo-section">
+        <div class="section">
+            <h2>Overview</h2>
+            <p><a href="#demo">Scroll down for Demo</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Project overview</h2>
+            <p>Automated weekly review of leading AI publications. The workflow filters noise, summarizes updates by business criteria, and delivers a concise audio briefing with a transcript and citations.</p>
+        </div>
+
+        <div class="section">
+            <h2>Business impact</h2>
+            <p>Keeps busy executives current by converting ever-changing AI news into short, high-signal audio briefs, reducing screen time and improving retention.</p>
+        </div>
+
+        <div class="section">
+            <h2>My role: Strategy → architecture → build → test</h2>
+            <p>Designed the agentic flow, implemented summarization prompts, integrated ElevenLabs for narration, and automated the weekly build and publish process.</p>
+        </div>
+
+        <div class="section">
+            <h2>Scalability</h2>
+            <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
+        </div>
+
+        <div class="section">
+            <h2>Technical details</h2>
+            <p>See below</p>
+        </div>
+
+        <div class="section" id="demo">
             <h2>Demo</h2>
             <div class="demo-grid">
                 <div class="phone-mockup">
@@ -404,15 +384,12 @@
                             </div>
                         </div>
                     </div>
-                    <div style="text-align: center; margin-top: 20px; color: white; font-weight: 600;">Podcast feed example</div>
+                    <div style="text-align: center; margin-top: 20px; color: #666; font-weight: 600;">Podcast feed example</div>
                 </div>
 
                 <div class="feature-cards">
                     <div class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-title">Listen Now</div>
-                            <div class="feature-badge">Episode example</div>
-                        </div>
+                        <div class="feature-title">Listen to episode example</div>
                         <div class="waveform">
                             <div class="waveform-bar"></div>
                             <div class="waveform-bar"></div>
@@ -425,46 +402,36 @@
                             <div class="waveform-bar"></div>
                             <div class="waveform-bar"></div>
                         </div>
-                        <a href="#" class="cta-button">▶ Play Episode</a>
+                        <a href="episodes/episode_10.mp3" class="cta-button">▶ Play Episode</a>
                     </div>
 
                     <div class="feature-card">
-                        <div class="feature-header">
-                            <div class="feature-title">Transcript Email example</div>
-                        </div>
+                        <div class="feature-title">Transcript Email example</div>
                         <div class="email-icon">📧</div>
-                        <a href="#" class="cta-button">Read/Review Now</a>
+                        <a href="episodes/episode_10_transcript.eml" class="cta-button">Read/Review Now</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="info-section">
-            <h2>Project Overview</h2>
-            <p>Automated weekly review of leading AI publications. The workflow filters noise, summarizes updates by business criteria, and delivers a concise audio briefing with a transcript and citations.</p>
+        <div class="section">
+            <div class="screenshot">
+                <img src="podcast-screenshot.png" alt="Podcast screenshot">
+            </div>
+        </div>
 
-            <h3>Business Impact</h3>
-            <p>Keeps busy executives current by converting ever-changing AI news into short, high-signal audio briefs, reducing screen time and improving retention.</p>
-
-            <h3>My Role: Strategy → Architecture → Build → Test</h3>
-            <p>Designed the agentic flow, implemented summarization prompts, integrated ElevenLabs for narration, and automated the weekly build and publish process.</p>
-
-            <h3>Scalability</h3>
-            <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
-
-            <h3>Technical Details</h3>
+        <div class="section">
+            <h2>Technical details</h2>
             <ul>
-                <li><strong>Data & inputs</strong> – Weekly automated collection of seven leading AI publications.</li>
-                <li><strong>Model & processing</strong> – OpenAI condenses and structures updates into business-focused summaries via GitHub Actions.</li>
-                <li><strong>Audio & delivery</strong> – ElevenLabs TTS produces duralines to generate audio briefings and update the podcast.</li>
-                <li><strong>Versioning & publish</strong> – Workflow commits releases are ~3–5 minutes.</li>
+                <li><strong>Data & inputs</strong> – weekly automated collection of seven leading AI publications.</li>
+                <li><strong>Model & processing</strong> – OpenAI condenses and structures updates into business-focused summaries.</li>
+                <li><strong>Runtime</strong> – automated workflow in GitHub Actions to generate audio briefings and update the podcast feed on schedule.</li>
+                <li><strong>Audio & delivery</strong> – ElevenLabs TTS produces MP3 narration with aligned transcripts for reference and QC.</li>
+                <li><strong>Hosting & distribution</strong> – MP3s and podcast feed hosted on GitHub Pages for direct access through podcast apps.</li>
+                <li><strong>Versioning & publish</strong> – workflow commits audio and metadata updates back to the repository for repeatable releases.</li>
             </ul>
-            <p style="margin-top: 30px; font-style: italic;">Best experienced with headphones; episodes are ~3–5 minutes.</p>
-        </section>
+            <p>Best experienced with headphones; episodes are ~3–5 minutes.</p>
+        </div>
     </div>
-
-    <footer>
-        <p>&copy; 2025 Kyle DeGuire - AI Weekly Audio Briefings</p>
-    </footer>
 </body>
 </html>
