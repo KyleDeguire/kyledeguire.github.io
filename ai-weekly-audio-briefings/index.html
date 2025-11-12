@@ -87,6 +87,12 @@
             font-weight: 500;
         }
 
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
         /* Demo Section Styles */
         .demo-grid {
             display: grid;
@@ -303,10 +309,61 @@
             box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
         }
 
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        .screenshot-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .screenshot-container img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .screenshot-caption {
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--fg);
+        }
+
+        .audio-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .audio-section audio {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .audio-label {
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--fg);
+        }
+
+        .transcript-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .transcript-section a {
+            color: #0369a1;
+            font-weight: 600;
+        }
+
+        .transcript-meta {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .transcript-label {
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--fg);
         }
 
         @media (max-width: 968px) {
@@ -329,6 +386,10 @@
 
             .feature-card {
                 padding: 30px 20px;
+            }
+
+            .screenshot-container img {
+                max-width: 100%;
             }
         }
     </style>
@@ -424,6 +485,27 @@
                         <a href="episodes/episode_10_transcript.eml" class="cta-button">Read/Review Now</a>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="screenshot-container">
+                <img src="podcast-screenshot.png" alt="Podcast screenshot">
+                <div class="screenshot-caption">Podcast feed example</div>
+            </div>
+
+            <div class="audio-section">
+                <audio controls>
+                    <source src="episodes/episode_10.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="audio-label">Sample episode</div>
+            </div>
+
+            <div class="transcript-section">
+                <a href="episodes/episode_10_transcript.eml">Latest transcript email (HTML)</a>
+                <div class="transcript-meta">Original .eml</div>
+                <div class="transcript-label">Latest transcript email</div>
             </div>
         </div>
 
