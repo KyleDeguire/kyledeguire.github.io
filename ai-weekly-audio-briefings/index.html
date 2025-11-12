@@ -14,96 +14,29 @@
   --radius:14px; --maxw:1120px; --tint:#eef6ff; --hint:#e39b07;
 }
 
-body{
-  margin:0;
-  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
-  color:var(--fg);
-  background:var(--bg);
-}
-
-.container{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:clamp(16px,3vw,32px);
-}
-
-.title{
-  font-size:clamp(22px,4vw,34px);
-  color:var(--brand);
-  margin:0 0 6px;
-}
-
-.subtitle{
-  color:var(--muted);
-  font-size:16px;
-  margin:0 0 12px;
-}
-
+body{ margin:0; font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial; color:var(--fg); background:var(--bg); }
+.container{ max-width:var(--maxw); margin:0 auto; padding:clamp(16px,3vw,32px); }
+.title{ font-size:clamp(22px,4vw,34px); color:var(--brand); margin:0 0 6px; }
+.subtitle{ color:var(--muted); font-size:16px; margin:0 0 12px; }
 .scroll-hint{display:none;}
 @media (max-width:899px){.scroll-hint{display:block;font-size:.95rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;}}
 
-/* Overview card (unchanged) */
-.info-card{
-  background:var(--tint);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-
-.info-head{
-  border-bottom:1px solid var(--border);
-  padding:14px 18px 10px;
-}
-
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.chip{
-  font-size:12px;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--muted);
-}
-
-/* spacing copied from RAG CIRS (unchanged) */
-.info-body{
-  display:grid;
-  grid-template-columns:1fr;
-  row-gap:12px;
-  padding:18px 20px;
-}
-@media (min-width:900px){
-  .info-body{
-    grid-template-columns:1fr 1fr;
-    column-gap:60px;
-  }
-}
-
-.info-section h3{
-  font-size:.95rem;
-  margin:0 0 4px;
-  color:var(--fg);
-}
-
-.info-section p{
-  margin:0 0 12px;
-  line-height:1.48;
-}
-
+/* --- Outside Demo: unchanged --- */
+.info-card{ background:var(--tint); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); }
+.info-head{ border-bottom:1px solid var(--border); padding:14px 18px 10px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{ font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--card); color:var(--muted); }
+.info-body{ display:grid; grid-template-columns:1fr; row-gap:12px; padding:18px 20px; }
+@media (min-width:900px){ .info-body{ grid-template-columns:1fr 1fr; column-gap:60px; } }
+.info-section h3{ font-size:.95rem; margin:0 0 4px; color:var(--fg); }
+.info-section p{ margin:0 0 12px; line-height:1.48; }
 .info-section p:last-child{margin-bottom:0;}
 .inline-role{font-weight:600;letter-spacing:.3px;}
 .info-full{grid-column:1/-1;}
-@media (min-width:900px){
-  .info-section.info-full{margin-top:0;}
-}
+@media (min-width:900px){ .info-section.info-full{margin-top:0;} }
 
 /* =========================
-   Demo area (UPDATED ONLY)
+   DEMO AREA (MATCH AFTER)
    ========================= */
 .grid-demo{
   display:grid;
@@ -111,303 +44,179 @@ body{
   gap:clamp(10px,2vw,18px);
   margin-top:clamp(16px,3vw,30px);
 }
-/* keep mobile order: screenshot -> audio -> transcript */
 @media (min-width:900px){
-  .grid-demo{
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+  .grid-demo{ grid-template-columns: 1fr 1fr 1fr; }
 }
 
 figure.card{
-  margin:0;
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow);
+  margin:0; border:1px solid var(--border); background:var(--card);
+  border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
   transition:transform .12s ease,box-shadow .12s ease;
 }
-figure.card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);
-}
+figure.card:hover{ transform:translateY(-2px); box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow); }
 
-.media{
-  background:var(--card);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-}
-
-.phone-shot{
-  width:100%;
-  max-width:380px;
-  height:auto;
-  object-fit:contain;
-  object-position:center;
-}
-
-/* Clean CTA header bar for audio card to replace the old white block */
-.card-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  padding:10px 12px;
-  border-bottom:1px solid var(--border);
-  background:#ffffff;
-}
-.card-head .label{
-  font-weight:700;
-  font-size:.95rem;
-  color:var(--fg);
-  letter-spacing:.2px;
-}
-.cta{
-  border:1px solid var(--border);
-  background:#ffffff;
-  border-radius:10px;
-  padding:8px 12px;
-  font-weight:700;
-  font-size:.9rem;
-  color:var(--brand);
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  box-shadow:0 1px 1px rgba(0,0,0,.04);
-}
-.cta:focus-visible{outline:2px solid var(--brand); outline-offset:2px;}
-.cta[disabled]{opacity:.6; pointer-events:none;}
-
-.demo-audio{
-  display:flex;
-  justify-content:center;
-  width:100%;
-}
-.demo-audio audio{width:min(680px,100%);}
-
-.fig-actions{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  padding:18px 16px;
-}
-
-/* Primary and secondary action buttons (transcript card) */
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  font-weight:700;
-  font-size:.95rem;
-  padding:10px 14px;
-  border-radius:12px;
-  text-decoration:none;
-  cursor:pointer;
-}
-.btn-primary{
-  color:#fff;
-  background:var(--brand);
-  border:0;
-}
-.btn-primary:hover{filter:brightness(.98);}
-.btn-ghost{
-  color:var(--brand);
-  background:#fff;
-  border:1px solid var(--border);
-}
+.media{ background:var(--card); display:flex; align-items:center; justify-content:center; padding:16px; }
+.phone-shot{ width:100%; max-width:380px; height:auto; object-fit:contain; object-position:center; }
 
 figcaption{
-  padding:10px 12px;
-  font-weight:600;
-  font-size:14px;
-  text-align:center;
-  color:var(--fg);
+  padding:10px 12px; font-weight:600; font-size:14px; text-align:center; color:var(--fg);
   border-top:1px solid var(--border);
 }
 
-.note{
-  font-style:italic;
-  color:var(--muted);
-  margin-top:16px;
-  text-align:center;
+/* Audio card header (left title, right pill) */
+.card-head{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding:12px 14px; border-bottom:1px solid var(--border); background:#fff;
 }
+.card-head .label{ font-weight:700; font-size:.98rem; color:var(--fg); letter-spacing:.2px; }
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 14px; border-radius:999px; background:#eef2ff;
+  color:var(--brand); font-weight:700; font-size:.9rem; text-decoration:none; border:1px solid var(--border);
+}
+.pill:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; }
 
-/* Modal for transcript (unchanged base) */
-.modal-backdrop{
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.55);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+.demo-audio{ display:flex; justify-content:center; width:100%; padding:10px 14px 4px; }
+.demo-audio audio{ width:min(680px,100%); }
+.audio-note{ text-align:center; color:#94a3b8; font-size:.9rem; padding:8px 0 16px; }
+
+/* Transcript card top-stacked buttons like AFTER */
+.transcript-top{
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  padding:16px 14px 14px; background:#fff;
 }
-.modal{
-  background:#fff;
-  width:min(960px,92vw);
-  height:min(80vh,800px);
-  border-radius:16px;
-  box-shadow:0 10px 40px rgba(0,0,0,.25);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-weight:700; font-size:.95rem; padding:10px 16px; border-radius:999px; text-decoration:none; cursor:pointer;
 }
-.modal-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 14px;
-  border-bottom:1px solid #e5e7eb;
-  background:#f8fafc;
-}
-.modal-title{font-weight:600;color:#0f172a;font-size:14px;}
-.modal-close{
-  border:0;
-  background:#0a66c2;
-  color:#fff;
-  border-radius:10px;
-  padding:6px 10px;
-  font-weight:600;
-  cursor:pointer;
-}
-.modal-body{flex:1;}
-.modal-body iframe{width:100%;height:100%;border:0;display:block;}
+.btn-primary{ color:#fff; background:#1f4ed8; border:0; }
+.btn-primary:hover{ filter:brightness(.98); }
+.btn-ghost{ color:#1f4ed8; background:#fff; border:1px solid var(--border); }
+.divider{ height:1px; background:var(--border); }
+
+/* Modal (unchanged) */
+.modal-backdrop{ position:fixed; inset:0; background:rgba(15,23,42,.55); display:none; align-items:center; justify-content:center; z-index:9999; }
+.modal{ background:#fff; width:min(960px,92vw); height:min(80vh,800px); border-radius:16px; box-shadow:0 10px 40px rgba(0,0,0,.25); overflow:hidden; display:flex; flex-direction:column; }
+.modal-header{ display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid #e5e7eb; background:#f8fafc; }
+.modal-title{ font-weight:600; color:#0f172a; font-size:14px; }
+.modal-close{ border:0; background:#0a66c2; color:#fff; border-radius:10px; padding:6px 10px; font-weight:600; cursor:pointer; }
+.modal-body{ flex:1; }
+.modal-body iframe{ width:100%; height:100%; border:0; display:block; }
 </style>
 </head>
 
 <body>
 <main class="container">
-<h1 class="title">AI Weekly Audio Feed</h1>
+  <!-- ——— Everything above/below Demo is unchanged from your BEFORE ——— -->
+  <h1 class="title">AI Weekly Audio Feed</h1>
 
-<section class="info-card" aria-labelledby="overview">
-  <div class="info-head">
-    <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
-    <div class="chips">
-      <span class="chip">Audio briefings</span>
-      <span class="chip">OpenAI + ElevenLabs</span>
-      <span class="chip">Python</span>
-      <span class="chip">GitHub Actions</span>
+  <section class="info-card" aria-labelledby="overview">
+    <div class="info-head">
+      <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
+      <div class="chips">
+        <span class="chip">Audio briefings</span>
+        <span class="chip">OpenAI + ElevenLabs</span>
+        <span class="chip">Python</span>
+        <span class="chip">GitHub Actions</span>
+      </div>
     </div>
-  </div>
-
-  <div class="info-body">
-    <div class="info-section">
-      <p class="scroll-hint"><strong><em>Scroll down for Demo</em></strong></p>
-      <h3>Project overview</h3>
-      <p>Automated weekly review of leading AI publications. The workflow filters noise, summarizes updates by business criteria, and delivers a concise audio briefing with a transcript and citations.</p>
-
-      <h3>Business impact</h3>
-      <p>Keeps busy executives current by converting ever-changing AI news into short, high-signal audio briefs, reducing screen time and improving retention.</p>
+    <div class="info-body">
+      <div class="info-section">
+        <p class="scroll-hint"><strong><em>Scroll down for Demo</em></strong></p>
+        <h3>Project overview</h3>
+        <p>Automated weekly review of leading AI publications. The workflow filters noise, summarizes updates by business criteria, and delivers a concise audio briefing with a transcript and citations.</p>
+        <h3>Business impact</h3>
+        <p>Keeps busy executives current by converting ever-changing AI news into short, high-signal audio briefs, reducing screen time and improving retention.</p>
+      </div>
+      <div class="info-section">
+        <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
+        <p>Designed the agentic flow, implemented summarization prompts, integrated ElevenLabs for narration, and automated the weekly build and publish process.</p>
+        <h3>Scalability</h3>
+        <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
+      </div>
+      <div class="info-section info-full">
+        <h3>Technical details</h3><p><em>See below</em></p>
+      </div>
     </div>
+  </section>
 
-    <div class="info-section">
-      <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
-      <p>Designed the agentic flow, implemented summarization prompts, integrated ElevenLabs for narration, and automated the weekly build and publish process.</p>
+  <h2 class="subtitle" style="margin-top:24px;">Demo</h2>
 
-      <h3>Scalability</h3>
-      <p>Highly flexible: adjust subject matter, sub-topics, cadence, and episode length for domains like finance, healthcare, education, or policy. Can localize by region, add sponsor reads, or produce multi-language feeds.</p>
-    </div>
+  <!-- =========================
+       DEMO GRID (UPDATED)
+       ========================= -->
+  <div class="grid-demo" aria-label="Demo">
+    <!-- 1) Screenshot card -->
+    <figure class="card" aria-label="Podcast screenshot">
+      <div class="media">
+        <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot" loading="lazy">
+      </div>
+      <figcaption>Podcast feed example</figcaption>
+    </figure>
 
-    <div class="info-section info-full">
-      <h3>Technical details</h3><p><em>See below</em></p>
-    </div>
-  </div>
-</section>
-
-<h2 class="subtitle" style="margin-top:24px;">Demo</h2>
-
-<!-- =========================
-     DEMO GRID (UPDATED ONLY)
-     ========================= -->
-<div class="grid-demo" aria-label="Demo">
-  <!-- 1) Screenshot card -->
-  <figure class="card" aria-label="Podcast screenshot">
-    <div class="media">
-      <img class="phone-shot" src="podcast-screenshot.png" alt="Podcast screenshot" loading="lazy">
-    </div>
-    <figcaption>Podcast feed example</figcaption>
-  </figure>
-
-  <!-- 2) Audio card with crisp CTA header -->
-  <figure class="card" aria-label="Sample episode">
-    <div class="card-head">
-      <div class="label">Sample episode</div>
-      <!-- This button just focuses the audio control; playback stays on-page -->
-      <button class="cta" id="playEpisodeBtn" type="button" aria-controls="demoAudio">Play episode</button>
-    </div>
-    <div class="media">
+    <!-- 2) Audio card: header with pill + audio + small note -->
+    <figure class="card" aria-label="Sample episode">
+      <div class="card-head">
+        <div class="label">Sample episode</div>
+        <button class="pill" id="playEpisodeBtn" type="button" aria-controls="demoAudio">Play episode</button>
+      </div>
       <div class="demo-audio">
         <audio id="demoAudio" controls preload="metadata">
           <source src="https://kyledeguire.github.io/ai-news-audio-feed/audio/ai_news_20251110.mp3?t=1" type="audio/mpeg">
         </audio>
       </div>
-    </div>
-    <figcaption>Tap play to listen</figcaption>
-  </figure>
+      <div class="audio-note">Tap play to listen</div>
+      <figcaption> </figcaption>
+    </figure>
 
-  <!-- 3) Transcript card with primary in-modal view + original EML -->
-  <figure class="card" aria-label="Latest transcript email">
-    <div class="fig-actions">
-      <!-- Primary: open transcript inside on-page modal (HTML for best in-browser rendering) -->
-      <a id="transcriptBtn"
-         href="ai-exec-brief-2025-11-10.html"
-         class="btn btn-primary"
-         role="button">
-        Read/review transcript
-      </a>
-
-      <!-- Secondary: original .eml kept, also attempts in-modal; falls back to download if browser blocks -->
-      <a id="emlBtn"
-         href="AI Exec Brief (transcript) - 10 Nov 25.eml"
-         class="btn btn-ghost"
-         role="button"
-         data-eml="AI Exec Brief (transcript) - 10 Nov 25.eml">
-        Open original .eml
-      </a>
-    </div>
-    <figcaption>Latest transcript email</figcaption>
-  </figure>
-</div>
-<!-- =========================
-     END DEMO GRID
-     ========================= -->
-
-<!-- Technical details (unchanged) -->
-<section class="info-card" aria-labelledby="details" style="margin-top:26px;">
-  <div class="info-head">
-    <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
-    <div class="chips">
-      <span class="chip">OpenAI</span>
-      <span class="chip">ElevenLabs</span>
-      <span class="chip">Python</span>
-      <span class="chip">GitHub Actions</span>
-      <span class="chip">GitHub Pages</span>
-      <span class="chip">RSS / feed.xml</span>
-    </div>
+    <!-- 3) Transcript card: stacked buttons at top, divider, caption at bottom -->
+    <figure class="card" aria-label="Latest transcript email">
+      <div class="transcript-top">
+        <a id="transcriptBtn" href="ai-exec-brief-2025-11-10.html" class="btn btn-primary" role="button">
+          Read/review transcript
+        </a>
+        <a id="emlBtn" href="AI Exec Brief (transcript) - 10 Nov 25.eml" class="btn btn-ghost" role="button"
+           data-eml="AI Exec Brief (transcript) - 10 Nov 25.eml">
+          Open original .eml
+        </a>
+      </div>
+      <div class="divider" aria-hidden="true"></div>
+      <figcaption>Latest transcript email</figcaption>
+    </figure>
   </div>
+  <!-- =========================
+       END DEMO GRID
+       ========================= -->
 
-  <div class="info-body" style="grid-template-columns:1fr;">
-    <ul style="margin:0;padding-left:1.1rem;">
-      <li><strong>Data & inputs</strong> – weekly automated collection of seven leading AI publications.</li>
-      <li><strong>Model & processing</strong> – OpenAI condenses and structures updates into business-focused summaries.</li>
-      <li><strong>Runtime</strong> – automated workflow in GitHub Actions to generate audio briefings and update the podcast feed on schedule.</li>
-      <li><strong>Audio & delivery</strong> – ElevenLabs TTS produces MP3 narration with aligned transcripts for reference and QC.</li>
-      <li><strong>Hosting & distribution</strong> – MP3s and podcast feed hosted on GitHub Pages for direct access through podcast apps.</li>
-      <li><strong>Versioning & publish</strong> – workflow commits audio and metadata updates back to the repository for repeatable releases.</li>
-    </ul>
-  </div>
-</section>
+  <!-- Technical details (unchanged) -->
+  <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+    <div class="info-head">
+      <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+      <div class="chips">
+        <span class="chip">OpenAI</span>
+        <span class="chip">ElevenLabs</span>
+        <span class="chip">Python</span>
+        <span class="chip">GitHub Actions</span>
+        <span class="chip">GitHub Pages</span>
+        <span class="chip">RSS / feed.xml</span>
+      </div>
+    </div>
+    <div class="info-body" style="grid-template-columns:1fr;">
+      <ul style="margin:0;padding-left:1.1rem;">
+        <li><strong>Data & inputs</strong> – weekly automated collection of seven leading AI publications.</li>
+        <li><strong>Model & processing</strong> – OpenAI condenses and structures updates into business-focused summaries.</li>
+        <li><strong>Runtime</strong> – automated workflow in GitHub Actions to generate audio briefings and update the podcast feed on schedule.</li>
+        <li><strong>Audio & delivery</strong> – ElevenLabs TTS produces MP3 narration with aligned transcripts for reference and QC.</li>
+        <li><strong>Hosting & distribution</strong> – MP3s and podcast feed hosted on GitHub Pages for direct access through podcast apps.</li>
+        <li><strong>Versioning & publish</strong> – workflow commits audio and metadata updates back to the repository for repeatable releases.</li>
+      </ul>
+    </div>
+  </section>
 
-<p class="note">Best experienced with headphones; episodes are ~3–5 minutes.</p>
+  <p class="note">Best experienced with headphones; episodes are ~3–5 minutes.</p>
 </main>
 
-<!-- Modal (unchanged structure) -->
+<!-- Modal -->
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="modal">
     <div class="modal-header">
@@ -422,7 +231,6 @@ figcaption{
 
 <script>
 (function(){
-  // Existing modal handles HTML transcript. We wire new buttons to use the same modal.
   const backdrop = document.getElementById('modalBackdrop');
   const frame = document.getElementById('modalFrame');
   const closeBtn = document.getElementById('modalClose');
@@ -438,55 +246,36 @@ figcaption{
     document.body.style.overflow = '';
   }
 
-  // Primary transcript button (HTML in-modal)
   const transcriptBtn = document.getElementById('transcriptBtn');
-  if (transcriptBtn){
-    transcriptBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      openModal(this.getAttribute('href'));
-    });
-  }
+  transcriptBtn && transcriptBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    openModal(this.getAttribute('href'));
+  });
 
-  // EML attempt: try in modal, otherwise allow default download/open
   const emlBtn = document.getElementById('emlBtn');
-  if (emlBtn){
-    emlBtn.addEventListener('click', function(e){
-      // Attempt to open in modal first; some browsers will download .eml
-      // If it fails to render, user still has the file via default link.
-      e.preventDefault();
-      const eml = this.dataset.eml || this.getAttribute('href');
-      openModal(eml);
-    });
-  }
+  emlBtn && emlBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    const eml = this.dataset.eml || this.getAttribute('href');
+    openModal(eml); // if browser can’t render, user still has the link to download
+  });
 
-  // Keep support for the original transcript-link id (backward compatibility)
+  // Maintain compatibility if the old #transcript-link exists somewhere
   const legacyLink = document.getElementById('transcript-link');
-  if (legacyLink){
-    legacyLink.addEventListener('click', function(e){
-      e.preventDefault();
-      openModal(this.getAttribute('href'));
-    });
-  }
+  legacyLink && legacyLink.addEventListener('click', function(e){
+    e.preventDefault();
+    openModal(this.getAttribute('href'));
+  });
 
-  // Close interactions
+  // Play episode: focus + attempt play (keeps user on-page)
+  const playBtn = document.getElementById('playEpisodeBtn');
+  const audioEl = document.getElementById('demoAudio');
+  playBtn && audioEl && playBtn.addEventListener('click', async () => {
+    try { audioEl.focus(); await audioEl.play(); } catch(_) { audioEl.focus(); }
+  });
+
   closeBtn && closeBtn.addEventListener('click', closeModal);
   backdrop && backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeModal(); });
   document.addEventListener('keydown', e=>{ if(e.key==='Escape' && backdrop.style.display==='flex') closeModal(); });
-
-  // Play episode button focuses audio and starts playback
-  const playBtn = document.getElementById('playEpisodeBtn');
-  const audioEl = document.getElementById('demoAudio');
-  if (playBtn && audioEl){
-    playBtn.addEventListener('click', async () => {
-      try {
-        audioEl.focus();
-        await audioEl.play();
-      } catch(e){
-        // If autoplay is blocked, at least focus the control
-        audioEl.focus();
-      }
-    });
-  }
 })();
 </script>
 </body>
