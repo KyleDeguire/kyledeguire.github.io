@@ -30,13 +30,15 @@
       --hero-grad-a: #eef4ff;
       --hero-grad-b: #ffffff;
 
-      /* pill colors */
-      --pill-demo-bg: #eef4ff;
-      --pill-demo-fg: #0a3a73;
-      --pill-demo-bd: #d3e2ff;
+      /* UPDATED STRONGER BLUE FOR DEMO PILLS */
+      --pill-demo-bg: #d9e8ff;
+      --pill-demo-fg: #084c9e;
+      --pill-demo-bd: #99c3ff;
+
       --pill-progress-bg: #fff6d6;
       --pill-progress-fg: #7a6200;
       --pill-progress-bd: #f2df91;
+
       --pill-planned-bg: #f3f5f8;
       --pill-planned-fg: #475569;
       --pill-planned-bd: #d9e1ea;
@@ -50,11 +52,7 @@
       color: var(--text-main);
     }
 
-    a {
-      color: var(--blue-link);
-      text-decoration: none;
-      font-weight: 500;
-    }
+    a { color: var(--blue-link); text-decoration: none; font-weight: 500; }
     a:hover { text-decoration: underline; }
 
     .hero {
@@ -64,31 +62,11 @@
       text-align: center;
     }
     .hero-inner { max-width: 800px; margin: 0 auto; }
-    .name {
-      color: var(--blue-dark);
-      font-size: 1.4rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-    .tagline {
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      margin: 0 auto;
-      max-width: 600px;
-    }
+    .name { color: var(--blue-dark); font-size: 1.4rem; font-weight: 600; margin-bottom: 6px; }
+    .tagline { font-size: 0.95rem; color: var(--text-dim); margin: 0 auto; max-width: 600px; }
 
-    main {
-      max-width: 900px;
-      margin: 32px auto 60px;
-      padding: 0 20px 40px;
-    }
-    .section-head {
-      color: var(--blue-dark);
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
+    main { max-width: 900px; margin: 32px auto 60px; padding: 0 20px 40px; }
+    .section-head { color: var(--blue-dark); font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; }
 
     .projects-grid {
       display: grid;
@@ -120,13 +98,10 @@
       gap: 8px;
       margin-bottom: 8px;
     }
-    .project-title a {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--blue-link);
-    }
+    .project-title a { font-size: 1rem; font-weight: 600; color: var(--blue-link); }
     .project-title a:hover { text-decoration: underline; }
 
+    /* status pill base style */
     .status-pill {
       border-radius: var(--radius-sm);
       font-size: 0.7rem;
@@ -137,44 +112,37 @@
       border: 1px solid transparent;
     }
 
-    /* color-coded variants */
+    /* BLUE DEMO */
     .status-pill.demo {
       background: var(--pill-demo-bg);
       color: var(--pill-demo-fg);
       border-color: var(--pill-demo-bd);
     }
 
+    /* YELLOW IN PROGRESS */
     .status-pill.in-progress {
       background: var(--pill-progress-bg);
       color: var(--pill-progress-fg);
       border-color: var(--pill-progress-bd);
     }
 
+    /* GRAY PLANNED */
     .status-pill.planned {
       background: var(--pill-planned-bg);
       color: var(--pill-planned-fg);
       border-color: var(--pill-planned-bd);
     }
 
+    /* GREEN JOURNEY / CERTS */
     .status-pill.journey {
       background: #e6f7e8;
       color: #2d7a36;
       border-color: #b9e5bf;
     }
 
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-    .tech-line {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      line-height: 1.4;
-    }
+    .project-desc { font-size: 0.9rem; margin-bottom: 12px; }
+    .tech-line { font-size: 0.8rem; color: var(--text-dim); }
 
-    /* divider between sections */
     .section-divider {
       margin: 36px 0 24px;
       border: 0;
@@ -193,6 +161,7 @@
     footer a { font-weight: 500; }
   </style>
 </head>
+
 <body>
   <header class="hero">
     <div class="hero-inner">
@@ -202,76 +171,97 @@
   </header>
 
   <main>
-    <!-- renamed section -->
     <div class="section-head">Applied AI Projects</div>
+
     <div class="projects-grid">
+
+      <!-- AI Weekly -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title"><a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a></div>
+          <div class="project-title">
+            <a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a>
+          </div>
           <div class="status-pill demo">Demo</div>
         </div>
-        <div class="project-desc">Agentic workflow that collects AI news, filters noise, summarizes what matters, and generates weekly executive audio briefings. Publishes as a private podcast.</div>
-        <div class="tech-line">Output: audio briefings · Stack: LLM summarization, voice synthesis, automated publish pipeline</div>
+        <div class="project-desc">Agentic workflow that collects AI news, filters noise, summarizes what matters, and generates weekly executive audio briefings.</div>
+        <div class="tech-line">Stack: summarization · TTS · automation</div>
       </div>
 
+      <!-- VisionAI -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title"><a href="vision-ai/">VisionAI: Emotion Detection</a></div>
+          <div class="project-title">
+            <a href="vision-ai/">VisionAI: Emotion Detection</a>
+          </div>
           <div class="status-pill demo">Demo</div>
         </div>
-        <div class="project-desc">Computer vision model that predicts facial emotion from video. Trained in TensorFlow/Keras, exported to TensorFlow Lite (TFLite), and deployed to iPhone. Currently being retrained to improve classification accuracy.</div>
-        <div class="tech-line">Stack: TensorFlow · Keras · OpenCV · TFLite · iOS deployment</div>
+        <div class="project-desc">Computer vision model predicting facial emotion in real time. TensorFlow → TFLite → iPhone deployment.</div>
+        <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
       </div>
 
+      <!-- RAG CIRS -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title"><a href="rag-cirs/">RAG CIRS</a></div>
-        <div class="status-pill in-progress">In Progress</div>
+          <div class="project-title">
+            <a href="rag-cirs/">RAG CIRS</a>
+          </div>
+          <div class="status-pill in-progress">In Progress</div>
         </div>
-        <div class="project-desc">Retrieval-Augmented Generation (RAG) system for regulated environments. Goal: let safety and compliance teams ask a question in plain language and get a sourced, defensible answer backed by the original documents.</div>
-        <div class="tech-line">Focus: FAA-style compliance lookup · Retrieval + grounding · Traceable citations</div>
+        <div class="project-desc">RAG system for regulated environments. Reliable, citation-first answers for compliance workflows.</div>
+        <div class="tech-line">Focus: retrieval · citations · accuracy</div>
       </div>
 
+      <!-- PAA -->
       <div class="project-card">
         <div class="project-topline">
           <div class="project-title"><a href="#">Process Automation Assistant</a></div>
           <div class="status-pill planned">Planned</div>
         </div>
-        <div class="project-desc">Lightweight internal agent to remove spreadsheet work for analysts: summarizing status updates, drafting reports, and surfacing blockers automatically.</div>
-        <div class="tech-line">Targets: repetitive ops / PMO workflows / compliance reporting</div>
+        <div class="project-desc">Internal agent concept to remove manual PMO/reporting work for analysts.</div>
+        <div class="tech-line">Targets: ops · reporting · PMO</div>
       </div>
+
     </div>
 
-    <!-- new section: AI Journey and Credentials -->
+    <!-- NEW SECTION -->
     <hr class="section-divider">
 
     <div class="section-head">AI Journey and Credentials</div>
+
     <div class="projects-grid">
-      <!-- AI Journey Blog Series card -->
+
+      <!-- JOURNEY -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title"><a href="ai-journey/">AI Journey Blog Series</a></div>
+          <div class="project-title">
+            <a href="ai-journey/">AI Journey Blog Series</a>
+          </div>
           <div class="status-pill journey">Blog Series</div>
         </div>
-        <div class="project-desc">Bi-weekly reflections on moving from strategy into hands-on AI work and back again. Covers learning progress, project retrospectives, and practical adoption lessons.</div>
-        <div class="tech-line">Includes: Parts 1–3 · VisionAI lessons · RAG CIRS thinking · course takeaways (Wharton, Google, IBM)</div>
+        <div class="project-desc">Bi-weekly reflections on moving from strategy to hands-on AI work and back again.</div>
+        <div class="tech-line">Parts 1–3 · VisionAI · RAG · Coursework</div>
       </div>
 
-      <!-- Certificates & Training card -->
+      <!-- CERTS -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title"><a href="certificates/">Certificates & Training</a></div>
+          <div class="project-title">
+            <a href="certificates/">Certificates & Training</a>
+          </div>
           <div class="status-pill journey">Credentials</div>
         </div>
-        <div class="project-desc">Formal education and technical training that back the applied projects on this site, grouped by depth and focus instead of just course count.</div>
-        <div class="tech-line">Wharton: AI for Business Specialization (~42 hrs) · IBM: RAG + LangChain · Google: AI Essentials (4 hrs)</div>
+        <div class="project-desc">Formal education grouped by depth, rigor, and skill type.</div>
+        <div class="tech-line">Wharton · Google · IBM</div>
       </div>
+
     </div>
+
   </main>
 
   <footer>
     <div>© 2025 Kyle Deguire</div>
     <div><a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> · <a href="https://github.com/kyledeguire">GitHub</a></div>
   </footer>
+
 </body>
 </html>
