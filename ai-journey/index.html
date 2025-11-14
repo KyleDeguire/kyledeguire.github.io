@@ -8,177 +8,168 @@
 
   <style>
     :root {
-      --blue-dark: #0a3a73;
-      --blue-link: #0a66c2;
-      --bg-page: #f7f9fc;
-      --bg-card: #ffffff;
-      --border-card: #e2e8f0;
-      --text-main: #0f172a;
-      --text-dim: #475569;
-      --radius-lg: 18px;
-      --radius-sm: 6px;
-      --shadow-sm: 0 6px 18px rgba(0,0,0,0.06);
-      --shadow-lg: 0 12px 30px rgba(0,0,0,0.12);
-      --tab-bg: #e2e8f0;
-      --tab-active: #ffffff;
-      --tab-border: #cdd7e3;
-      --container-bg: #eef4ff;
-      --container-border: #dbe5f2;
-      --tile-bg: linear-gradient(to bottom, #f7faff 0%, #edf3ff 100%);
-      --amber: #b7791f;
+      --blue-dark:#0a3a73;
+      --blue-link:#0a66c2;
+      --bg-page:#f7f9fc;
+      --bg-card:#ffffff;
+      --border-card:#e2e8f0;
+      --text-main:#0f172a;
+      --text-dim:#475569;
+      --radius-lg:18px;
+      --shadow-sm:0 6px 18px rgba(0,0,0,0.06);
+      --shadow-lg:0 12px 30px rgba(0,0,0,0.12);
+      --container-bg:#eef4ff;
+      --container-border:#dbe5f2;
+      --tile-bg:linear-gradient(to bottom,#f7faff,#edf3ff);
+      --hint:#e39b07; /* THE TRUE AUDIO FEED AMBER */
     }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-main);
-      line-height: 1.6;
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+      background:var(--bg-page);
+      color:var(--text-main);
+      line-height:1.6;
     }
 
-    a {
-      color: var(--blue-link);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    a:hover { text-decoration: underline; }
+    a{color:var(--blue-link);text-decoration:none;font-weight:500;}
+    a:hover{text-decoration:underline;}
 
-    header {
-      padding: 28px 20px 12px;
-      max-width: 900px;
-      margin: 0 auto;
+    header{
+      padding:28px 20px 12px;
+      max-width:900px;
+      margin:0 auto;
     }
 
-    .title {
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: var(--blue-dark);
+    .title{
+      font-size:1.7rem;
+      font-weight:700;
+      color:var(--blue-dark);
     }
 
-    .back-link {
-      font-size: 0.85rem;
-      margin-bottom: 6px;
-      display: inline-block;
+    .back-link{
+      font-size:.85rem;
+      margin-bottom:6px;
+      display:inline-block;
     }
 
-    /* Upper container */
-    .container {
-      max-width: 900px;
-      margin: 0 auto 32px;
-      background: var(--container-bg);
-      border: 1px solid var(--container-border);
-      border-radius: var(--radius-lg);
-      padding: 24px 26px 32px;
-      box-shadow: var(--shadow-sm);
+    /* --- TOP CONTAINER (RAG CIRS STYLE) --- */
+    .container{
+      max-width:900px;
+      margin:0 auto 32px;
+      background:var(--container-bg);
+      border:1px solid var(--container-border);
+      border-radius:var(--radius-lg);
+      padding:24px 26px 32px;
+      box-shadow:var(--shadow-sm);
     }
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
     }
 
-    .tab {
-      background: var(--tab-bg);
-      padding: 6px 16px;
-      border: 1px solid var(--tab-border);
-      border-radius: 20px;
-      font-size: 0.82rem;
-      color: var(--text-main);
+    .tab{
+      background:#e2e8f0;
+      padding:6px 16px;
+      border:1px solid #cdd7e3;
+      border-radius:20px;
+      font-size:.82rem;
+      color:var(--text-main);
     }
 
-    .tab.active {
-      background: var(--tab-active);
-      font-weight: 600;
+    .tab.active{
+      background:#ffffff;
+      font-weight:600;
     }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
+    .overview-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:26px;
     }
 
-    .lead-note {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--amber);
-      margin: 0 0 10px;
+    h3{
+      margin:12px 0 4px;
+      font-size:1rem;
+      font-weight:700;
     }
 
-    h3 {
-      margin: 12px 0 4px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-main);
+    p{margin:0 0 10px;font-size:.9rem;}
+
+    /* --- AUDIO FEED STYLE MOBILE SCROLL HINT --- */
+    .scroll-hint{
+      display:none;
+      font-size:.95rem;
+      font-style:italic;
+      font-weight:700;
+      color:var(--hint);
+      margin-bottom:6px;
+    }
+    @media (max-width:899px){
+      .scroll-hint{display:block;}
     }
 
-    p {
-      font-size: 0.9rem;
-      margin: 0 0 8px;
-    }
-
-    /* Mobile: stack columns like RAG CIRS */
-    @media (max-width: 640px) {
-      .two-col {
-        grid-template-columns: 1fr;
-        gap: 18px;
+    /* MOBILE COLUMN STACK */
+    @media(max-width:700px){
+      .overview-grid{
+        grid-template-columns:1fr;
+        gap:10px; /* tightened spacing */
       }
     }
 
-    /* Demo heading */
-    .section-head {
-      max-width: 900px;
-      margin: 0 auto 10px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--blue-dark);
+    /* --- JOURNEY TILE STYLES --- */
+    .section-head{
+      max-width:900px;
+      margin:0 auto 10px;
+      font-size:1.1rem;
+      font-weight:700;
+      color:var(--blue-dark);
     }
 
-    /* Tiles */
-    .tiles {
-      max-width: 900px;
-      margin: 0 auto 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+    .tiles{
+      max-width:900px;
+      margin:0 auto 40px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
     }
 
-    .tile {
-      background: var(--tile-bg);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-lg);
-      padding: 28px 20px 22px;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: 0.15s ease;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+    .tile{
+      display:block;
+      text-decoration:none;
+      background:var(--tile-bg);
+      border:1px solid var(--border-card);
+      border-radius:var(--radius-lg);
+      padding:28px 20px;
+      box-shadow:var(--shadow-sm);
+      transition:.15s ease;
+      text-align:center;
+      color:inherit;
     }
 
-    .tile:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
+    .tile:hover{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-lg);
     }
 
-    .tile-icon {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 10px;
+    .tile-icon{
+      margin-bottom:10px;
+      display:flex;
+      justify-content:center;
     }
 
-    .tile-title {
-      font-size: 0.96rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 4px;
+    .tile-title{
+      font-size:.96rem;
+      font-weight:600;
+      margin-bottom:4px;
     }
 
-    .tile-sub {
-      font-size: 0.8rem;
-      color: var(--text-dim);
+    .tile-sub{
+      font-size:.8rem;
+      color:var(--text-dim);
     }
   </style>
 </head>
@@ -190,7 +181,7 @@
   <div class="title">AI Journey Blog</div>
 </header>
 
-<!-- TOP BLUE CONTAINER -->
+<!-- TOP OVERVIEW SECTION -->
 <div class="container">
 
   <div class="tabs">
@@ -200,90 +191,85 @@
     <div class="tab">Strategy alignment</div>
   </div>
 
-  <div class="two-col">
-    <div>
-      <p class="lead-note">Scroll down for blog entries – journey in progress</p>
+  <div class="overview-grid">
 
-      <h3>Project overview</h3>
-      <p>
-        Three short reflection decks that trace how strategy work, ML builds, and formal training converged into my applied AI direction.
-      </p>
+    <!-- LEFT -->
+    <div>
+      <p class="scroll-hint"><strong><em>Scroll down for blog entries</em></strong></p>
 
       <h3>Business impact</h3>
       <p>
-        Gives hiring managers a transparent view of how I combine coursework, experimentation, and delivery minded AI builds.
+        Major AI efforts only succeed when tied directly to strategic goals.
+        Well aligned projects create measurable ROI and raise team productivity across an organization.
       </p>
     </div>
 
+    <!-- RIGHT -->
     <div>
-      <h3>My role: Strategy → learning → building → reflection</h3>
+      <h3>My role</h3>
       <p>
-        I structured the journey, selected the coursework, built the applied demos, and documented insights that shaped the rest of the portfolio.
-      </p>
-
-      <h3>Scalability</h3>
-      <p>
-        New milestones can be added using this same RAG style structure to maintain a clean, professional progression.
+        I connect with AI and digital leaders to understand where AI drives the highest returns
+        and shape my work toward those high ROI opportunities.
       </p>
     </div>
+
   </div>
 </div>
 
-<!-- JOURNEY TILES -->
+<!-- JOURNEY ENTRIES -->
 <div class="section-head">Journey entries</div>
 
 <div class="tiles">
 
   <!-- Tile 3 -->
   <a class="tile"
-     href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v3.pptx"
-     target="_blank" rel="noopener">
+    href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v3.pptx"
+    target="_blank" rel="noopener">
     <div class="tile-icon">
-      <!-- Inline SVG icon -->
-      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
-        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
-        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
-        <path d="M30 16v4h4" fill="#ffffff"/>
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb"/>
+        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#fff"/>
+        <path d="M30 16v4h4" fill="#fff"/>
         <path d="M24 24h8M24 28h5M24 32h6"
-              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="tile-title">AI Journey Blog – 3 (11 Nov 25)</div>
-    <div class="tile-sub">Completion of IBM’s Fundamentals of AI Agents using RAG &amp; LangChain.</div>
+    <div class="tile-title">AI Journey Blog – 3  (11 Nov 25)</div>
+    <div class="tile-sub">Completion of IBM’s Fundamentals of AI Agents using RAG & LangChain.</div>
   </a>
 
   <!-- Tile 2 -->
   <a class="tile"
-     href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v2.pptx"
-     target="_blank" rel="noopener">
+    href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v2.pptx"
+    target="_blank" rel="noopener">
     <div class="tile-icon">
-      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
-        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
-        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
-        <path d="M30 16v4h4" fill="#ffffff"/>
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb"/>
+        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#fff"/>
+        <path d="M30 16v4h4" fill="#fff"/>
         <path d="M24 24h8M24 28h5M24 32h6"
-              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="tile-title">AI Journey Blog – 2 (18 Oct 25)</div>
+    <div class="tile-title">AI Journey Blog – 2  (18 Oct 25)</div>
     <div class="tile-sub">Completion of Wharton’s AI for Business specialization.</div>
   </a>
 
   <!-- Tile 1 -->
   <a class="tile"
-     href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v1.pptx"
-     target="_blank" rel="noopener">
+    href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v1.pptx"
+    target="_blank" rel="noopener">
     <div class="tile-icon">
-      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
-        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
-        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
-        <path d="M30 16v4h4" fill="#ffffff"/>
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb"/>
+        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#fff"/>
+        <path d="M30 16v4h4" fill="#fff"/>
         <path d="M24 24h8M24 28h5M24 32h6"
-              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="tile-title">AI Journey Blog – 1 (30 Sep 25)</div>
-    <div class="tile-sub">Developed and trained Vision AI model and deployed it as a mobile app.</div>
+    <div class="tile-title">AI Journey Blog – 1  (30 Sep 25)</div>
+    <div class="tile-sub">Developed and trained Vision AI model and deployed as mobile app.</div>
   </a>
 
 </div>
