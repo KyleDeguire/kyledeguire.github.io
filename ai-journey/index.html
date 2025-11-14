@@ -21,7 +21,7 @@
       --container-bg:#eef4ff;
       --container-border:#dbe5f2;
       --tile-bg:linear-gradient(to bottom,#f7faff,#edf3ff);
-      --hint:#e39b07; /* THE TRUE AUDIO FEED AMBER */
+      --hint:#e39b07; /* audio feed amber */
     }
 
     body{
@@ -53,7 +53,7 @@
       display:inline-block;
     }
 
-    /* --- TOP CONTAINER (RAG CIRS STYLE) --- */
+    /* --- TOP CONTAINER --- */
     .container{
       max-width:900px;
       margin:0 auto 32px;
@@ -99,7 +99,7 @@
 
     p{margin:0 0 10px;font-size:.9rem;}
 
-    /* --- AUDIO FEED STYLE MOBILE SCROLL HINT --- */
+    /* scroll hint copied from Audio Feed */
     .scroll-hint{
       display:none;
       font-size:.95rem;
@@ -112,11 +112,11 @@
       .scroll-hint{display:block;}
     }
 
-    /* MOBILE COLUMN STACK */
+    /* mobile column stack and spacing */
     @media(max-width:700px){
       .overview-grid{
         grid-template-columns:1fr;
-        gap:10px; /* tightened spacing */
+        gap:10px;
       }
     }
 
@@ -196,6 +196,11 @@
     <!-- LEFT -->
     <div>
       <p class="scroll-hint"><strong><em>Scroll down for blog entries</em></strong></p>
+
+      <h3>Project overview</h3>
+      <p>
+        Three short reflection decks that trace how strategy work, ML builds, and formal training converged into my applied AI direction.
+      </p>
 
       <h3>Business impact</h3>
       <p>
