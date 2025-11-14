@@ -15,14 +15,16 @@
       --border-card: #e2e8f0;
       --text-main: #0f172a;
       --text-dim: #475569;
-      --radius-lg: 14px;
+      --radius-lg: 18px;
       --radius-sm: 6px;
-      --shadow-sm: 0 8px 24px rgba(0,0,0,0.06);
-      --shadow-lg: 0 14px 32px rgba(0,0,0,0.10);
-      --tab-bg: #f1f5f9;
-      --tab-bg-active: #ffffff;
-      --tab-border: #d8e0eb;
-      --tile-bg: linear-gradient(to bottom, #f8fbff, #eef3ff);
+      --shadow-sm: 0 6px 18px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.12);
+      --tab-bg: #e2e8f0;
+      --tab-active: #ffffff;
+      --tab-border: #cdd7e3;
+      --container-bg: #eef4ff;
+      --container-border: #dbe5f2;
+      --tile-bg: linear-gradient(to bottom, #f7faff 0%, #edf3ff 100%);
     }
 
     body {
@@ -41,85 +43,80 @@
     a:hover { text-decoration: underline; }
 
     header {
-      padding: 28px 20px 10px;
-      text-align: left;
+      padding: 28px 20px 12px;
       max-width: 900px;
       margin: 0 auto;
     }
+
     .title {
       font-size: 1.7rem;
       font-weight: 700;
       color: var(--blue-dark);
     }
+
     .back-link {
       font-size: 0.85rem;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      display: inline-block;
     }
 
-    /* Top container */
+    /* Upper container: EXACT RAG CIRS copy */
     .container {
       max-width: 900px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      border-radius: 16px;
-      padding: 20px 24px 28px;
+      margin: 0 auto 32px;
+      background: var(--container-bg);
+      border: 1px solid var(--container-border);
+      border-radius: var(--radius-lg);
+      padding: 24px 26px 32px;
       box-shadow: var(--shadow-sm);
-      margin-bottom: 32px;
     }
 
-    /* Tabs row (copied exactly) */
     .tabs {
       display: flex;
       gap: 10px;
-      margin-bottom: 18px;
       flex-wrap: wrap;
+      margin-bottom: 16px;
     }
+
     .tab {
       background: var(--tab-bg);
+      padding: 6px 16px;
       border: 1px solid var(--tab-border);
-      padding: 6px 14px;
-      font-size: 0.82rem;
       border-radius: 20px;
+      font-size: 0.82rem;
       color: var(--text-main);
     }
+
     .tab.active {
-      background: var(--tab-bg-active);
-      border-color: var(--tab-border);
+      background: var(--tab-active);
       font-weight: 600;
     }
 
-    /* Two-column text layout */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      margin-top: 4px;
+      gap: 28px;
     }
 
     h3 {
+      margin: 12px 0 4px;
       font-size: 1rem;
-      margin: 14px 0 4px;
       font-weight: 700;
       color: var(--text-main);
     }
 
-    p {
-      margin: 0 0 8px;
-      font-size: 0.9rem;
-    }
+    p { font-size: 0.9rem; margin: 0 0 8px; }
 
-    /* Demo section heading */
+    /* Demo heading */
     .section-head {
       max-width: 900px;
       margin: 0 auto 10px;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--blue-dark);
-      padding: 0 4px;
     }
 
-    /* Tiles */
+    /* Tiles EXACT match */
     .tiles {
       max-width: 900px;
       margin: 0 auto;
@@ -131,31 +128,31 @@
     .tile {
       background: var(--tile-bg);
       border: 1px solid var(--border-card);
-      border-radius: 14px;
-      padding: 26px 20px;
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: 0.15s ease;
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
       text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: 0.15s ease;
+      cursor: pointer;
     }
 
     .tile:hover {
-      box-shadow: var(--shadow-lg);
       transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
     }
 
     .tile-icon {
-      width: 50px;
-      margin-bottom: 10px;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 12px;
     }
 
     .tile-label {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 600;
       color: var(--text-main);
       overflow-wrap: anywhere;
     }
-
   </style>
 </head>
 
@@ -166,8 +163,9 @@
   <div class="title">AI Journey Blog</div>
 </header>
 
-<!-- TOP CONTAINER (exact RAG structure) -->
+<!-- TOP BLUE CONTAINER -->
 <div class="container">
+
   <div class="tabs">
     <div class="tab active">Overview</div>
     <div class="tab">Training + milestones</div>
@@ -178,49 +176,38 @@
   <div class="two-col">
     <div>
       <h3>Project overview</h3>
-      <p>
-        A three-part journey documenting the shift from strategy work into hands-on AI builds, and back into applied AI strategy. Each entry captures formal training and practical experiments tied to real projects.
-      </p>
+      <p>Three short reflection decks that trace how strategy work, ML builds, and formal training converged into my applied AI direction.</p>
 
       <h3>Business impact</h3>
-      <p>
-        Helps hiring managers and partners see how academic frameworks, ML builds, and RAG pipelines shape real-world readiness and strategic thinking.
-      </p>
+      <p>Gives hiring managers a transparent view of how I combine coursework, experimentation, and delivery-minded AI builds.</p>
     </div>
 
     <div>
       <h3>My role: Strategy → learning → building → reflection</h3>
-      <p>
-        Designed the learning plan, completed formal coursework, built ML and RAG prototypes, and recorded the insights that enabled faster, better-scoped applied AI projects.
-      </p>
+      <p>I structured the journey, selected the coursework, built the applied demos, and documented insights that shaped the rest of the portfolio.</p>
 
       <h3>Scalability</h3>
-      <p>
-        New entries can be added as additional courses and builds are completed. The structure mirrors the RAG CIRS portfolio page for a consistent, professional narrative.
-      </p>
+      <p>New milestones can be added using this same RAG-style structure to maintain a clean, professional progression.</p>
     </div>
   </div>
 </div>
 
-<!-- DEMO SECTION (exact RAG tiles format) -->
+<!-- DEMO TILES -->
 <div class="section-head">Journey entries</div>
 
 <div class="tiles">
 
-  <!-- TILE 3 -->
-  <a href="AI%20Journey%20-%20v3.pptx" class="tile">
+  <a class="tile" href="AI%20Journey%20-%20v3.pptx">
     <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
     <div class="tile-label">AI Journey – 3 (11 Nov 25)</div>
   </a>
 
-  <!-- TILE 2 -->
-  <a href="AI%20Journey%20-%20v2.pptx" class="tile">
+  <a class="tile" href="AI%20Journey%20-%20v2.pptx">
     <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
     <div class="tile-label">AI Journey – 2 (18 Oct 25)</div>
   </a>
 
-  <!-- TILE 1 -->
-  <a href="AI%20Journey%20-%20v1.pptx" class="tile">
+  <a class="tile" href="AI%20Journey%20-%20v1.pptx">
     <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
     <div class="tile-label">AI Journey – 1 (30 Sep 25)</div>
   </a>
