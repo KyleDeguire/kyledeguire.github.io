@@ -21,7 +21,7 @@
       --container-bg:#eef4ff;
       --container-border:#dbe5f2;
       --tile-bg:linear-gradient(to bottom,#f7faff,#edf3ff);
-      --hint:#e39b07; /* audio feed amber */
+      --hint:#e39b07; /* Audio Feed amber */
     }
 
     body{
@@ -117,6 +117,11 @@
       .overview-grid{
         grid-template-columns:1fr;
         gap:10px;
+      }
+
+      /* tighten My Role header spacing under Business impact */
+      .overview-grid > div:nth-child(2) h3 {
+        margin-top:4px !important;
       }
     }
 
