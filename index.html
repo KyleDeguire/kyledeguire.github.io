@@ -30,7 +30,6 @@
       --hero-grad-a: #eef4ff;
       --hero-grad-b: #ffffff;
 
-      /* UPDATED STRONGER BLUE FOR DEMO PILLS */
       --pill-demo-bg: #d9e8ff;
       --pill-demo-fg: #084c9e;
       --pill-demo-bd: #99c3ff;
@@ -42,6 +41,10 @@
       --pill-planned-bg: #f3f5f8;
       --pill-planned-fg: #475569;
       --pill-planned-bd: #d9e1ea;
+
+      --pill-journey-bg: #e6f7e8;
+      --pill-journey-fg: #2d7a36;
+      --pill-journey-bd: #b9e5bf;
     }
 
     body {
@@ -99,9 +102,7 @@
       margin-bottom: 8px;
     }
     .project-title a { font-size: 1rem; font-weight: 600; color: var(--blue-link); }
-    .project-title a:hover { text-decoration: underline; }
 
-    /* status pill base style */
     .status-pill {
       border-radius: var(--radius-sm);
       font-size: 0.7rem;
@@ -112,33 +113,10 @@
       border: 1px solid transparent;
     }
 
-    /* BLUE DEMO */
-    .status-pill.demo {
-      background: var(--pill-demo-bg);
-      color: var(--pill-demo-fg);
-      border-color: var(--pill-demo-bd);
-    }
-
-    /* YELLOW IN PROGRESS */
-    .status-pill.in-progress {
-      background: var(--pill-progress-bg);
-      color: var(--pill-progress-fg);
-      border-color: var(--pill-progress-bd);
-    }
-
-    /* GRAY PLANNED */
-    .status-pill.planned {
-      background: var(--pill-planned-bg);
-      color: var(--pill-planned-fg);
-      border-color: var(--pill-planned-bd);
-    }
-
-    /* GREEN JOURNEY / CERTS */
-    .status-pill.journey {
-      background: #e6f7e8;
-      color: #2d7a36;
-      border-color: #b9e5bf;
-    }
+    .demo     { background: var(--pill-demo-bg);     color: var(--pill-demo-fg);     border-color: var(--pill-demo-bd); }
+    .in-progress { background: var(--pill-progress-bg); color: var(--pill-progress-fg); border-color: var(--pill-progress-bd); }
+    .planned  { background: var(--pill-planned-bg);  color: var(--pill-planned-fg);  border-color: var(--pill-planned-bd); }
+    .journey  { background: var(--pill-journey-bg);  color: var(--pill-journey-fg);  border-color: var(--pill-journey-bd); }
 
     .project-desc { font-size: 0.9rem; margin-bottom: 12px; }
     .tech-line { font-size: 0.8rem; color: var(--text-dim); }
@@ -158,7 +136,6 @@
       font-size: 0.8rem;
       color: #566173;
     }
-    footer a { font-weight: 500; }
   </style>
 </head>
 
@@ -166,7 +143,10 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="name">Kyle Deguire</div>
-      <div class="tagline">AI Strategy & Adoption Consultant. I design and build practical AI workflows that cut manual effort, surface insight faster, and can be deployed in the real world, not just in slides.</div>
+      <div class="tagline">
+        AI Strategy & Adoption Consultant. I design and build practical AI workflows that cut manual effort,
+        surface insight faster, and can be deployed in the real world, not just in slides.
+      </div>
     </div>
   </header>
 
@@ -175,43 +155,33 @@
 
     <div class="projects-grid">
 
-      <!-- AI Weekly -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title">
-            <a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a>
-          </div>
+          <div class="project-title"><a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a></div>
           <div class="status-pill demo">Demo</div>
         </div>
         <div class="project-desc">Agentic workflow that collects AI news, filters noise, summarizes what matters, and generates weekly executive audio briefings.</div>
         <div class="tech-line">Stack: summarization · TTS · automation</div>
       </div>
 
-      <!-- VisionAI -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title">
-            <a href="vision-ai/">VisionAI: Emotion Detection</a>
-          </div>
+          <div class="project-title"><a href="vision-ai/">VisionAI: Emotion Detection</a></div>
           <div class="status-pill demo">Demo</div>
         </div>
         <div class="project-desc">Computer vision model predicting facial emotion in real time. TensorFlow → TFLite → iPhone deployment.</div>
         <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
       </div>
 
-      <!-- RAG CIRS -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title">
-            <a href="rag-cirs/">RAG CIRS</a>
-          </div>
+          <div class="project-title"><a href="rag-cirs/">RAG CIRS</a></div>
           <div class="status-pill in-progress">In Progress</div>
         </div>
         <div class="project-desc">RAG system for regulated environments. Reliable, citation-first answers for compliance workflows.</div>
         <div class="tech-line">Focus: retrieval · citations · accuracy</div>
       </div>
 
-      <!-- PAA -->
       <div class="project-card">
         <div class="project-topline">
           <div class="project-title"><a href="#">Process Automation Assistant</a></div>
@@ -223,31 +193,24 @@
 
     </div>
 
-    <!-- NEW SECTION -->
     <hr class="section-divider">
 
     <div class="section-head">AI Journey and Credentials</div>
 
     <div class="projects-grid">
 
-      <!-- JOURNEY -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title">
-            <a href="ai-journey/">AI Journey Blog Series</a>
-          </div>
+          <div class="project-title"><a href="ai-journey/">AI Journey Blog Series</a></div>
           <div class="status-pill journey">Blog Series</div>
         </div>
         <div class="project-desc">Bi-weekly reflections on moving from strategy to hands-on AI work and back again.</div>
         <div class="tech-line">Parts 1–3 · VisionAI · RAG · Coursework</div>
       </div>
 
-      <!-- CERTS -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title">
-            <a href="credentials/">Certificates & Training</a>
-          </div>
+          <div class="project-title"><a href="credentials/">Certificates & Training</a></div>
           <div class="status-pill journey">Credentials</div>
         </div>
         <div class="project-desc">Formal education grouped by depth, rigor, and skill type.</div>
@@ -260,7 +223,10 @@
 
   <footer>
     <div>© 2025 Kyle Deguire</div>
-    <div><a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> · <a href="https://github.com/kyledeguire">GitHub</a></div>
+    <div>
+      <a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> ·
+      <a href="https://github.com/kyledeguire">GitHub</a>
+    </div>
   </footer>
 
 </body>
