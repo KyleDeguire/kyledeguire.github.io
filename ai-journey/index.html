@@ -60,7 +60,7 @@
       display: inline-block;
     }
 
-    /* Upper container: EXACT RAG CIRS copy */
+    /* Upper container */
     .container {
       max-width: 900px;
       margin: 0 auto 32px;
@@ -105,7 +105,10 @@
       color: var(--text-main);
     }
 
-    p { font-size: 0.9rem; margin: 0 0 8px; }
+    p {
+      font-size: 0.9rem;
+      margin: 0 0 8px;
+    }
 
     /* Demo heading */
     .section-head {
@@ -116,10 +119,10 @@
       color: var(--blue-dark);
     }
 
-    /* Tiles EXACT match */
+    /* Tiles */
     .tiles {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 40px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
@@ -129,7 +132,7 @@
       background: var(--tile-bg);
       border: 1px solid var(--border-card);
       border-radius: var(--radius-lg);
-      padding: 28px 20px;
+      padding: 28px 20px 22px;
       text-align: center;
       box-shadow: var(--shadow-sm);
       transition: 0.15s ease;
@@ -142,16 +145,21 @@
     }
 
     .tile-icon {
-      width: 52px;
-      height: 52px;
-      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
     }
 
-    .tile-label {
+    .tile-title {
       font-size: 0.96rem;
       font-weight: 600;
       color: var(--text-main);
-      overflow-wrap: anywhere;
+      margin-bottom: 4px;
+    }
+
+    .tile-sub {
+      font-size: 0.8rem;
+      color: var(--text-dim);
     }
   </style>
 </head>
@@ -176,40 +184,76 @@
   <div class="two-col">
     <div>
       <h3>Project overview</h3>
-      <p>Three short reflection decks that trace how strategy work, ML builds, and formal training converged into my applied AI direction.</p>
+      <p>
+        Three short reflection decks that trace how strategy work, ML builds, and formal training converged into my applied AI direction.
+      </p>
 
       <h3>Business impact</h3>
-      <p>Gives hiring managers a transparent view of how I combine coursework, experimentation, and delivery-minded AI builds.</p>
+      <p>
+        Gives hiring managers a transparent view of how I combine coursework, experimentation, and delivery minded AI builds.
+      </p>
     </div>
 
     <div>
       <h3>My role: Strategy → learning → building → reflection</h3>
-      <p>I structured the journey, selected the coursework, built the applied demos, and documented insights that shaped the rest of the portfolio.</p>
+      <p>
+        I structured the journey, selected the coursework, built the applied demos, and documented insights that shaped the rest of the portfolio.
+      </p>
 
       <h3>Scalability</h3>
-      <p>New milestones can be added using this same RAG-style structure to maintain a clean, professional progression.</p>
+      <p>
+        New milestones can be added using this same RAG style structure to maintain a clean, professional progression.
+      </p>
     </div>
   </div>
 </div>
 
-<!-- DEMO TILES -->
+<!-- JOURNEY TILES -->
 <div class="section-head">Journey entries</div>
 
 <div class="tiles">
 
+  <!-- Tile 3 -->
   <a class="tile" href="AI%20Journey%20-%20v3.pptx">
-    <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
-    <div class="tile-label">AI Journey – 3 (11 Nov 25)</div>
+    <div class="tile-icon">
+      <!-- Inline SVG icon: blue rounded square with white document -->
+      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
+        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
+        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
+        <path d="M30 16v4h4" fill="#ffffff"/>
+        <path d="M24 24h8M24 28h5M24 32h6" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+      </svg>
+    </div>
+    <div class="tile-title">AI Journey Blog – 3 (11 Nov 25)</div>
+    <div class="tile-sub">Completion of IBM’s Fundamentals of AI Agents using RAG &amp; LangChain.</div>
   </a>
 
+  <!-- Tile 2 -->
   <a class="tile" href="AI%20Journey%20-%20v2.pptx">
-    <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
-    <div class="tile-label">AI Journey – 2 (18 Oct 25)</div>
+    <div class="tile-icon">
+      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
+        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
+        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
+        <path d="M30 16v4h4" fill="#ffffff"/>
+        <path d="M24 24h8M24 28h5M24 32h6" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+      </svg>
+    </div>
+    <div class="tile-title">AI Journey Blog – 2 (18 Oct 25)</div>
+    <div class="tile-sub">Completion of Wharton’s AI for Business specialization.</div>
   </a>
 
+  <!-- Tile 1 -->
   <a class="tile" href="AI%20Journey%20-%20v1.pptx">
-    <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
-    <div class="tile-label">AI Journey – 1 (30 Sep 25)</div>
+    <div class="tile-icon">
+      <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
+        <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
+        <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
+        <path d="M30 16v4h4" fill="#ffffff"/>
+        <path d="M24 24h8M24 28h5M24 32h6" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+      </svg>
+    </div>
+    <div class="tile-title">AI Journey Blog – 1 (30 Sep 25)</div>
+    <div class="tile-sub">Developed and trained Vision AI model and deployed it as a mobile app.</div>
   </a>
 
 </div>
