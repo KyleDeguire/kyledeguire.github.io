@@ -43,6 +43,7 @@
       border-bottom: 1px solid var(--border-card);
       padding: 24px 20px 18px;
     }
+
     .hero-inner {
       max-width: 900px;
       margin: 0 auto;
@@ -50,6 +51,7 @@
       flex-direction: column;
       gap: 6px;
     }
+
     .hero-top {
       display: flex;
       justify-content: space-between;
@@ -57,20 +59,24 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .site-name {
       color: var(--blue-dark);
       font-size: 1.1rem;
       font-weight: 600;
     }
+
     .back-link {
       font-size: 0.85rem;
     }
+
     .page-title {
       font-size: 1.4rem;
       font-weight: 600;
       color: var(--blue-dark);
       margin-top: 6px;
     }
+
     .page-subtitle {
       font-size: 0.9rem;
       color: var(--text-dim);
@@ -83,80 +89,83 @@
       padding: 0 20px 40px;
     }
 
-    .posts-grid {
-      display: flex;
-      flex-direction: column;
+    .decks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%,360px), 1fr));
       gap: 20px;
     }
 
-    .post-card {
+    .deck-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+
+    .deck-card {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-card);
       box-shadow: var(--shadow-sm);
-      padding: 18px 18px 16px;
+      padding: 18px 18px 14px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       transition: box-shadow .18s ease, transform .18s ease;
     }
-    .post-card:hover {
+
+    .deck-card:hover {
       box-shadow: var(--shadow-lg);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
-    .post-header {
+    .deck-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 10px;
+      gap: 8px;
+      margin-bottom: 6px;
       flex-wrap: wrap;
-      margin-bottom: 8px;
     }
-    .post-title {
-      font-size: 1.05rem;
+
+    .deck-title {
+      font-size: 1.0rem;
       font-weight: 600;
       color: var(--blue-dark);
     }
-    .post-meta {
+
+    .deck-meta {
       font-size: 0.8rem;
       color: var(--text-dim);
       white-space: nowrap;
     }
 
-    .post-tagline {
+    .deck-tagline {
       font-size: 0.88rem;
       color: var(--text-dim);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    .post-section-title {
-      font-size: 0.9rem;
+    .deck-section-label {
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--blue-dark);
-      margin: 12px 0 4px;
-    }
-
-    .post-body {
-      font-size: 0.88rem;
-      color: var(--text-main);
-    }
-
-    .post-list {
-      font-size: 0.86rem;
-      padding-left: 18px;
-      margin: 4px 0 8px;
-      color: var(--text-main);
-    }
-    .post-list li {
-      margin-bottom: 3px;
-    }
-
-    .post-footer-note {
-      font-size: 0.8rem;
-      color: var(--text-dim);
       margin-top: 6px;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    @media (max-width: 600px) {
-      .post-meta { white-space: normal; }
+    .deck-body-text {
+      font-size: 0.84rem;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    .deck-footer {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--blue-link);
     }
   </style>
 </head>
@@ -169,134 +178,80 @@
       </div>
       <div class="page-title">AI Journey Blog</div>
       <div class="page-subtitle">
-        A time-stamped log of how I am learning, building, and testing AI in practice.  
-        Each entry connects formal training with hands-on projects like VisionAI, RAG CIRS, and the AI Weekly Audio Feed.
+        Three milestone reflections that connect formal AI training with applied projects.  
+        Click any tile to open the slide deck directly.
       </div>
     </div>
   </header>
 
   <main>
-    <div class="posts-grid">
+    <div class="decks-grid">
 
       <!-- Part 3 -->
-      <article class="post-card">
-        <header class="post-header">
-          <div class="post-title">Part 3 – The RAG Identity Update</div>
-          <div class="post-meta">11 Nov 25 · RAG accuracy and agents</div>
-        </header>
-        <p class="post-tagline">
-          Folding RAG, multi agent ideas, and IBM’s RAG and LangChain work into a clearer “identity” for how I want to use AI in regulated and operational settings.
-        </p>
-
-        <div class="post-body">
-          <div class="post-section-title">What is in the toolbox right now</div>
-          <ul class="post-list">
-            <li>VisionAI model trained and deployed to iPhone as an emotion detector</li>
-            <li>Google AI Essentials as a practical safety and productivity foundation</li>
-            <li>Python based training agent that builds AI Weekly Audio Feed briefings</li>
-            <li>Wharton AI for Business Specialization for strategy and leadership framing</li>
-            <li>In progress RAG project focused on accuracy improvement and verification</li>
-            <li>IBM Fundamentals of AI Agents Using RAG and LangChain to deepen the stack</li>
-          </ul>
-
-          <div class="post-section-title">Sharpening the tools</div>
-          <ul class="post-list">
-            <li>Data quality and coverage directly shape RAG answers, no matter how strong the model is</li>
-            <li>Chunking decisions affect clarity, trust, and the ability to verify outputs</li>
-            <li>Evaluation mindset matters, I have to keep checking and adjusting prompts and pipelines</li>
-          </ul>
-
-          <div class="post-section-title">RAG identity and use cases</div>
-          <ul class="post-list">
-            <li>Start with problems where people spend time hunting through long circulars or documents</li>
-            <li>Design systems so every answer points back to the sources in plain language</li>
-            <li>Use a verification layer that can compare and rank candidate contexts before answering</li>
-            <li>Target low monthly costs so the design is realistic for small teams and consulting work</li>
-          </ul>
-
-          <p class="post-footer-note">
-            This entry also captures my personal AI principles, such as bias reduction, human in the loop review, and focusing on real ROI instead of shiny use cases.
+      <a class="deck-link" href="AI%20Journey%20-%20v3.pptx">
+        <article class="deck-card">
+          <div class="deck-header">
+            <div class="deck-title">AI Journey Blog – 3</div>
+            <div class="deck-meta">11 Nov 25 · IBM RAG + LangChain</div>
+          </div>
+          <p class="deck-tagline">
+            Completion of IBM’s Fundamentals of AI Agents Using RAG &amp; LangChain and how it reshapes my RAG identity and accuracy focus.
           </p>
-        </div>
-      </article>
+          <div class="deck-section-label">Theme</div>
+          <p class="deck-body-text">
+            Connecting agent frameworks and retrieval design to real-world compliance and operations problems.
+          </p>
+          <div class="deck-section-label">Connects to</div>
+          <p class="deck-body-text">
+            RAG CIRS project · AI Weekly Audio Feed · future multi-agent “Process Automation Assistant”.
+          </p>
+          <div class="deck-footer">Open slide deck (PPTX) →</div>
+        </article>
+      </a>
 
       <!-- Part 2 -->
-      <article class="post-card">
-        <header class="post-header">
-          <div class="post-title">Part 2 – The Pursuit of Understanding</div>
-          <div class="post-meta">18 Oct 25 · Making sense of Wharton</div>
-        </header>
-        <p class="post-tagline">
-          Reflecting on the Wharton AI for Business Specialization and how it changed my view of leadership, risk, and real world AI adoption.
-        </p>
-
-        <div class="post-body">
-          <div class="post-section-title">Formal training that shaped this phase</div>
-          <ul class="post-list">
-            <li>AI Fundamentals for Non Data Scientists</li>
-            <li>AI Applications in Marketing and Finance</li>
-            <li>AI Applications in People Management</li>
-            <li>AI Strategy and Governance</li>
-          </ul>
-
-          <div class="post-section-title">Key lessons that stuck</div>
-          <ul class="post-list">
-            <li>Even with recent updates, revisiting the content through several models surfaced new angles for today</li>
-            <li>Without a solid grasp of what sits under the hood, it is easy for organizations to stumble on implementation</li>
-            <li>AI work needs strong leadership, change management, and cross functional alignment to avoid multiplying risk</li>
-          </ul>
-
-          <div class="post-section-title">Connecting strategy to hands on projects</div>
-          <ul class="post-list">
-            <li>Mapped course ideas into concrete use cases for marketing, HR, and compliance work</li>
-            <li>Used the readings and frameworks to shape how I define success criteria for my projects</li>
-            <li>Framed AI as one tool inside a broader operating model, not the center of everything</li>
-          </ul>
-
-          <p class="post-footer-note">
-            This entry sits between the early VisionAI build and the more technical RAG work, and it explains how formal strategy training influences my design choices.
+      <a class="deck-link" href="AI%20Journey%20-%20v2.pptx">
+        <article class="deck-card">
+          <div class="deck-header">
+            <div class="deck-title">AI Journey Blog – 2</div>
+            <div class="deck-meta">18 Oct 25 · Wharton AI for Business</div>
+          </div>
+          <p class="deck-tagline">
+            Completion of Wharton’s AI for Business Specialization, focusing on how leaders, risk, and operating models shape AI adoption.
           </p>
-        </div>
-      </article>
+          <div class="deck-section-label">Theme</div>
+          <p class="deck-body-text">
+            Translating academic strategy and governance into practical guardrails for pilots and production use cases.
+          </p>
+          <div class="deck-section-label">Connects to</div>
+          <p class="deck-body-text">
+            All portfolio projects as the “strategy layer” over VisionAI, RAG CIRS, and the AI Weekly Audio Feed.
+          </p>
+          <div class="deck-footer">Open slide deck (PPTX) →</div>
+        </article>
+      </a>
 
       <!-- Part 1 -->
-      <article class="post-card">
-        <header class="post-header">
-          <div class="post-title">Part 1 – Strategy to AI/ML and Back Again</div>
-          <div class="post-meta">30 Sep 25 · First steps into applied ML</div>
-        </header>
-        <p class="post-tagline">
-          The starting point of the journey, where I move from traditional consulting into hands on machine learning and deployment through VisionAI and early agent ideas.
-        </p>
-
-        <div class="post-body">
-          <div class="post-section-title">Early toolbox snapshot</div>
-          <ul class="post-list">
-            <li>Trained a supervised VisionAI model for emotion detection and deployed it to iPhone</li>
-            <li>Built a Python based AI training agent to support my learning</li>
-            <li>Started outlining a RAG system concept and a future multi agent research assistant</li>
-            <li>Began the AI for Business coursework with Wharton</li>
-          </ul>
-
-          <div class="post-section-title">What VisionAI taught me</div>
-          <ul class="post-list">
-            <li>Data preparation is hard and has an outsize impact on model accuracy</li>
-            <li>Training the model was easier than getting a smooth, reliable deployment and UI on device</li>
-            <li>Using several models together helps avoid rabbit holes and speeds up problem solving</li>
-          </ul>
-
-          <div class="post-section-title">Looking ahead from this starting point</div>
-          <ul class="post-list">
-            <li>Move from single models to systems that combine retrieval, agents, and evaluation</li>
-            <li>Keep everything grounded in real work problems and measurable value</li>
-            <li>Use this log as a way to show the journey, not just the final demos</li>
-          </ul>
-
-          <p class="post-footer-note">
-            This first entry sets the baseline for where I started, so later readers can see how the projects and thinking evolved over time.
+      <a class="deck-link" href="AI%20Journey%20-%20v1.pptx">
+        <article class="deck-card">
+          <div class="deck-header">
+            <div class="deck-title">AI Journey Blog – 1</div>
+            <div class="deck-meta">30 Sep 25 · VisionAI build</div>
+          </div>
+          <p class="deck-tagline">
+            Developed and trained the first VisionAI emotion detection model and deployed it as a mobile app on iPhone.
           </p>
-        </div>
-      </article>
+          <div class="deck-section-label">Theme</div>
+          <p class="deck-body-text">
+            Moving from slideware and strategy into hands-on ML training, deployment, and debugging.
+          </p>
+          <div class="deck-section-label">Connects to</div>
+          <p class="deck-body-text">
+            VisionAI project page · early ideas for RAG CIRS · the decision to build an AI-focused portfolio.
+          </p>
+          <div class="deck-footer">Open slide deck (PPTX) →</div>
+        </article>
+      </a>
 
     </div>
   </main>
