@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Journey Blog | Kyle Deguire</title>
-  <meta name="theme-color" content="#f7f9fc">
+  <meta name="theme-color" content="#f7f9fc" />
 
   <style>
     :root {
@@ -19,16 +19,18 @@
       --radius-sm: 6px;
       --shadow-sm: 0 8px 24px rgba(0,0,0,0.06);
       --shadow-lg: 0 14px 32px rgba(0,0,0,0.10);
-      --hero-grad-a: #eef4ff;
-      --hero-grad-b: #ffffff;
+      --tab-bg: #f1f5f9;
+      --tab-bg-active: #ffffff;
+      --tab-border: #d8e0eb;
+      --tile-bg: linear-gradient(to bottom, #f8fbff, #eef3ff);
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
       margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg-page);
       color: var(--text-main);
+      line-height: 1.6;
     }
 
     a {
@@ -38,274 +40,192 @@
     }
     a:hover { text-decoration: underline; }
 
-    .hero {
-      background: radial-gradient(circle at 20% 20%, var(--hero-grad-a) 0%, var(--hero-grad-b) 60%);
-      border-bottom: 1px solid var(--border-card);
-      padding: 24px 20px 18px;
-    }
-
-    .hero-inner {
+    header {
+      padding: 28px 20px 10px;
+      text-align: left;
       max-width: 900px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
     }
-
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .site-name {
+    .title {
+      font-size: 1.7rem;
+      font-weight: 700;
       color: var(--blue-dark);
-      font-size: 1.1rem;
-      font-weight: 600;
     }
-
     .back-link {
       font-size: 0.85rem;
-    }
-
-    .page-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--blue-dark);
-      margin-top: 6px;
-    }
-
-    .page-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      max-width: 640px;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 28px auto 60px;
-      padding: 0 20px 40px;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--blue-dark);
-      margin: 20px 0 8px;
-    }
-
-    h3 {
-      font-size: 0.98rem;
-      font-weight: 600;
-      color: var(--blue-dark);
-      margin: 14px 0 4px;
-    }
-
-    .overview-text {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      max-width: 760px;
-    }
-
-    .decks-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%,360px), 1fr));
-      gap: 20px;
-      margin-top: 12px;
-    }
-
-    .deck-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      height: 100%;
-    }
-
-    .deck-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-card);
-      box-shadow: var(--shadow-sm);
-      padding: 18px 18px 14px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow .18s ease, transform .18s ease;
-    }
-
-    .deck-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-
-    .deck-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 6px;
-      flex-wrap: wrap;
-    }
-
-    .deck-title {
-      font-size: 1.0rem;
-      font-weight: 600;
-      color: var(--blue-dark);
-    }
-
-    .deck-meta {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      white-space: nowrap;
-    }
-
-    .deck-tagline {
-      font-size: 0.88rem;
-      color: var(--text-dim);
       margin-bottom: 8px;
     }
 
-    .deck-section-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--blue-dark);
-      margin-top: 6px;
-      margin-bottom: 2px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    /* Top container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 20px 24px 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
     }
 
-    .deck-body-text {
-      font-size: 0.84rem;
-      color: var(--text-main);
-      margin: 0;
+    /* Tabs row (copied exactly) */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
-
-    .deck-footer {
-      margin-top: 10px;
+    .tab {
+      background: var(--tab-bg);
+      border: 1px solid var(--tab-border);
+      padding: 6px 14px;
       font-size: 0.82rem;
-      color: var(--blue-link);
+      border-radius: 20px;
+      color: var(--text-main);
     }
+    .tab.active {
+      background: var(--tab-bg-active);
+      border-color: var(--tab-border);
+      font-weight: 600;
+    }
+
+    /* Two-column text layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-top: 4px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin: 14px 0 4px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    p {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+    }
+
+    /* Demo section heading */
+    .section-head {
+      max-width: 900px;
+      margin: 0 auto 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      padding: 0 4px;
+    }
+
+    /* Tiles */
+    .tiles {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .tile {
+      background: var(--tile-bg);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 26px 20px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: 0.15s ease;
+      text-align: center;
+    }
+
+    .tile:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    .tile-icon {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+
+    .tile-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      overflow-wrap: anywhere;
+    }
+
   </style>
 </head>
+
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-top">
-        <div class="site-name">Kyle Deguire · AI Journey</div>
-        <div class="back-link"><a href="../index.html">← Back to portfolio</a></div>
-      </div>
-      <div class="page-title">AI Journey Blog</div>
-      <div class="page-subtitle">
-        A companion to the applied AI projects. These decks show how formal training, experiments, and reflection connect strategy work with real-world AI builds.
-      </div>
+
+<header>
+  <div class="back-link"><a href="../index.html">← Back to portfolio</a></div>
+  <div class="title">AI Journey Blog</div>
+</header>
+
+<!-- TOP CONTAINER (exact RAG structure) -->
+<div class="container">
+  <div class="tabs">
+    <div class="tab active">Overview</div>
+    <div class="tab">Training + milestones</div>
+    <div class="tab">Applied builds</div>
+    <div class="tab">Strategy alignment</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Project overview</h3>
+      <p>
+        A three-part journey documenting the shift from strategy work into hands-on AI builds, and back into applied AI strategy. Each entry captures formal training and practical experiments tied to real projects.
+      </p>
+
+      <h3>Business impact</h3>
+      <p>
+        Helps hiring managers and partners see how academic frameworks, ML builds, and RAG pipelines shape real-world readiness and strategic thinking.
+      </p>
     </div>
-  </header>
 
-  <main>
-    <!-- OVERVIEW SECTION (mirrors RAG CIRS structure) -->
-    <h2>Overview</h2>
-    <p class="overview-text">
-      This AI Journey series tracks the path from strategy and leadership work into hands-on AI and back again. Each entry marks a milestone where coursework or a build changed how I think about using AI in actual organizations.
-    </p>
+    <div>
+      <h3>My role: Strategy → learning → building → reflection</h3>
+      <p>
+        Designed the learning plan, completed formal coursework, built ML and RAG prototypes, and recorded the insights that enabled faster, better-scoped applied AI projects.
+      </p>
 
-    <h3>Project overview</h3>
-    <p class="overview-text">
-      Three short slide decks that document key phases of the journey: building and deploying VisionAI, completing Wharton’s AI for Business specialization, and finishing IBM’s RAG and LangChain course while designing a compliance-focused RAG system.
-    </p>
-
-    <h3>Business impact</h3>
-    <p class="overview-text">
-      For hiring managers and partners, these decks make the path visible. They connect theory to practice, show how I reason about risk and value, and give context for the demos on the main portfolio page.
-    </p>
-
-    <h3>My role</h3>
-    <p class="overview-text">
-      I scoped each phase, chose the courses and projects, built the demos, and wrote the reflections. The focus is on learning how to ship AI work that is understandable to non-technical stakeholders.
-    </p>
-
-    <h3>Scalability</h3>
-    <p class="overview-text">
-      New entries can be added as more projects and training stack up. The same pattern can be reused for client-facing journey decks that explain how their AI adoption efforts mature over time.
-    </p>
-
-    <!-- JOURNEY ENTRIES (mirrors "Demo" tiles on RAG CIRS) -->
-    <h2>Journey entries</h2>
-    <p class="overview-text">
-      Click any tile below to open the slide deck directly.
-    </p>
-
-    <div class="decks-grid">
-
-      <!-- Part 3 -->
-      <a class="deck-link" href="AI%20Journey%20-%20v3.pptx">
-        <article class="deck-card">
-          <div class="deck-header">
-            <div class="deck-title">AI Journey Blog – 3</div>
-            <div class="deck-meta">11 Nov 25 · IBM RAG &amp; LangChain</div>
-          </div>
-          <p class="deck-tagline">
-            Completion of IBM’s <em>Fundamentals of AI Agents Using RAG &amp; LangChain</em>, tying agent frameworks and retrieval design into the RAG CIRS concept.
-          </p>
-          <div class="deck-section-label">Focus</div>
-          <p class="deck-body-text">
-            RAG accuracy, verification, and how to design agent flows that stay grounded in regulated source material.
-          </p>
-          <div class="deck-section-label">Connects to</div>
-          <p class="deck-body-text">
-            RAG CIRS: FAA Compliance Assistant · future Process Automation Assistant · AI Weekly Audio Feed evaluation ideas.
-          </p>
-          <div class="deck-footer">Open slide deck (PPTX) →</div>
-        </article>
-      </a>
-
-      <!-- Part 2 -->
-      <a class="deck-link" href="AI%20Journey%20-%20v2.pptx">
-        <article class="deck-card">
-          <div class="deck-header">
-            <div class="deck-title">AI Journey Blog – 2</div>
-            <div class="deck-meta">18 Oct 25 · Wharton AI for Business</div>
-          </div>
-          <p class="deck-tagline">
-            Completion of Wharton’s <em>AI for Business</em> specialization, focused on strategy, governance, marketing, finance, and people management.
-          </p>
-          <div class="deck-section-label">Focus</div>
-          <p class="deck-body-text">
-            Turning academic frameworks into guardrails for real AI projects: when to use AI, how to measure value, and how to manage risk.
-          </p>
-          <div class="deck-section-label">Connects to</div>
-          <p class="deck-body-text">
-            Strategic framing for all portfolio projects (VisionAI, RAG CIRS, AI Weekly Audio Feed) and future client work.
-          </p>
-          <div class="deck-footer">Open slide deck (PPTX) →</div>
-        </article>
-      </a>
-
-      <!-- Part 1 -->
-      <a class="deck-link" href="AI%20Journey%20-%20v1.pptx">
-        <article class="deck-card">
-          <div class="deck-header">
-            <div class="deck-title">AI Journey Blog – 1</div>
-            <div class="deck-meta">30 Sep 25 · VisionAI build</div>
-          </div>
-          <p class="deck-tagline">
-            Developed and trained the first VisionAI emotion detection model, then deployed it as a mobile app on iPhone.
-          </p>
-          <div class="deck-section-label">Focus</div>
-          <p class="deck-body-text">
-            Moving from slides to code: data prep, training, exporting to TFLite, and making the model usable for a non-technical user.
-          </p>
-          <div class="deck-section-label">Connects to</div>
-          <p class="deck-body-text">
-            VisionAI project page, early ideas for RAG CIRS, and the decision to build a public AI portfolio.
-          </p>
-          <div class="deck-footer">Open slide deck (PPTX) →</div>
-        </article>
-      </a>
-
+      <h3>Scalability</h3>
+      <p>
+        New entries can be added as additional courses and builds are completed. The structure mirrors the RAG CIRS portfolio page for a consistent, professional narrative.
+      </p>
     </div>
-  </main>
+  </div>
+</div>
+
+<!-- DEMO SECTION (exact RAG tiles format) -->
+<div class="section-head">Journey entries</div>
+
+<div class="tiles">
+
+  <!-- TILE 3 -->
+  <a href="AI%20Journey%20-%20v3.pptx" class="tile">
+    <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
+    <div class="tile-label">AI Journey – 3 (11 Nov 25)</div>
+  </a>
+
+  <!-- TILE 2 -->
+  <a href="AI%20Journey%20-%20v2.pptx" class="tile">
+    <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
+    <div class="tile-label">AI Journey – 2 (18 Oct 25)</div>
+  </a>
+
+  <!-- TILE 1 -->
+  <a href="AI%20Journey%20-%20v1.pptx" class="tile">
+    <img class="tile-icon" src="https://kyledeguire.github.io/rag-cirs/file-icon.png" alt="file" />
+    <div class="tile-label">AI Journey – 1 (30 Sep 25)</div>
+  </a>
+
+</div>
+
 </body>
 </html>
