@@ -21,7 +21,7 @@
       --container-bg:#eef4ff;
       --container-border:#dbe5f2;
       --tile-bg:linear-gradient(to bottom,#f7faff,#edf3ff);
-      --hint:#e39b07; /* Audio Feed amber */
+      --hint:#e39b07;
     }
 
     body{
@@ -77,7 +77,6 @@
       border:1px solid #cdd7e3;
       border-radius:20px;
       font-size:.82rem;
-      color:var(--text-main);
     }
 
     .tab.active{
@@ -99,7 +98,7 @@
 
     p{margin:0 0 10px;font-size:.9rem;}
 
-    /* scroll hint copied from Audio Feed */
+    /* AUDIO FEED–STYLE SCROLL HINT */
     .scroll-hint{
       display:none;
       font-size:.95rem;
@@ -112,16 +111,16 @@
       .scroll-hint{display:block;}
     }
 
-    /* mobile column stack and spacing */
+    /* MOBILE SPACING */
     @media(max-width:700px){
       .overview-grid{
         grid-template-columns:1fr;
         gap:10px;
       }
 
-      /* tighten My Role header spacing under Business impact */
+      /* FINAL TIGHT SPACING (closer than before) */
       .overview-grid > div:nth-child(2) h3 {
-        margin-top:4px !important;
+        margin-top:0px !important;
       }
     }
 
