@@ -25,6 +25,7 @@
       --container-bg: #eef4ff;
       --container-border: #dbe5f2;
       --tile-bg: linear-gradient(to bottom, #f7faff 0%, #edf3ff 100%);
+      --amber: #b7791f;
     }
 
     body {
@@ -98,6 +99,13 @@
       gap: 28px;
     }
 
+    .lead-note {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--amber);
+      margin: 0 0 10px;
+    }
+
     h3 {
       margin: 12px 0 4px;
       font-size: 1rem;
@@ -108,6 +116,14 @@
     p {
       font-size: 0.9rem;
       margin: 0 0 8px;
+    }
+
+    /* Mobile: stack columns like RAG CIRS */
+    @media (max-width: 640px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
     }
 
     /* Demo heading */
@@ -137,6 +153,9 @@
       box-shadow: var(--shadow-sm);
       transition: 0.15s ease;
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .tile:hover {
@@ -183,6 +202,8 @@
 
   <div class="two-col">
     <div>
+      <p class="lead-note">Scroll down for blog entries – journey in progress</p>
+
       <h3>Project overview</h3>
       <p>
         Three short reflection decks that trace how strategy work, ML builds, and formal training converged into my applied AI direction.
@@ -214,14 +235,17 @@
 <div class="tiles">
 
   <!-- Tile 3 -->
-  <a class="tile" href="AI%20Journey%20-%20v3.pptx">
+  <a class="tile"
+     href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v3.pptx"
+     target="_blank" rel="noopener">
     <div class="tile-icon">
-      <!-- Inline SVG icon: blue rounded square with white document -->
+      <!-- Inline SVG icon -->
       <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
         <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
         <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
         <path d="M30 16v4h4" fill="#ffffff"/>
-        <path d="M24 24h8M24 28h5M24 32h6" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+        <path d="M24 24h8M24 28h5M24 32h6"
+              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
       </svg>
     </div>
     <div class="tile-title">AI Journey Blog – 3 (11 Nov 25)</div>
@@ -229,13 +253,16 @@
   </a>
 
   <!-- Tile 2 -->
-  <a class="tile" href="AI%20Journey%20-%20v2.pptx">
+  <a class="tile"
+     href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v2.pptx"
+     target="_blank" rel="noopener">
     <div class="tile-icon">
       <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
         <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
         <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
         <path d="M30 16v4h4" fill="#ffffff"/>
-        <path d="M24 24h8M24 28h5M24 32h6" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+        <path d="M24 24h8M24 28h5M24 32h6"
+              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
       </svg>
     </div>
     <div class="tile-title">AI Journey Blog – 2 (18 Oct 25)</div>
@@ -243,13 +270,16 @@
   </a>
 
   <!-- Tile 1 -->
-  <a class="tile" href="AI%20Journey%20-%20v1.pptx">
+  <a class="tile"
+     href="https://view.officeapps.live.com/op/view.aspx?src=https://kyledeguire.github.io/ai-journey/AI%20Journey%20-%20v1.pptx"
+     target="_blank" rel="noopener">
     <div class="tile-icon">
       <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
         <rect x="6" y="6" width="40" height="40" rx="12" fill="#2563eb" />
         <path d="M22 16h8l4 4v14c0 1.1-.9 2-2 2H22c-1.1 0-2-.9-2-2V18c0-1.1.9-2 2-2z" fill="#ffffff"/>
         <path d="M30 16v4h4" fill="#ffffff"/>
-        <path d="M24 24h8M24 28h5M24 32h6" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+        <path d="M24 24h8M24 28h5M24 32h6"
+              stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
       </svg>
     </div>
     <div class="tile-title">AI Journey Blog – 1 (30 Sep 25)</div>
