@@ -404,33 +404,19 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   line-height:1.55;
 }
 
-/* Default: aligned bullet rows (used by Citation Transparency only) */
 .fcard ul{
   margin:0;
   padding-left:1.05rem;
   color:var(--fg);
   font-size:16px;
   line-height:1.6;
-
-  display:grid;
-  grid-template-rows:repeat(3, minmax(0, 1fr));
-  gap:8px;
 }
 
 .fcard li{
-  margin:0;
-}
-
-/* Opt-out: restore original bullet spacing */
-.fcard.normal-bullets ul{
-  display:block;
-}
-
-.fcard.normal-bullets li{
   margin-bottom:8px;
 }
 
-.fcard.normal-bullets li:last-child{
+.fcard li:last-child{
   margin-bottom:0;
 }
 
