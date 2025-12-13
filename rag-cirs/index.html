@@ -404,7 +404,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   line-height:1.55;
 }
 
-/* UPDATED: align bullet rows across cards */
+/* Default: aligned bullet rows (used by Citation Transparency only) */
 .fcard ul{
   margin:0;
   padding-left:1.05rem;
@@ -419,6 +419,19 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 
 .fcard li{
   margin:0;
+}
+
+/* Opt-out: restore original bullet spacing */
+.fcard.normal-bullets ul{
+  display:block;
+}
+
+.fcard.normal-bullets li{
+  margin-bottom:8px;
+}
+
+.fcard.normal-bullets li:last-child{
+  margin-bottom:0;
 }
 
 /* Status split */
