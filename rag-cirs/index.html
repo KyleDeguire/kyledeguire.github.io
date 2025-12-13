@@ -14,7 +14,6 @@
 
   --navy:#0A1F44;
   --blue:#1E3A5F;
-  --gold:#FF8C42;
   --soft:#f1f5ff;
   --soft2:#f7fbff;
   --ok:#16a34a;
@@ -23,34 +22,26 @@
 }
 
 *{box-sizing:border-box;}
-body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;color:var(--fg);background:var(--bg);font-size:var(--base);}
+body{
+  margin:0;
+  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+  color:var(--fg);
+  background:var(--bg);
+  font-size:var(--base);
+}
 .container{max-width:var(--maxw);margin:0 auto;padding:clamp(16px,3vw,32px);}
 
-/* Header with logo */
-.header{
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-start;
-  gap:14px;
-}
-.brandmark{
-  width:56px;height:56px;
-  border-radius:14px;
-  box-shadow:0 8px 24px rgba(0,0,0,.14);
-  border:1px solid rgba(226,232,240,.85);
-  background:#fff;
-  object-fit:cover;
-  flex:0 0 auto;
-}
-@media (max-width:520px){
-  .brandmark{width:48px;height:48px;border-radius:12px;}
-}
+/* Header */
+.header{display:flex;align-items:flex-start;justify-content:flex-start;gap:14px;}
 
 .title{font-size:clamp(22px,4vw,34px);color:var(--brand);margin:0 0 6px;}
 .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
 .scroll-hint{display:none;}
-@media (max-width:899px){.scroll-hint{display:block;font-size:1rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;}}
+@media (max-width:899px){
+  .scroll-hint{display:block;font-size:1rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;}
+}
 
+/* Top and bottom “template” cards */
 .info-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
 .info-head{border-bottom:1px solid var(--border);padding:14px 18px 10px;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
@@ -64,20 +55,36 @@ body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe 
 .info-full{grid-column:1/-1;}
 @media (min-width:900px){.info-section.info-full{margin-top:6px;}}
 
-/* Planning docs grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:clamp(10px,2vw,18px);margin-top:clamp(16px,3vw,30px);}
-figure.card{position:relative;margin:0;border:1px solid var(--border);background:var(--card);
-border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
-transition:transform .12s ease,box-shadow .12s ease;}
+/* Planning docs tiles */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(10px,2vw,18px);
+  margin-top:clamp(16px,3vw,30px);
+}
+figure.card{
+  position:relative;margin:0;border:1px solid var(--border);background:var(--card);
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  transition:transform .12s ease,box-shadow .12s ease;
+}
 figure.card:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(10,102,194,.25),var(--shadow);}
 .media{aspect-ratio:16/10;background:var(--card);display:flex;align-items:center;justify-content:center;}
-.media img{width:100%;height:100%;object-fit:cover;display:block;}
 figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;border-top:1px solid var(--border);}
 
-.card a.card-link{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none;color:inherit;}
-.doc-tile{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg, var(--pill), transparent 60%);}
-.doc-icon{width:56px;height:56px;border-radius:12px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:10px;box-shadow:0 4px 16px rgba(10,102,194,.25);}
+.card a.card-link{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:100%;height:100%;text-decoration:none;color:inherit;
+}
+.doc-tile{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(180deg, var(--pill), transparent 60%);
+}
+.doc-icon{
+  width:56px;height:56px;border-radius:12px;background:var(--brand);
+  display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:10px;
+  box-shadow:0 4px 16px rgba(10,102,194,.25);
+}
 .doc-name{font-weight:600;text-align:center;padding:0 10px}
 
 .note{font-style:italic;color:var(--muted);margin-top:16px;text-align:center;font-size:var(--base);}
@@ -89,19 +96,15 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 .section{margin-top:clamp(22px,3.3vw,44px);}
 .h2{font-size:clamp(18px,2.3vw,24px);margin:0 0 10px;color:var(--fg);font-weight:800;}
 .h2 span{color:var(--muted);font-weight:600;}
-.p{margin:0 0 14px;line-height:1.6;color:var(--fg);font-size:var(--base);}
-.subtle{color:var(--muted);font-size:var(--base);}
 
 /* iOS layout */
 .ios-layout{
   display:grid;
-  grid-template-columns:0.68fr 1.32fr;
+  grid-template-columns:0.68fr 1.32fr; /* smaller screenshot column */
   gap:14px;
   align-items:stretch;
 }
-@media (max-width:920px){
-  .ios-layout{grid-template-columns:1fr;}
-}
+@media (max-width:920px){.ios-layout{grid-template-columns:1fr;}}
 
 /* Carousel */
 .carousel-wrap{
@@ -130,18 +133,11 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   object-fit:contain;
   background:#0b1b34;
 }
-.slide-cap{
-  font-weight:700;
-  text-align:center;
-  color:var(--fg);
-  font-size:var(--base);
-}
+.slide-cap{font-weight:700;text-align:center;color:var(--fg);font-size:var(--base);}
 
 /* Carousel controls */
 .carousel-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
+  position:absolute;top:50%;transform:translateY(-50%);
   width:44px;height:44px;border-radius:999px;
   border:1px solid rgba(226,232,240,.9);
   background:rgba(255,255,255,.92);
@@ -149,35 +145,29 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;
 }
+.carousel-btn:hover{filter:brightness(.98);}
+.carousel-btn:active{transform:translateY(-50%) scale(.98);}
 .carousel-btn.left{left:10px;}
 .carousel-btn.right{right:10px;}
 
-.carousel-dots{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  padding:10px 14px 14px;
-}
+.carousel-dots{display:flex;gap:10px;justify-content:center;padding:10px 14px 14px;}
 .dot{
   width:11px;height:11px;border-radius:999px;
   border:1px solid rgba(100,116,139,.35);
   background:rgba(100,116,139,.20);
   cursor:pointer;
 }
-.dot.active{
-  background:rgba(10,102,194,.35);
-  border-color:rgba(10,102,194,.55);
-}
+.dot.active{background:rgba(10,102,194,.35);border-color:rgba(10,102,194,.55);}
 
-/* Right panel with logo + stacked boxes */
+/* Right panel with logo band + stacked boxes */
 .ios-right{
   position:relative;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  justify-content:space-between; /* bottom aligns with carousel bottom */
 }
 
-/* Light blue logo band */
+/* Light blue logo band + iOS-style icon */
 .ios-logo-band{
   background:#eaf2ff;
   border:1px solid rgba(10,102,194,.18);
@@ -188,13 +178,10 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   justify-content:center;
   margin-bottom:14px;
 }
-
-/* iOS-style app icon */
 .ios-logo{
-  width:120px;
-  height:120px;
+  width:120px;height:120px;
   object-fit:contain;
-  border-radius:22px;
+  border-radius:22px; /* iOS app icon rounding */
   background:#ffffff;
   box-shadow:
     0 8px 22px rgba(0,0,0,.18),
@@ -219,12 +206,8 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 .feature-panel b{display:block;font-size:16px;margin-bottom:6px;}
 .feature-panel p{margin:0;color:var(--muted);font-size:16px;line-height:1.55;}
 .feature-panel .tag{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-top:10px;
-  padding:8px 10px;
-  border-radius:999px;
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:10px;padding:8px 10px;border-radius:999px;
   border:1px solid rgba(10,102,194,.22);
   background:rgba(10,102,194,.08);
   color:var(--brand);
@@ -232,231 +215,775 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   font-size:16px;
 }
 
-/* ===========================
-   HTML — Native iOS Section
-   =========================== */
+/* Metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media (max-width:980px){.metrics{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.metrics{grid-template-columns:1fr;}}
+.metric{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:12px;
+  padding:14px 14px 12px;
+  box-shadow:var(--shadow);
+}
+.metric .num{font-size:36px;line-height:1.05;font-weight:900;color:var(--navy);letter-spacing:-.4px;}
+.metric .lbl{font-weight:900;margin-top:8px;font-size:16px;}
+.metric .det{margin-top:8px;color:var(--muted);font-size:16px;line-height:1.55;}
 
-<section class="section" aria-labelledby="ios-showcase">
-  <h2 id="ios-showcase" class="h2">NATIVE IOS APPLICATION <span>- LIVE IN TESTFLIGHT</span></h2>
+/* ROI */
+.roi{
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.18);
+  background:linear-gradient(135deg,var(--navy),var(--blue));
+  color:#fff;
+}
+.roi-inner{padding:18px 18px 16px;}
+.roi-title{margin:0 0 12px;font-size:clamp(18px,2.1vw,24px);font-weight:900;}
+.roi-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:12px;}
+@media (max-width:980px){.roi-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.roi-grid{grid-template-columns:1fr;}}
+.roi-card{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+  padding:14px 14px 12px;
+}
+.roi-card.highlight{
+  border:1px solid rgba(255,140,66,.95);
+  box-shadow:0 0 0 2px rgba(255,140,66,.18),0 8px 22px rgba(0,0,0,.25);
+}
+.roi-num{
+  font-size:28px;font-weight:900;letter-spacing:-.25px;line-height:1.15;
+  white-space:nowrap; /* one-line money + ROI */
+}
+.roi-lbl{
+  margin-top:8px;font-weight:900;font-size:16px;
+  min-height:2.2em;display:flex;align-items:flex-end; /* equal label height */
+}
+.roi-det{margin-top:8px;opacity:.92;font-size:16px;line-height:1.55;}
 
-  <div class="ios-layout">
+.table-wrap{margin-top:14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;overflow:hidden;}
+.table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.06);}
+.table th,.table td{padding:10px 12px;text-align:left;font-size:16px;border-bottom:1px solid rgba(255,255,255,.14);}
+.table th{font-weight:900;}
+.table tr:last-child td{border-bottom:none;}
 
-    <!-- Carousel -->
-    <div class="carousel-wrap">
-      <div class="carousel">
-        <div class="carousel-viewport">
-          <div class="carousel-track" id="track">
+/* Accordion */
+.acc{
+  margin-top:14px;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.05);
+}
+.acc button{
+  width:100%;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:12px 14px;color:#fff;background:transparent;border:none;cursor:pointer;
+  font-weight:900;font-size:16px;
+}
+.acc button span{opacity:.95;}
+.acc-panel{display:none;padding:0 14px 14px;}
+.acc-panel.open{display:block;}
+.acc h4{margin:14px 0 8px;font-size:16px;}
+.acc .assump{color:rgba(255,255,255,.92);font-size:16px;line-height:1.65;}
+.acc .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+.acc .tbl{width:100%;border-collapse:collapse;margin-top:10px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;}
+.acc .tbl th,.acc .tbl td{padding:10px 10px;font-size:16px;border-bottom:1px solid rgba(255,255,255,.12);vertical-align:top;}
+.acc .tbl th{font-weight:900;}
+.acc .tbl tr:nth-child(even) td{background:rgba(255,255,255,.03);}
+.acc .tbl tr:last-child td{border-bottom:none;}
+.acc .scrollx{overflow:auto;}
+.acc .note2{margin-top:10px;font-size:16px;opacity:.9;}
 
-            <div class="slide">
-              <div class="slide-inner">
-                <div class="slide-media">
-                  <img src="IMG_7110.PNG" alt="Home screen" />
+/* Pipeline */
+.pipeline{
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,var(--soft),#fff 70%);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:14px 14px 12px;
+}
+.pipeline-row{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(170px,1fr));
+  gap:10px;
+  overflow:auto;
+  padding-bottom:8px;
+}
+.step{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.95);
+  border-radius:12px;
+  padding:12px 12px 10px;
+  min-height:132px;
+}
+.step .badge{
+  width:34px;height:34px;border-radius:999px;
+  background:rgba(10,102,194,.12);
+  border:1px solid rgba(10,102,194,.25);
+  color:var(--brand);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;margin-bottom:8px;font-size:16px;
+}
+.step .t{
+  font-weight:900;font-size:16px;
+  min-height:2.6em;display:flex;align-items:flex-end; /* align headings */
+}
+.step .tech{
+  margin-top:6px;color:var(--muted);font-size:16px;
+  min-height:2.2em;display:flex;align-items:flex-end; /* align tech line */
+}
+.step .d{
+  margin-top:6px;color:var(--fg);font-size:16px;line-height:1.55;
+  min-height:3.2em; /* align body text */
+}
+@media (min-width:980px){
+  .pipeline-row{grid-template-columns:repeat(7,1fr);overflow:visible;}
+}
+
+/* Stack badges */
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.badge{
+  font-size:16px;padding:8px 10px;border-radius:999px;
+  border:1px solid var(--border);background:#fff;color:var(--muted);
+  box-shadow:0 1px 0 rgba(0,0,0,.03);
+}
+
+/* Enterprise-grade cards */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media (max-width:980px){.cards3{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.cards3{grid-template-columns:1fr;}}
+.fcard{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:14px 14px 12px;
+}
+.fcard .ico{font-size:32px;line-height:1;margin-bottom:8px;}
+.fcard .tt{font-weight:900;margin:0 0 6px;font-size:16px;}
+.fcard .st{margin:0 0 10px;color:var(--muted);font-size:16px;line-height:1.55;}
+.fcard ul{margin:0;padding-left:1.05rem;color:var(--fg);font-size:16px;line-height:1.6;}
+.fcard li{margin-bottom:8px;}
+.fcard li:last-child{margin-bottom:0;}
+
+/* Status split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media (max-width:860px){.split{grid-template-columns:1fr;}}
+.panel{
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:14px 14px 12px;
+}
+.panel h3{margin:0 0 10px;font-size:16px;}
+.panel ul{margin:0;padding-left:1.05rem;color:var(--fg);font-size:16px;line-height:1.6;}
+.panel li{margin-bottom:10px;}
+.panel li:last-child{margin-bottom:0;}
+.green-accent{border-left:4px solid rgba(22,163,74,.7);}
+.blue-accent{border-left:4px solid rgba(10,102,194,.6);}
+
+hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
+</style>
+</head>
+
+<body>
+<main class="container">
+
+  <div class="header">
+    <div>
+      <h1 class="title">RAG CIRS: FAA Compliance Assistant</h1>
+    </div>
+  </div>
+
+  <!-- ===========================
+       TOP SECTION (Fixed Template)
+       =========================== -->
+  <section class="info-card" aria-labelledby="overview">
+    <div class="info-head">
+      <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
+      <div class="chips">
+        <span class="chip">Compliance</span><span class="chip">RAG + citations</span><span class="chip">Pinecone + LangChain</span><span class="chip">FAA Advisory Circulars</span>
+      </div>
+    </div>
+
+    <div class="info-body">
+      <div class="info-section">
+        <p class="scroll-hint"><strong><em>Scroll down for planning docs</em></strong><br><em>- System development in progress</em></p>
+
+        <h3>Project overview</h3>
+        <p>Enterprise-grade compliance assistant for FAA Advisory Circulars. PDFs are parsed, normalized, and indexed for citation-first retrieval, then responses are verified by an independent model to support safety-critical decisioning across operations, maintenance, and training.</p>
+
+        <h3>Business impact</h3>
+        <p>Turns long regulatory lookups into fast, cited answers that teams can trust. Reduces rework, accelerates audits, and improves consistency across departments by making the same sources accessible in the same way.</p>
+      </div>
+
+      <div class="info-section">
+        <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
+        <p>Designed and built the end-to-end system: ingestion, structure-aware chunking, embeddings, retrieval, verification, and a native iOS interface. Focused on production patterns, traceability, and repeatability so the approach scales beyond aviation.</p>
+
+        <h3>Scalability</h3>
+        <p>Built to extend to other corpora like SOPs, MELs, manuals, training content, and internal policy libraries. The architecture supports incremental updates and can transfer to other compliance-heavy industries with minimal changes.</p>
+      </div>
+
+      <div class="info-section info-full">
+        <h3>Technical details</h3><p><em>See below</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       MIDDLE SECTION
+       =========================== -->
+
+  <section class="section" aria-labelledby="ios-showcase">
+    <h2 id="ios-showcase" class="h2">NATIVE IOS APPLICATION <span>- LIVE IN TESTFLIGHT</span></h2>
+
+    <div class="ios-layout">
+      <!-- Carousel -->
+      <div class="carousel-wrap">
+        <div class="carousel">
+          <button class="carousel-btn left" type="button" aria-label="Previous screenshot" id="prevBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="carousel-viewport" aria-live="polite">
+            <div class="carousel-track" id="track">
+
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-media">
+                    <img src="IMG_7110.PNG" alt="Home screen with search interface" loading="lazy" />
+                  </div>
+                  <div class="slide-cap">Home screen with search interface</div>
                 </div>
-                <div class="slide-cap">Home screen with search interface</div>
               </div>
-            </div>
 
-            <div class="slide">
-              <div class="slide-inner">
-                <div class="slide-media">
-                  <img src="IMG_7111.PNG" alt="Query input" />
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-media">
+                    <img src="IMG_7111.PNG" alt="Query input for runway marking requirements" loading="lazy" />
+                  </div>
+                  <div class="slide-cap">Query input for runway markings</div>
                 </div>
-                <div class="slide-cap">Query input for runway markings</div>
               </div>
-            </div>
 
-            <div class="slide">
-              <div class="slide-inner">
-                <div class="slide-media">
-                  <img src="IMG_7112.PNG" alt="Confidence score" />
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-media">
+                    <img src="IMG_7112.PNG" alt="Search results with confidence score" loading="lazy" />
+                  </div>
+                  <div class="slide-cap">Results with confidence score</div>
                 </div>
-                <div class="slide-cap">Results with confidence score</div>
               </div>
-            </div>
 
-            <div class="slide">
-              <div class="slide-inner">
-                <div class="slide-media">
-                  <img src="IMG_7115.PNG" alt="Regulatory detail" />
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-media">
+                    <img src="IMG_7115.PNG" alt="Regulatory content and specifications" loading="lazy" />
+                  </div>
+                  <div class="slide-cap">Regulatory content and specifications</div>
                 </div>
-                <div class="slide-cap">Regulatory content and specifications</div>
               </div>
-            </div>
 
-            <div class="slide">
-              <div class="slide-inner">
-                <div class="slide-media">
-                  <img src="IMG_7117.PNG" alt="Citations" />
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-media">
+                    <img src="IMG_7117.PNG" alt="Source citations with AC numbers" loading="lazy" />
+                  </div>
+                  <div class="slide-cap">Source citations with AC numbers</div>
                 </div>
-                <div class="slide-cap">Source citations with AC numbers</div>
               </div>
-            </div>
 
+            </div>
+          </div>
+
+          <button class="carousel-btn right" type="button" aria-label="Next screenshot" id="nextBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="carousel-dots" role="tablist" aria-label="Screenshot navigation" id="dots"></div>
+      </div>
+
+      <!-- Right side -->
+      <div class="ios-right">
+        <div class="ios-logo-band">
+          <img class="ios-logo" src="Main%20Logo.png" alt="RAG CIRS logo" />
+        </div>
+
+        <div class="feature-stack" aria-label="Key iOS features">
+          <div class="feature-panel">
+            <b>Fast, mobile-first access</b>
+            <p>Designed for real work during planning, inspection prep, or audit response</p>
+            <div class="tag">~30 sec response time</div>
+          </div>
+
+          <div class="feature-panel">
+            <b>Confidence-forward output</b>
+            <p>Every answer includes a confidence score to support safe decision-making</p>
+            <div class="tag">95 to 100% scoring</div>
+          </div>
+
+          <div class="feature-panel">
+            <b>Citations you can verify</b>
+            <p>Answers include FAA citations and source snippets for defensibility</p>
+            <div class="tag">Cited FAA sources</div>
+          </div>
+
+          <div class="feature-panel">
+            <b>Built for iteration</b>
+            <p>TestFlight distribution enables rapid beta feedback and refinement</p>
+            <div class="tag">Beta testing ready</div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Right side: logo band + stacked boxes -->
-    <div class="ios-right">
-
-      <div class="ios-logo-band">
-        <img class="ios-logo" src="Main%20Logo.png" alt="RAG CIRS logo" />
+  <section class="section" aria-labelledby="metrics">
+    <h2 id="metrics" class="h2">SYSTEM CAPABILITIES AT SCALE</h2>
+    <div class="metrics">
+      <div class="metric">
+        <div class="num">718</div>
+        <div class="lbl">FAA documents indexed</div>
+        <div class="det">Advisory Circulars plus supporting materials</div>
       </div>
+      <div class="metric">
+        <div class="num">27,326</div>
+        <div class="lbl">Searchable chunks</div>
+        <div class="det">Structured for citation-first retrieval</div>
+      </div>
+      <div class="metric">
+        <div class="num">94.3%</div>
+        <div class="lbl">Structure detection accuracy</div>
+        <div class="det">Improves retrieval precision and traceability</div>
+      </div>
+      <div class="metric">
+        <div class="num">16MB+</div>
+        <div class="lbl">Large PDF handling</div>
+        <div class="det">Supports complex, high-density documents</div>
+      </div>
+    </div>
+  </section>
 
-      <div class="feature-stack">
+  <section class="section" aria-labelledby="roi">
+    <div class="roi" id="roiBox">
+      <div class="roi-inner">
+        <h2 id="roi" class="roi-title">BUSINESS VALUE: 25-PERSON COMPLIANCE TEAM</h2>
 
-        <div class="feature-panel">
-          <b>Fast, mobile-first access</b>
-          <p>Designed for real work during planning, inspection prep, or audit response</p>
-          <div class="tag">~30 sec response time</div>
+        <div class="roi-grid" aria-label="ROI highlights">
+          <div class="roi-card">
+            <div class="roi-num">$985K per year</div>
+            <div class="roi-lbl">Time savings</div>
+            <div class="roi-det">Lookup compressed from manual research to a fast, cited response</div>
+          </div>
+          <div class="roi-card">
+            <div class="roi-num">$100K to $1.5M</div>
+            <div class="roi-lbl">Mistake prevention</div>
+            <div class="roi-det">Fewer missed cross-references and fewer audit surprises</div>
+          </div>
+          <div class="roi-card">
+            <div class="roi-num">$360K to $540K</div>
+            <div class="roi-lbl">Avoided hiring costs</div>
+            <div class="roi-det">Less dependency on specialist research capacity as usage grows</div>
+          </div>
+          <div class="roi-card highlight">
+            <div class="roi-num">401x ROI</div>
+            <div class="roi-lbl">Annual return</div>
+            <div class="roi-det">Illustrative example based on system cost and team assumptions</div>
+          </div>
         </div>
 
-        <div class="feature-panel">
-          <b>Confidence-forward output</b>
-          <p>Every answer includes a confidence score to support safe decision-making</p>
-          <div class="tag">95 to 100% scoring</div>
+        <div class="table-wrap" aria-label="Scaling economics">
+          <table class="table">
+            <thead>
+              <tr><th colspan="2">Scaling Economics</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>10 people</strong></td><td>$394,000</td></tr>
+              <tr><td><strong>25 people</strong></td><td>$1,440,000</td></tr>
+              <tr><td><strong>50 people</strong></td><td>$2,880,000</td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="feature-panel">
-          <b>Citations you can verify</b>
-          <p>Answers include FAA citations and source snippets for defensibility</p>
-          <div class="tag">Cited FAA sources</div>
+        <div class="table-wrap" aria-label="Light vs heavy usage">
+          <table class="table">
+            <thead>
+              <tr><th colspan="3">Usage Scenarios (Mini View)</th></tr>
+              <tr>
+                <th>Scenario</th>
+                <th>Assumption</th>
+                <th>Implication</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Light usage</strong></td>
+                <td>Lower query volume, steady compliance needs</td>
+                <td>Strong value for audit prep, consistency, and defensible citations</td>
+              </tr>
+              <tr>
+                <td><strong>Heavy usage</strong></td>
+                <td>High query volume across teams and shifts</td>
+                <td>Compounding savings and reduced reliance on specialist researchers</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="feature-panel">
-          <b>Built for iteration</b>
-          <p>TestFlight distribution enables rapid beta feedback and refinement</p>
-          <div class="tag">Beta testing ready</div>
+        <div class="acc" aria-label="How these numbers are calculated">
+          <button type="button" id="accBtn" aria-expanded="false" aria-controls="accPanel">
+            <span>▼ View detailed assumptions and formulas</span>
+            <span style="opacity:.85;font-weight:800;">(collapsed by default)</span>
+          </button>
+
+          <div class="acc-panel" id="accPanel" role="region" aria-label="Detailed assumptions and formulas">
+            <h4>Assumptions</h4>
+            <div class="assump">
+              <div>Team size: 25 compliance professionals</div>
+              <div>Queries per person per day: 2.5</div>
+              <div>Working days per year: 250</div>
+              <div>Average loaded cost per professional: $85 per hour</div>
+            </div>
+
+            <h4>Time savings calculation</h4>
+            <div class="scrollx">
+              <table class="tbl">
+                <thead>
+                  <tr><th>Metric</th><th class="mono">Formula</th><th>Result</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Manual lookup time</td><td class="mono">Assumption</td><td>45 minutes</td></tr>
+                  <tr><td>System lookup time</td><td class="mono">Observed</td><td>30 seconds</td></tr>
+                  <tr><td>Time saved per query</td><td class="mono">45 - 0.5</td><td>44.5 minutes</td></tr>
+                  <tr><td>Daily queries (team)</td><td class="mono">25 × 2.5</td><td>62.5</td></tr>
+                  <tr><td>Annual queries</td><td class="mono">62.5 × 250</td><td>15,625</td></tr>
+                  <tr><td><strong>Annual hours saved</strong></td><td class="mono"><strong>(15,625 × 44.5) ÷ 60</strong></td><td><strong>11,594</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4>Value calculation</h4>
+            <div class="scrollx">
+              <table class="tbl">
+                <thead><tr><th>Metric</th><th class="mono">Formula</th><th>Result</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Time savings value</strong></td><td class="mono"><strong>11,594 × $85</strong></td><td><strong>$985,490</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note2">Mobile note: tables scroll horizontally if needed</div>
+          </div>
         </div>
 
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===========================
-     Planning docs section
-     Title styling updated
-     =========================== -->
-<h2 class="h2" style="margin-top:24px;">PRE-PRODUCTION PLANNING</h2>
-<div class="grid">
-  <figure class="card">
-    <a class="card-link" href="Airline%20FAA%20RAG%20-%20Summary.pdf" target="_blank" rel="noopener">
-      <div class="media doc-tile">
-        <div class="doc-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/>
-            <path d="M14 3v5h5" stroke="white" stroke-width="1.6"/>
-          </svg>
+  <section class="section" aria-labelledby="pipeline">
+    <h2 id="pipeline" class="h2">7-STEP PROCESSING PIPELINE</h2>
+    <div class="pipeline">
+      <div class="pipeline-row" aria-label="Pipeline steps">
+        <div class="step">
+          <div class="badge">1</div>
+          <div class="t">Document ingestion</div>
+          <div class="tech">PDF extraction</div>
+          <div class="d">Policy corpus converted to clean text</div>
         </div>
-        <div class="doc-name">Airline FAA RAG – Summary.pdf</div>
-      </div>
-    </a>
-    <figcaption>Planning document</figcaption>
-  </figure>
-
-  <figure class="card">
-    <a class="card-link" href="Airline%20FAA%20RAG%20-%20Tech%20plan.pdf" target="_blank" rel="noopener">
-      <div class="media doc-tile">
-        <div class="doc-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/>
-            <path d="M14 3v5h5" stroke="white" stroke-width="1.6"/>
-          </svg>
+        <div class="step">
+          <div class="badge">2</div>
+          <div class="t">Structured chunking</div>
+          <div class="tech">Section-aware parsing</div>
+          <div class="d">Improves precision, context, and citations</div>
         </div>
-        <div class="doc-name">Airline FAA RAG – Tech plan.pdf</div>
+        <div class="step">
+          <div class="badge">3</div>
+          <div class="t">Embeddings</div>
+          <div class="tech">Vectorization</div>
+          <div class="d">Text encoded for semantic retrieval</div>
+        </div>
+        <div class="step">
+          <div class="badge">4</div>
+          <div class="t">Vector storage</div>
+          <div class="tech">Pinecone index</div>
+          <div class="d">Fast search with metadata filtering</div>
+        </div>
+        <div class="step">
+          <div class="badge">5</div>
+          <div class="t">Retrieval</div>
+          <div class="tech">Top-k context</div>
+          <div class="d">Relevant passages selected for grounding</div>
+        </div>
+        <div class="step">
+          <div class="badge">6</div>
+          <div class="t">Answer generation</div>
+          <div class="tech">Deterministic output</div>
+          <div class="d">Consistent responses for compliance use cases</div>
+        </div>
+        <div class="step">
+          <div class="badge">7</div>
+          <div class="t">Independent verification</div>
+          <div class="tech">Confidence scoring</div>
+          <div class="d">Validates and flags weak answers</div>
+        </div>
       </div>
-    </a>
-    <figcaption>Planning document</figcaption>
-  </figure>
-</div>
 
-<p class="note">These documents show the system intent, architecture, and delivery approach.</p>
-
-<!-- ===========================
-     BOTTOM SECTION (Fixed Template)
-     =========================== -->
-<section class="info-card" aria-labelledby="details" style="margin-top:26px;">
-  <div class="info-head">
-    <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
-    <div class="chips">
-      <span class="chip">OpenAI</span><span class="chip">LangChain</span><span class="chip">Pinecone</span><span class="chip">PDF ingestion</span><span class="chip">Chunking + Embeddings</span><span class="chip">Citations</span>
+      <div style="margin-top:10px;">
+        <div style="font-weight:900;font-size:16px;">Technology Stack</div>
+        <div class="stack" aria-label="Tech stack badges">
+          <span class="badge">Python</span>
+          <span class="badge">FastAPI</span>
+          <span class="badge">Railway</span>
+          <span class="badge">Pinecone</span>
+          <span class="badge">OpenAI</span>
+          <span class="badge">Claude</span>
+          <span class="badge">SwiftUI</span>
+          <span class="badge">TestFlight</span>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <section class="section" aria-labelledby="enterprise">
+    <h2 id="enterprise" class="h2">WHAT MAKES THIS ENTERPRISE-GRADE</h2>
+
+    <div class="cards3">
+      <div class="fcard">
+        <div class="ico">✈️</div>
+        <p class="tt">Verification-first design</p>
+        <p class="st">Independent validation supports higher-trust workflows</p>
+        <ul>
+          <li>Confidence scoring for decision support</li>
+          <li>Deterministic response posture for consistency</li>
+          <li>Designed for audit defensibility</li>
+        </ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ico">🎯</div>
+        <p class="tt">Structure-aware retrieval</p>
+        <p class="st">Chunking tuned for real documents, not clean text</p>
+        <ul>
+          <li>Sections and hierarchy preserved</li>
+          <li>Better precision on dense, technical PDFs</li>
+          <li>Improves citation relevance</li>
+        </ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ico">🔍</div>
+        <p class="tt">Citation transparency</p>
+        <p class="st">Answers link back to the source content</p>
+        <ul>
+          <li>Source snippets for fast verification</li>
+          <li>Encourages correct decision habits</li>
+          <li>Supports QA and review loops</li>
+        </ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ico">⚡</div>
+        <p class="tt">Production-ready patterns</p>
+        <p class="st">Designed to scale without rewrites</p>
+        <ul>
+          <li>Modular backend and deploy flow</li>
+          <li>Incremental corpus updates</li>
+          <li>Swap components as needs evolve</li>
+        </ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ico">📊</div>
+        <p class="tt">Operational analytics-ready</p>
+        <p class="st">Built to support enterprise reporting needs</p>
+        <ul>
+          <li>Confidence and citation signals</li>
+          <li>Clear hooks for usage analytics</li>
+          <li>Supports continuous improvement</li>
+        </ul>
+      </div>
+
+      <div class="fcard">
+        <div class="ico">📱</div>
+        <p class="tt">Native mobile UX</p>
+        <p class="st">Fast access for field and desk workflows</p>
+        <ul>
+          <li>TestFlight for iterative delivery</li>
+          <li>Designed for speed and clarity</li>
+          <li>Supports real-world adoption</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="status">
+    <h2 id="status" class="h2">CURRENT STATUS: 70% PRODUCTION-READY</h2>
+
+    <div class="split" role="group" aria-label="Production readiness">
+      <div class="panel green-accent">
+        <h3>✅ Completed (Beta Ready)</h3>
+        <ul>
+          <li><strong>End-to-end retrieval:</strong> ingest, chunk, index, retrieve, cite</li>
+          <li><strong>Verification layer:</strong> confidence scoring and flagging</li>
+          <li><strong>iOS app:</strong> TestFlight distribution for real users</li>
+          <li><strong>Deployment:</strong> repeatable build and deploy flow</li>
+        </ul>
+      </div>
+
+      <div class="panel blue-accent">
+        <h3>🔄 Next (Enterprise Hardening)</h3>
+        <ul>
+          <li><strong>Auth and rate limits:</strong> access control, abuse protection</li>
+          <li><strong>Monitoring:</strong> uptime, latency, error tracking</li>
+          <li><strong>Change detection:</strong> alerting for updated guidance</li>
+          <li><strong>Calibration:</strong> validate confidence scoring against a test set</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <!-- ===========================
+       Planning docs section
+       Title styling updated
+       =========================== -->
+  <h2 class="h2" style="margin-top:24px;">PRE-PRODUCTION PLANNING</h2>
+
+  <div class="grid">
+    <figure class="card">
+      <a class="card-link" href="Airline%20FAA%20RAG%20-%20Summary.pdf" target="_blank" rel="noopener">
+        <div class="media doc-tile">
+          <div class="doc-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/>
+              <path d="M14 3v5h5" stroke="white" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="doc-name">Airline FAA RAG – Summary.pdf</div>
+        </div>
+      </a>
+      <figcaption>Planning document</figcaption>
+    </figure>
+
+    <figure class="card">
+      <a class="card-link" href="Airline%20FAA%20RAG%20-%20Tech%20plan.pdf" target="_blank" rel="noopener">
+        <div class="media doc-tile">
+          <div class="doc-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.6"/>
+              <path d="M14 3v5h5" stroke="white" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="doc-name">Airline FAA RAG – Tech plan.pdf</div>
+        </div>
+      </a>
+      <figcaption>Planning document</figcaption>
+    </figure>
   </div>
 
-  <div class="info-body" style="grid-template-columns:1fr;">
-    <ul style="margin:0;padding-left:1.1rem;font-size:var(--base);line-height:1.6;">
-      <li><strong>Data & inputs</strong> – FAA Advisory Circular PDFs parsed, cleaned, and normalized with document metadata.</li>
-      <li><strong>Model & processing</strong> – structure-aware chunking; embeddings created and stored with section-level metadata.</li>
-      <li><strong>Vector store</strong> – Pinecone index for semantic retrieval.</li>
-      <li><strong>Retriever & QA</strong> – LangChain pipeline queries vectors and composes grounded answers with citations.</li>
-      <li><strong>Evaluation</strong> – spot checks with held-out questions to tune chunk sizes and prompts.</li>
-      <li><strong>Interface</strong> – lightweight demo surface showing answer plus linked source passages.</li>
-    </ul>
-  </div>
-</section>
+  <p class="note">These documents show the system intent, architecture, and delivery approach.</p>
 
-<script>
-(function(){
-  // Carousel
-  const track = document.getElementById('track');
-  const prev = document.getElementById('prevBtn');
-  const next = document.getElementById('nextBtn');
-  const dotsWrap = document.getElementById('dots');
-  const slides = Array.from(track.children);
-  let i = 0;
+  <!-- ===========================
+       BOTTOM SECTION (Fixed Template)
+       =========================== -->
+  <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
+    <div class="info-head">
+      <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
+      <div class="chips">
+        <span class="chip">OpenAI</span><span class="chip">LangChain</span><span class="chip">Pinecone</span><span class="chip">PDF ingestion</span><span class="chip">Chunking + Embeddings</span><span class="chip">Citations</span>
+      </div>
+    </div>
 
-  function buildDots(){
-    slides.forEach((_, idx) => {
-      const d = document.createElement('button');
-      d.className = 'dot' + (idx === 0 ? ' active' : '');
-      d.type = 'button';
-      d.setAttribute('aria-label', 'Go to screenshot ' + (idx + 1));
-      d.addEventListener('click', () => go(idx));
-      dotsWrap.appendChild(d);
-    });
-  }
+    <div class="info-body" style="grid-template-columns:1fr;">
+      <ul style="margin:0;padding-left:1.1rem;font-size:var(--base);line-height:1.6;">
+        <li><strong>Data & inputs</strong> – FAA Advisory Circular PDFs parsed, cleaned, and normalized with document metadata.</li>
+        <li><strong>Model & processing</strong> – structure-aware chunking; embeddings created and stored with section-level metadata.</li>
+        <li><strong>Vector store</strong> – Pinecone index for semantic retrieval.</li>
+        <li><strong>Retriever & QA</strong> – LangChain pipeline queries vectors and composes grounded answers with citations.</li>
+        <li><strong>Evaluation</strong> – spot checks with held-out questions to tune chunk sizes and prompts.</li>
+        <li><strong>Interface</strong> – lightweight demo surface showing answer plus linked source passages.</li>
+      </ul>
+    </div>
+  </section>
 
-  function updateDots(){
-    const dots = Array.from(dotsWrap.children);
-    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
-  }
+  <script>
+  (function(){
+    // Carousel
+    const track = document.getElementById('track');
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('dots');
+    const slides = track ? Array.from(track.children) : [];
+    let i = 0;
 
-  function go(idx){
-    i = (idx + slides.length) % slides.length;
-    track.style.transform = 'translateX(' + (-i * 100) + '%)';
-    updateDots();
-  }
+    function buildDots(){
+      if(!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, idx) => {
+        const d = document.createElement('button');
+        d.className = 'dot' + (idx === 0 ? ' active' : '');
+        d.type = 'button';
+        d.setAttribute('aria-label', 'Go to screenshot ' + (idx + 1));
+        d.addEventListener('click', () => go(idx));
+        dotsWrap.appendChild(d);
+      });
+    }
 
-  function step(dir){ go(i + dir); }
+    function updateDots(){
+      if(!dotsWrap) return;
+      const dots = Array.from(dotsWrap.children);
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    }
 
-  prev.addEventListener('click', () => step(-1));
-  next.addEventListener('click', () => step(1));
+    function go(idx){
+      if(!track || slides.length === 0) return;
+      i = (idx + slides.length) % slides.length;
+      track.style.transform = 'translateX(' + (-i * 100) + '%)';
+      updateDots();
+    }
 
-  // Swipe
-  let startX = null;
-  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
-  track.addEventListener('touchend', (e) => {
-    if(startX === null) return;
-    const endX = e.changedTouches[0].clientX;
-    const dx = endX - startX;
-    if(Math.abs(dx) > 40) step(dx > 0 ? -1 : 1);
-    startX = null;
-  });
+    function step(dir){ go(i + dir); }
 
-  buildDots();
+    if(prev) prev.addEventListener('click', () => step(-1));
+    if(next) next.addEventListener('click', () => step(1));
 
-  // Accordion
-  const btn = document.getElementById('accBtn');
-  const panel = document.getElementById('accPanel');
-  btn.addEventListener('click', () => {
-    const open = panel.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.querySelector('span').textContent = (open ? '▲ Hide detailed assumptions and formulas' : '▼ View detailed assumptions and formulas');
-  });
-})();
-</script>
+    // Swipe
+    let startX = null;
+    if(track){
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchend', (e) => {
+        if(startX === null) return;
+        const endX = e.changedTouches[0].clientX;
+        const dx = endX - startX;
+        if(Math.abs(dx) > 40) step(dx > 0 ? -1 : 1);
+        startX = null;
+      });
+    }
+
+    buildDots();
+
+    // Accordion
+    const btn = document.getElementById('accBtn');
+    const panel = document.getElementById('accPanel');
+    if(btn && panel){
+      btn.addEventListener('click', () => {
+        const open = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.querySelector('span').textContent = (open ? '▲ Hide detailed assumptions and formulas' : '▼ View detailed assumptions and formulas');
+      });
+    }
+  })();
+  </script>
 
 </main>
 </body>
