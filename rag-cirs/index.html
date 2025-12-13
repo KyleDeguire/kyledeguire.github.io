@@ -16,7 +16,6 @@
   --blue:#1E3A5F;
   --soft:#f1f5ff;
   --soft2:#f7fbff;
-  --ok:#16a34a;
 
   --base:16px;
 }
@@ -33,7 +32,6 @@ body{
 
 /* Header */
 .header{display:flex;align-items:flex-start;justify-content:flex-start;gap:14px;}
-
 .title{font-size:clamp(22px,4vw,34px);color:var(--brand);margin:0 0 6px;}
 .subtitle{color:var(--muted);font-size:16px;margin:0 0 12px;}
 .scroll-hint{display:none;}
@@ -41,7 +39,7 @@ body{
   .scroll-hint{display:block;font-size:1rem;font-style:italic;font-weight:700;color:var(--hint);margin-bottom:6px;}
 }
 
-/* Top and bottom “template” cards */
+/* Top and bottom template cards */
 .info-card{background:var(--tint);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
 .info-head{border-bottom:1px solid var(--border);padding:14px 18px 10px;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
@@ -328,13 +326,12 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   display:flex;align-items:center;justify-content:center;
   font-weight:900;margin-bottom:8px;font-size:16px;
 }
-
-/* UPDATED: all text lanes top-aligned */
+/* Top-aligned text lanes */
 .step .t{
   font-weight:900;
   font-size:16px;
   line-height:1.25;
-  min-height:2.6em;  /* heading lane */
+  min-height:2.6em;
   margin:0;
 }
 .step .tech{
@@ -342,16 +339,15 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   color:var(--muted);
   font-size:16px;
   line-height:1.25;
-  min-height:2.2em;  /* subheading lane */
+  min-height:2.2em;
 }
 .step .d{
   margin-top:6px;
   color:var(--fg);
   font-size:16px;
   line-height:1.55;
-  min-height:3.2em;  /* body lane */
+  min-height:3.2em;
 }
-
 @media (min-width:980px){
   .pipeline-row{grid-template-columns:repeat(7,1fr);overflow:visible;}
 }
@@ -365,18 +361,9 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 }
 
 /* Enterprise-grade cards */
-.cards3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-@media (max-width:980px){
-  .cards3{grid-template-columns:repeat(2,1fr);}
-}
-@media (max-width:560px){
-  .cards3{grid-template-columns:1fr;}
-}
-
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media (max-width:980px){.cards3{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.cards3{grid-template-columns:1fr;}}
 .fcard{
   border:1px solid var(--border);
   background:#fff;
@@ -384,11 +371,11 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   box-shadow:var(--shadow);
   padding:14px 14px 12px;
 }
-
 .fcard .ico{font-size:32px;line-height:1;margin-bottom:8px;}
 .fcard .tt{font-weight:900;margin:0 0 6px;font-size:16px;}
 .fcard .st{margin:0 0 10px;color:var(--muted);font-size:16px;line-height:1.55;}
-.fcard ul{margin:0;padding-left:1.05rem;color:var(--fg);font-size:16px;line-height:1.6;}
+/* IMPORTANT: normal bullets only, no grid */
+.fcard ul{margin:0;padding-left:1.05rem;color:var(--fg);font-size:16px;line-height:1.6;display:block;}
 .fcard li{margin-bottom:8px;}
 .fcard li:last-child{margin-bottom:0;}
 
@@ -422,6 +409,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     </div>
   </div>
 
+  <!-- TOP TEMPLATE -->
   <section class="info-card" aria-labelledby="overview">
     <div class="info-head">
       <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
@@ -455,6 +443,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     </div>
   </section>
 
+  <!-- iOS SECTION -->
   <section class="section" aria-labelledby="ios-showcase">
     <h2 id="ios-showcase" class="h2">NATIVE IOS APPLICATION <span>- LIVE IN TESTFLIGHT</span></h2>
 
@@ -562,6 +551,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     </div>
   </section>
 
+  <!-- METRICS -->
   <section class="section" aria-labelledby="metrics">
     <h2 id="metrics" class="h2">SYSTEM CAPABILITIES AT SCALE</h2>
     <div class="metrics">
@@ -588,6 +578,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     </div>
   </section>
 
+  <!-- ROI -->
   <section class="section" aria-labelledby="roi">
     <div class="roi" id="roiBox">
       <div class="roi-inner">
@@ -704,6 +695,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     </div>
   </section>
 
+  <!-- PIPELINE -->
   <section class="section" aria-labelledby="pipeline">
     <h2 id="pipeline" class="h2">7-STEP PROCESSING PIPELINE</h2>
     <div class="pipeline">
@@ -768,6 +760,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     </div>
   </section>
 
+  <!-- ENTERPRISE -->
   <section class="section" aria-labelledby="enterprise">
     <h2 id="enterprise" class="h2">WHAT MAKES THIS ENTERPRISE-GRADE</h2>
 
@@ -840,6 +833,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     </div>
   </section>
 
+  <!-- STATUS -->
   <section class="section" aria-labelledby="status">
     <h2 id="status" class="h2">CURRENT STATUS: 70% PRODUCTION-READY</h2>
 
@@ -868,6 +862,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
 
   <hr class="sep" />
 
+  <!-- PLANNING DOCS -->
   <h2 class="h2" style="margin-top:24px;">PRE-PRODUCTION PLANNING</h2>
 
   <div class="grid">
@@ -904,6 +899,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
 
   <p class="note">These documents show the system intent, architecture, and delivery approach.</p>
 
+  <!-- BOTTOM TEMPLATE -->
   <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
     <div class="info-head">
       <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
@@ -926,6 +922,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
 
   <script>
   (function(){
+    // Carousel
     const track = document.getElementById('track');
     const prev = document.getElementById('prevBtn');
     const next = document.getElementById('nextBtn');
@@ -964,6 +961,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
     if(prev) prev.addEventListener('click', () => step(-1));
     if(next) next.addEventListener('click', () => step(1));
 
+    // Swipe
     let startX = null;
     if(track){
       track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
@@ -978,6 +976,7 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
 
     buildDots();
 
+    // Accordion
     const btn = document.getElementById('accBtn');
     const panel = document.getElementById('accPanel');
     if(btn && panel){
