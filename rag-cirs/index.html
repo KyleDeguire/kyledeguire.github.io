@@ -95,7 +95,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 /* iOS layout */
 .ios-layout{
   display:grid;
-  grid-template-columns: 0.68fr 1.32fr;
+  grid-template-columns:0.68fr 1.32fr;
   gap:14px;
   align-items:stretch;
 }
@@ -106,22 +106,14 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 /* Carousel */
 .carousel-wrap{
   border:1px solid var(--border);
-  background:linear-gradient(180deg, var(--soft2), #fff 70%);
+  background:linear-gradient(180deg,var(--soft2),#fff 70%);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
   overflow:hidden;
 }
-.carousel{
-  position:relative;
-  display:grid;
-  grid-template-columns:1fr;
-}
+.carousel{position:relative;display:grid;grid-template-columns:1fr;}
 .carousel-viewport{width:100%;overflow:hidden;}
-.carousel-track{
-  display:flex;
-  transition:transform .22s ease;
-  will-change:transform;
-}
+.carousel-track{display:flex;transition:transform .22s ease;will-change:transform;}
 .slide{min-width:100%;padding:12px 12px 8px;}
 .slide-inner{display:grid;grid-template-columns:1fr;gap:10px;}
 .slide-media{
@@ -145,6 +137,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   font-size:var(--base);
 }
 
+/* Carousel controls */
 .carousel-btn{
   position:absolute;
   top:50%;
@@ -156,8 +149,6 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;
 }
-.carousel-btn:hover{filter:brightness(.98);}
-.carousel-btn:active{transform:translateY(-50%) scale(.98);}
 .carousel-btn.left{left:10px;}
 .carousel-btn.right{right:10px;}
 
@@ -173,21 +164,41 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   background:rgba(100,116,139,.20);
   cursor:pointer;
 }
-.dot.active{background:rgba(10,102,194,.35);border-color:rgba(10,102,194,.55);}
+.dot.active{
+  background:rgba(10,102,194,.35);
+  border-color:rgba(10,102,194,.55);
+}
 
-/* Right panel with large logo above stacked boxes */
+/* Right panel with logo + stacked boxes */
 .ios-right{
   position:relative;
   display:flex;
   flex-direction:column;
-  justify-content:space-between; /* aligns bottom of boxes with bottom of carousel */
+  justify-content:space-between;
 }
+
+/* Light blue logo band */
+.ios-logo-band{
+  background:#eaf2ff;
+  border:1px solid rgba(10,102,194,.18);
+  border-radius:18px;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:14px;
+}
+
+/* iOS-style app icon */
 .ios-logo{
-  width:150px;
-  height:150px;
+  width:120px;
+  height:120px;
   object-fit:contain;
-  margin:0 auto 12px auto;
-  filter:drop-shadow(0 12px 28px rgba(0,0,0,.25));
+  border-radius:22px;
+  background:#ffffff;
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.18),
+    inset 0 0 0 1px rgba(255,255,255,.85);
 }
 
 /* Stacked feature boxes */
@@ -221,269 +232,25 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   font-size:16px;
 }
 
-/* Metrics */
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-@media (max-width:980px){.metrics{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:560px){.metrics{grid-template-columns:1fr;}}
-.metric{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:12px;
-  padding:14px 14px 12px;
-  box-shadow:var(--shadow);
-}
-.metric .num{font-size:36px;line-height:1.05;font-weight:900;color:var(--navy);letter-spacing:-.4px;}
-.metric .lbl{font-weight:900;margin-top:8px;font-size:16px;}
-.metric .det{margin-top:8px;color:var(--muted);font-size:16px;line-height:1.55;}
-
-/* ROI */
-.roi{
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  border:1px solid rgba(255,255,255,.18);
-  background:linear-gradient(135deg, var(--navy), var(--blue));
-  color:#fff;
-}
-.roi-inner{padding:18px 18px 16px;}
-.roi-title{margin:0 0 12px;font-size:clamp(18px,2.1vw,24px);font-weight:900;}
-.roi-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr;gap:12px;}
-@media (max-width:980px){.roi-grid{grid-template-columns:1fr 1fr;}}
-@media (max-width:560px){.roi-grid{grid-template-columns:1fr;}}
-.roi-card{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:12px;
-  padding:14px 14px 12px;
-}
-.roi-card.highlight{
-  border:1px solid rgba(255,140,66,.95);
-  box-shadow:0 0 0 2px rgba(255,140,66,.18), 0 8px 22px rgba(0,0,0,.25);
-}
-.roi-num{
-  font-size:28px;font-weight:900;letter-spacing:-.25px;line-height:1.15;
-  white-space:nowrap; /* 3a: force one line */
-}
-.roi-lbl{
-  margin-top:8px;font-weight:900;font-size:16px;
-  min-height:2.2em; /* 3b: equal height */
-  display:flex;
-  align-items:flex-end;
-}
-.roi-det{margin-top:8px;opacity:.92;font-size:16px;line-height:1.55;}
-
-.table-wrap{margin-top:14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;overflow:hidden;}
-.table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.06);}
-.table th,.table td{padding:10px 12px;text-align:left;font-size:16px;border-bottom:1px solid rgba(255,255,255,.14);}
-.table th{font-weight:900;}
-.table tr:last-child td{border-bottom:none;}
-
-.acc{
-  margin-top:14px;
-  border-radius:12px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.05);
-}
-.acc button{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:12px 14px;
-  color:#fff;
-  background:transparent;
-  border:none;
-  cursor:pointer;
-  font-weight:900;
-  font-size:16px;
-}
-.acc button span{opacity:.95;}
-.acc-panel{display:none;padding:0 14px 14px;}
-.acc-panel.open{display:block;}
-.acc h4{margin:14px 0 8px;font-size:16px;}
-.acc .assump{color:rgba(255,255,255,.92);font-size:16px;line-height:1.65;}
-.acc .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
-.acc .tbl{width:100%;border-collapse:collapse;margin-top:10px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;}
-.acc .tbl th,.acc .tbl td{padding:10px 10px;font-size:16px;border-bottom:1px solid rgba(255,255,255,.12);vertical-align:top;}
-.acc .tbl th{font-weight:900;}
-.acc .tbl tr:nth-child(even) td{background:rgba(255,255,255,.03);}
-.acc .tbl tr:last-child td{border-bottom:none;}
-.acc .scrollx{overflow:auto;}
-.acc .note2{margin-top:10px;font-size:16px;opacity:.9;}
-
-/* Pipeline */
-.pipeline{
-  border:1px solid var(--border);
-  background:linear-gradient(180deg, var(--soft), #fff 70%);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:14px 14px 12px;
-}
-.pipeline-row{
-  display:grid;
-  grid-template-columns:repeat(7, minmax(170px, 1fr));
-  gap:10px;
-  overflow:auto;
-  padding-bottom:8px;
-}
-.step{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.95);
-  border-radius:12px;
-  padding:12px 12px 10px;
-  min-height:132px;
-}
-.step .badge{
-  width:34px;height:34px;border-radius:999px;
-  background:rgba(10,102,194,.12);
-  border:1px solid rgba(10,102,194,.25);
-  color:var(--brand);
-  display:flex;align-items:center;justify-content:center;
-  font-weight:900;
-  margin-bottom:8px;
-  font-size:16px;
-}
-/* 4: align heading and text blocks */
-.step .t{
-  font-weight:900;font-size:16px;
-  min-height:2.6em;
-  display:flex;
-  align-items:flex-end;
-}
-.step .tech{
-  margin-top:6px;color:var(--muted);font-size:16px;
-  min-height:2.2em;
-  display:flex;
-  align-items:flex-end;
-}
-.step .d{
-  margin-top:6px;color:var(--fg);font-size:16px;line-height:1.55;
-  min-height:3.2em;
-}
-@media (min-width:980px){
-  .pipeline-row{grid-template-columns:repeat(7, 1fr);overflow:visible;}
-}
-
-/* Tech stack badges */
-.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-.badge{
-  font-size:16px;
-  padding:8px 10px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:#fff;
-  color:var(--muted);
-  box-shadow:0 1px 0 rgba(0,0,0,.03);
-}
-
-/* Enterprise-grade cards */
-.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-@media (max-width:980px){.cards3{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:560px){.cards3{grid-template-columns:1fr;}}
-.fcard{
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  padding:14px 14px 12px;
-}
-.fcard .ico{font-size:32px;line-height:1;margin-bottom:8px;}
-.fcard .tt{font-weight:900;margin:0 0 6px;font-size:16px;}
-.fcard .st{margin:0 0 10px;color:var(--muted);font-size:16px;line-height:1.55;}
-.fcard ul{margin:0;padding-left:1.05rem;color:var(--fg);font-size:16px;line-height:1.6;}
-.fcard li{margin-bottom:8px;}
-.fcard li:last-child{margin-bottom:0;}
-
-/* Status split */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media (max-width:860px){.split{grid-template-columns:1fr;}}
-.panel{
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  padding:14px 14px 12px;
-}
-.panel h3{margin:0 0 10px;font-size:16px;}
-.panel ul{margin:0;padding-left:1.05rem;color:var(--fg);font-size:16px;line-height:1.6;}
-.panel li{margin-bottom:10px;}
-.panel li:last-child{margin-bottom:0;}
-.green-accent{border-left:4px solid rgba(22,163,74,.7);}
-.blue-accent{border-left:4px solid rgba(10,102,194,.6);}
-
-hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
-</style>
-</head>
-
-<body>
-<main class="container">
-  <div class="header">
-  <div>
-    <h1 class="title">RAG AI: FAA Advisory Circular search app</h1>
-  </div>
-</div>
-
-<!-- ===========================
-     TOP SECTION (Fixed Template)
-     =========================== -->
-<section class="info-card" aria-labelledby="overview">
-  <div class="info-head">
-    <h2 id="overview" class="subtitle" style="margin:0;">Overview</h2>
-    <div class="chips">
-      <span class="chip">Compliance</span><span class="chip">RAG + citations</span><span class="chip">Pinecone + LangChain</span><span class="chip">FAA Advisory Circulars</span>
-    </div>
-  </div>
-
-  <div class="info-body">
-    <div class="info-section">
-      <p class="scroll-hint"><strong><em>Scroll down for planning docs</em></strong><br><em>- System development in progress</em></p>
-
-      <h3>Project overview</h3>
-      <p>Enterprise-grade compliance assistant for FAA Advisory Circulars. PDFs are parsed, normalized, and indexed for citation-first retrieval, then responses are verified by an independent model to support safety-critical decisioning across operations, maintenance, and training.</p>
-
-      <h3>Business impact</h3>
-      <p>Turns long regulatory lookups into fast, cited answers that teams can trust. Reduces rework, accelerates audits, and improves consistency across departments by making the same sources accessible in the same way.</p>
-    </div>
-
-    <div class="info-section">
-      <h3>My role: <span class="inline-role">Strategy → architecture → build → test</span></h3>
-      <p>Designed and built the end-to-end system: ingestion, structure-aware chunking, embeddings, retrieval, verification, and a native iOS interface. Focused on production patterns, traceability, and repeatability so the approach scales beyond aviation.</p>
-
-      <h3>Scalability</h3>
-      <p>Built to extend to other corpora like SOPs, MELs, manuals, training content, and internal policy libraries. The architecture supports incremental updates and can transfer to other compliance-heavy industries with minimal changes.</p>
-    </div>
-
-    <div class="info-section info-full">
-      <h3>Technical details</h3><p><em>See below</em></p>
-    </div>
-  </div>
-</section>
-
-<!-- ===========================
-     MIDDLE SECTION
-     =========================== -->
+/* ===========================
+   HTML — Native iOS Section
+   =========================== */
 
 <section class="section" aria-labelledby="ios-showcase">
   <h2 id="ios-showcase" class="h2">NATIVE IOS APPLICATION <span>- LIVE IN TESTFLIGHT</span></h2>
 
   <div class="ios-layout">
+
     <!-- Carousel -->
     <div class="carousel-wrap">
       <div class="carousel">
-        <button class="carousel-btn left" type="button" aria-label="Previous screenshot" id="prevBtn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M15 18l-6-6 6-6" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        <div class="carousel-viewport" aria-live="polite">
+        <div class="carousel-viewport">
           <div class="carousel-track" id="track">
+
             <div class="slide">
               <div class="slide-inner">
                 <div class="slide-media">
-                  <img src="IMG_7110.PNG" alt="Home screen with search interface" loading="lazy" />
+                  <img src="IMG_7110.PNG" alt="Home screen" />
                 </div>
                 <div class="slide-cap">Home screen with search interface</div>
               </div>
@@ -492,25 +259,25 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
             <div class="slide">
               <div class="slide-inner">
                 <div class="slide-media">
-                  <img src="IMG_7111.PNG" alt="Query input for runway marking requirements" loading="lazy" />
+                  <img src="IMG_7111.PNG" alt="Query input" />
                 </div>
-                <div class="slide-cap">Query input for runway marking requirements</div>
+                <div class="slide-cap">Query input for runway markings</div>
               </div>
             </div>
 
             <div class="slide">
               <div class="slide-inner">
                 <div class="slide-media">
-                  <img src="IMG_7112.PNG" alt="Search results with confidence score" loading="lazy" />
+                  <img src="IMG_7112.PNG" alt="Confidence score" />
                 </div>
-                <div class="slide-cap">Search results with confidence score</div>
+                <div class="slide-cap">Results with confidence score</div>
               </div>
             </div>
 
             <div class="slide">
               <div class="slide-inner">
                 <div class="slide-media">
-                  <img src="IMG_7115.PNG" alt="Regulatory content and specifications" loading="lazy" />
+                  <img src="IMG_7115.PNG" alt="Regulatory detail" />
                 </div>
                 <div class="slide-cap">Regulatory content and specifications</div>
               </div>
@@ -519,362 +286,54 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
             <div class="slide">
               <div class="slide-inner">
                 <div class="slide-media">
-                  <img src="IMG_7117.PNG" alt="Source citations with AC numbers" loading="lazy" />
+                  <img src="IMG_7117.PNG" alt="Citations" />
                 </div>
                 <div class="slide-cap">Source citations with AC numbers</div>
               </div>
             </div>
+
           </div>
         </div>
-
-        <button class="carousel-btn right" type="button" aria-label="Next screenshot" id="nextBtn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M9 6l6 6-6 6" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
       </div>
-
-      <div class="carousel-dots" role="tablist" aria-label="Screenshot navigation" id="dots"></div>
     </div>
 
-    <!-- Right side: big logo + stacked boxes aligned to carousel height -->
+    <!-- Right side: logo band + stacked boxes -->
     <div class="ios-right">
-      <img class="ios-logo" src="Main%20Logo.png" alt="RAG CIRS logo" />
 
-      <div class="feature-stack" aria-label="Key iOS features">
+      <div class="ios-logo-band">
+        <img class="ios-logo" src="Main%20Logo.png" alt="RAG CIRS logo" />
+      </div>
+
+      <div class="feature-stack">
+
         <div class="feature-panel">
           <b>Fast, mobile-first access</b>
-          <p>Designed for real work, quick lookups during planning, inspection prep, or audit response</p>
+          <p>Designed for real work during planning, inspection prep, or audit response</p>
           <div class="tag">~30 sec response time</div>
         </div>
 
         <div class="feature-panel">
           <b>Confidence-forward output</b>
-          <p>Every answer includes a confidence score so users know when to double-check before acting</p>
+          <p>Every answer includes a confidence score to support safe decision-making</p>
           <div class="tag">95 to 100% scoring</div>
         </div>
 
         <div class="feature-panel">
           <b>Citations you can verify</b>
-          <p>Answers include FAA citations and source snippets for transparency and defensibility</p>
+          <p>Answers include FAA citations and source snippets for defensibility</p>
           <div class="tag">Cited FAA sources</div>
         </div>
 
         <div class="feature-panel">
           <b>Built for iteration</b>
-          <p>TestFlight distribution supports rapid beta updates and user-driven refinement</p>
+          <p>TestFlight distribution enables rapid beta feedback and refinement</p>
           <div class="tag">Beta testing ready</div>
         </div>
+
       </div>
     </div>
   </div>
 </section>
-
-<section class="section" aria-labelledby="metrics">
-  <h2 id="metrics" class="h2">SYSTEM CAPABILITIES AT SCALE</h2>
-  <div class="metrics">
-    <div class="metric">
-      <div class="num">718</div>
-      <div class="lbl">FAA documents indexed</div>
-      <div class="det">Advisory Circulars plus supporting materials</div>
-    </div>
-    <div class="metric">
-      <div class="num">27,326</div>
-      <div class="lbl">Searchable chunks</div>
-      <div class="det">Structured for citation-first retrieval</div>
-    </div>
-    <div class="metric">
-      <div class="num">94.3%</div>
-      <div class="lbl">Structure detection accuracy</div>
-      <div class="det">Improves retrieval precision and traceability</div>
-    </div>
-    <div class="metric">
-      <div class="num">16MB+</div>
-      <div class="lbl">Large PDF handling</div>
-      <div class="det">Supports complex, high-density documents</div>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="roi">
-  <div class="roi" id="roiBox">
-    <div class="roi-inner">
-      <h2 id="roi" class="roi-title">BUSINESS VALUE: 25-PERSON COMPLIANCE TEAM</h2>
-
-      <div class="roi-grid" aria-label="ROI highlights">
-        <div class="roi-card">
-          <div class="roi-num">$985K per year</div>
-          <div class="roi-lbl">Time savings</div>
-          <div class="roi-det">Regulatory lookup compressed from manual research to a fast, cited response</div>
-        </div>
-        <div class="roi-card">
-          <div class="roi-num">$100K to $1.5M</div>
-          <div class="roi-lbl">Mistake prevention</div>
-          <div class="roi-det">Fewer missed cross-references and fewer audit surprises</div>
-        </div>
-        <div class="roi-card">
-          <div class="roi-num">$360K to $540K</div>
-          <div class="roi-lbl">Avoided hiring costs</div>
-          <div class="roi-det">Less dependency on specialist research capacity as usage grows</div>
-        </div>
-        <div class="roi-card highlight">
-          <div class="roi-num">401x ROI</div>
-          <div class="roi-lbl">Annual return</div>
-          <div class="roi-det">Illustrative example based on system cost and team assumptions</div>
-        </div>
-      </div>
-
-      <div class="table-wrap" aria-label="Scaling economics">
-        <table class="table">
-          <thead>
-            <tr><th colspan="2">Scaling Economics</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>10 people</strong></td><td>$394,000</td></tr>
-            <tr><td><strong>25 people</strong></td><td>$1,440,000</td></tr>
-            <tr><td><strong>50 people</strong></td><td>$2,880,000</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="table-wrap" aria-label="Light vs heavy usage">
-        <table class="table">
-          <thead>
-            <tr><th colspan="3">Usage Scenarios (Mini View)</th></tr>
-            <tr>
-              <th>Scenario</th>
-              <th>Assumption</th>
-              <th>Implication</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Light usage</strong></td>
-              <td>Lower query volume, steady compliance needs</td>
-              <td>Strong value for audit prep, consistency, and defensible citations</td>
-            </tr>
-            <tr>
-              <td><strong>Heavy usage</strong></td>
-              <td>High query volume across teams and shifts</td>
-              <td>Compounding savings and reduced reliance on specialist researchers</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="acc" aria-label="How these numbers are calculated">
-        <button type="button" id="accBtn" aria-expanded="false" aria-controls="accPanel">
-          <span>▼ View detailed assumptions and formulas</span>
-          <span style="opacity:.85;font-weight:800;">(collapsed by default)</span>
-        </button>
-
-        <div class="acc-panel" id="accPanel" role="region" aria-label="Detailed assumptions and formulas">
-          <h4>Assumptions</h4>
-          <div class="assump">
-            <div>Team size: 25 compliance professionals</div>
-            <div>Queries per person per day: 2.5</div>
-            <div>Working days per year: 250</div>
-            <div>Average loaded cost per professional: $85 per hour</div>
-          </div>
-
-          <h4>Time savings calculation</h4>
-          <div class="scrollx">
-            <table class="tbl">
-              <thead>
-                <tr><th>Metric</th><th class="mono">Formula</th><th>Result</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Manual lookup time</td><td class="mono">Assumption</td><td>45 minutes</td></tr>
-                <tr><td>System lookup time</td><td class="mono">Observed</td><td>30 seconds</td></tr>
-                <tr><td>Time saved per query</td><td class="mono">45 - 0.5</td><td>44.5 minutes</td></tr>
-                <tr><td>Daily queries (team)</td><td class="mono">25 × 2.5</td><td>62.5</td></tr>
-                <tr><td>Annual queries</td><td class="mono">62.5 × 250</td><td>15,625</td></tr>
-                <tr><td><strong>Annual hours saved</strong></td><td class="mono"><strong>(15,625 × 44.5) ÷ 60</strong></td><td><strong>11,594</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h4>Value calculation</h4>
-          <div class="scrollx">
-            <table class="tbl">
-              <thead><tr><th>Metric</th><th class="mono">Formula</th><th>Result</th></tr></thead>
-              <tbody>
-                <tr><td><strong>Time savings value</strong></td><td class="mono"><strong>11,594 × $85</strong></td><td><strong>$985,490</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="note2">Mobile note: tables scroll horizontally if needed</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="pipeline">
-  <h2 id="pipeline" class="h2">7-STEP PROCESSING PIPELINE</h2>
-  <div class="pipeline">
-    <div class="pipeline-row" aria-label="Pipeline steps">
-      <div class="step">
-        <div class="badge">1</div>
-        <div class="t">Document ingestion</div>
-        <div class="tech">PDF extraction</div>
-        <div class="d">Policy corpus converted to clean text</div>
-      </div>
-      <div class="step">
-        <div class="badge">2</div>
-        <div class="t">Structured chunking</div>
-        <div class="tech">Section-aware parsing</div>
-        <div class="d">Improves precision, context, and citations</div>
-      </div>
-      <div class="step">
-        <div class="badge">3</div>
-        <div class="t">Embeddings</div>
-        <div class="tech">Vectorization</div>
-        <div class="d">Text encoded for semantic retrieval</div>
-      </div>
-      <div class="step">
-        <div class="badge">4</div>
-        <div class="t">Vector storage</div>
-        <div class="tech">Pinecone index</div>
-        <div class="d">Fast search with metadata filtering</div>
-      </div>
-      <div class="step">
-        <div class="badge">5</div>
-        <div class="t">Retrieval</div>
-        <div class="tech">Top-k context</div>
-        <div class="d">Relevant passages selected for grounding</div>
-      </div>
-      <div class="step">
-        <div class="badge">6</div>
-        <div class="t">Answer generation</div>
-        <div class="tech">Deterministic output</div>
-        <div class="d">Consistent responses for compliance use cases</div>
-      </div>
-      <div class="step">
-        <div class="badge">7</div>
-        <div class="t">Independent verification</div>
-        <div class="tech">Confidence scoring</div>
-        <div class="d">Validates and flags weak answers</div>
-      </div>
-    </div>
-
-    <div style="margin-top:10px;">
-      <div style="font-weight:900;font-size:16px;">Technology Stack</div>
-      <div class="stack" aria-label="Tech stack badges">
-        <span class="badge">Python</span>
-        <span class="badge">FastAPI</span>
-        <span class="badge">Railway</span>
-        <span class="badge">Pinecone</span>
-        <span class="badge">OpenAI</span>
-        <span class="badge">Claude</span>
-        <span class="badge">SwiftUI</span>
-        <span class="badge">TestFlight</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="enterprise">
-  <h2 id="enterprise" class="h2">WHAT MAKES THIS ENTERPRISE-GRADE</h2>
-
-  <div class="cards3">
-    <div class="fcard">
-      <div class="ico">✈️</div>
-      <p class="tt">Verification-first design</p>
-      <p class="st">Independent validation supports higher-trust workflows</p>
-      <ul>
-        <li>Confidence scoring for decision support</li>
-        <li>Deterministic response posture for consistency</li>
-        <li>Designed for audit defensibility</li>
-      </ul>
-    </div>
-
-    <div class="fcard">
-      <div class="ico">🎯</div>
-      <p class="tt">Structure-aware retrieval</p>
-      <p class="st">Chunking tuned for real documents, not clean text</p>
-      <ul>
-        <li>Sections and hierarchy preserved</li>
-        <li>Better precision on dense, technical PDFs</li>
-        <li>Improves citation relevance</li>
-      </ul>
-    </div>
-
-    <div class="fcard">
-      <div class="ico">🔍</div>
-      <p class="tt">Citation transparency</p>
-      <p class="st">Answers link back to the source content</p>
-      <ul>
-        <li>Source snippets for fast verification</li>
-        <li>Encourages correct decision habits</li>
-        <li>Supports QA and review loops</li>
-      </ul>
-    </div>
-
-    <div class="fcard">
-      <div class="ico">⚡</div>
-      <p class="tt">Production-ready patterns</p>
-      <p class="st">Designed to scale without rewrites</p>
-      <ul>
-        <li>Modular backend and deploy flow</li>
-        <li>Incremental corpus updates</li>
-        <li>Swap components as needs evolve</li>
-      </ul>
-    </div>
-
-    <div class="fcard">
-      <div class="ico">📊</div>
-      <p class="tt">Operational analytics-ready</p>
-      <p class="st">Built to support enterprise reporting needs</p>
-      <ul>
-        <li>Confidence and citation signals</li>
-        <li>Clear hooks for usage analytics</li>
-        <li>Supports continuous improvement</li>
-      </ul>
-    </div>
-
-    <div class="fcard">
-      <div class="ico">📱</div>
-      <p class="tt">Native mobile UX</p>
-      <p class="st">Fast access for field and desk workflows</p>
-      <ul>
-        <li>TestFlight for iterative delivery</li>
-        <li>Designed for speed and clarity</li>
-        <li>Supports real-world adoption</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="status">
-  <h2 id="status" class="h2">CURRENT STATUS: 70% PRODUCTION-READY</h2>
-
-  <div class="split" role="group" aria-label="Production readiness">
-    <div class="panel green-accent">
-      <h3>✅ Completed (Beta Ready)</h3>
-      <ul>
-        <li><strong>End-to-end retrieval:</strong> ingest, chunk, index, retrieve, cite</li>
-        <li><strong>Verification layer:</strong> confidence scoring and flagging</li>
-        <li><strong>iOS app:</strong> TestFlight distribution for real users</li>
-        <li><strong>Deployment:</strong> repeatable build and deploy flow</li>
-      </ul>
-    </div>
-
-    <div class="panel blue-accent">
-      <h3>🔄 Next (Enterprise Hardening)</h3>
-      <ul>
-        <li><strong>Auth and rate limits:</strong> access control, abuse protection</li>
-        <li><strong>Monitoring:</strong> uptime, latency, error tracking</li>
-        <li><strong>Change detection:</strong> alerting for updated guidance</li>
-        <li><strong>Calibration:</strong> validate confidence scoring against a test set</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<hr class="sep" />
 
 <!-- ===========================
      Planning docs section
