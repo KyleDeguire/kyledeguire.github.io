@@ -53,7 +53,7 @@ body{
 .info-full{grid-column:1/-1;}
 @media (min-width:900px){.info-section.info-full{margin-top:6px;}}
 
-/* Planning docs tiles */
+/* Planning docs tiles (generic) */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -397,6 +397,133 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 .blue-accent{border-left:4px solid rgba(10,102,194,.6);}
 
 hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
+
+/* ===========================
+   PRE-PRODUCTION PLANNING (premium doc cards)
+   =========================== */
+.plan-grid{ margin-top:clamp(14px,2.2vw,22px); }
+
+figure.plan-card{
+  margin:0;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, #f7fbff 0%, #ffffff 70%);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+figure.plan-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 3px 10px rgba(10,102,194,.18), var(--shadow);
+}
+
+a.plan-link{
+  display:flex;
+  gap:14px;
+  padding:16px;
+  text-decoration:none;
+  color:inherit;
+  align-items:stretch;
+}
+
+/* Left “thumbnail” area */
+.plan-thumb{
+  flex:0 0 160px;
+  border-radius:14px;
+  border:1px solid rgba(226,232,240,.95);
+  background:
+    radial-gradient(120% 120% at 10% 0%, rgba(10,102,194,.10) 0%, rgba(255,255,255,.92) 55%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(15,23,42,.08) 0px,
+      rgba(15,23,42,.08) 1px,
+      transparent 1px,
+      transparent 16px
+    );
+  box-shadow:0 14px 28px rgba(0,0,0,.10);
+  position:relative;
+  overflow:hidden;
+}
+.plan-thumb::after{
+  content:"";
+  position:absolute;
+  right:-60px;
+  bottom:-70px;
+  width:220px;height:220px;
+  border-radius:999px;
+  background:rgba(255,140,66,.10);
+}
+.plan-icon{
+  position:absolute;
+  top:12px; left:12px;
+  width:44px;height:44px;
+  border-radius:14px;
+  background:var(--brand);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 22px rgba(10,102,194,.22);
+}
+
+/* Right content */
+.plan-body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-width:0;
+}
+.plan-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.35px;
+  text-transform:uppercase;
+  color:rgba(15,23,42,.65);
+  margin-bottom:8px;
+}
+.plan-badge{
+  font-size:12px;
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(10,102,194,.22);
+  background:rgba(10,102,194,.08);
+  color:var(--brand);
+}
+
+.plan-title{
+  margin:0 0 8px;
+  font-size:18px;
+  font-weight:900;
+  line-height:1.2;
+  color:var(--fg);
+}
+.plan-desc{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.55;
+}
+
+.plan-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  width:max-content;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(10,102,194,.24);
+  background:rgba(10,102,194,.08);
+  color:var(--brand);
+  font-weight:900;
+  font-size:16px;
+}
+
+@media (max-width:620px){
+  a.plan-link{ flex-direction:column; }
+  .plan-thumb{ flex:0 0 auto; height:160px; }
+}
 </style>
 </head>
 
@@ -863,40 +990,31 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
   <hr class="sep" />
 
   <!-- PLANNING DOCS -->
-<h2 class="h2" style="margin-top:24px;">PRE-PRODUCTION PLANNING</h2>
+  <h2 class="h2" style="margin-top:24px;">PRE-PRODUCTION PLANNING</h2>
 
-<div class="grid">
+  <div class="grid plan-grid">
 
-  <!-- Planning document: Summary -->
-  <figure class="card">
-    <a class="card-link" href="Airline%20FAA%20RAG%20-%20Summary.pdf" target="_blank" rel="noopener">
-      <div class="media doc-tile">
-
-        <div class="doc-top">
-          <div class="doc-top-left">
-            <div class="doc-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
-                <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
-              </svg>
-            </div>
-            <div class="doc-meta">
-              <div class="doc-kicker">Planning Brief</div>
-              <div class="doc-title">Airline FAA RAG — Summary</div>
-            </div>
+    <figure class="plan-card">
+      <a class="plan-link" href="Airline%20FAA%20RAG%20-%20Summary.pdf" target="_blank" rel="noopener">
+        <div class="plan-thumb" aria-hidden="true">
+          <div class="plan-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
+              <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
+            </svg>
           </div>
-          <div class="doc-badge">PDF</div>
         </div>
 
-        <div class="doc-preview" aria-hidden="true">
-          <div class="doc-sheet"></div>
-        </div>
-
-        <div class="doc-bottom">
-          <div class="doc-sub">
-            Executive overview covering scope, business value, and system intent
+        <div class="plan-body">
+          <div>
+            <div class="plan-kicker">
+              Planning brief <span class="plan-badge">PDF</span>
+            </div>
+            <h3 class="plan-title">Airline FAA RAG — Summary</h3>
+            <p class="plan-desc">Executive overview of scope, business value, and system intent, written for stakeholders and decision makers.</p>
           </div>
-          <div class="doc-cta">
+
+          <div class="plan-cta">
             Open PDF
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M7 17L17 7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round"/>
@@ -904,41 +1022,30 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
             </svg>
           </div>
         </div>
+      </a>
+    </figure>
 
-      </div>
-    </a>
-  </figure>
-
-  <!-- Planning document: Technical plan -->
-  <figure class="card">
-    <a class="card-link" href="Airline%20FAA%20RAG%20-%20Tech%20plan.pdf" target="_blank" rel="noopener">
-      <div class="media doc-tile">
-
-        <div class="doc-top">
-          <div class="doc-top-left">
-            <div class="doc-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
-                <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
-              </svg>
-            </div>
-            <div class="doc-meta">
-              <div class="doc-kicker">Technical Design</div>
-              <div class="doc-title">Airline FAA RAG — Tech Plan</div>
-            </div>
+    <figure class="plan-card">
+      <a class="plan-link" href="Airline%20FAA%20RAG%20-%20Tech%20plan.pdf" target="_blank" rel="noopener">
+        <div class="plan-thumb" aria-hidden="true">
+          <div class="plan-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
+              <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
+            </svg>
           </div>
-          <div class="doc-badge">PDF</div>
         </div>
 
-        <div class="doc-preview" aria-hidden="true">
-          <div class="doc-sheet"></div>
-        </div>
-
-        <div class="doc-bottom">
-          <div class="doc-sub">
-            Architecture, data flow, and deployment considerations
+        <div class="plan-body">
+          <div>
+            <div class="plan-kicker">
+              Technical design <span class="plan-badge">PDF</span>
+            </div>
+            <h3 class="plan-title">Airline FAA RAG — Tech Plan</h3>
+            <p class="plan-desc">Architecture, data flow, and deployment approach, with implementation notes for scaling and hardening.</p>
           </div>
-          <div class="doc-cta">
+
+          <div class="plan-cta">
             Open PDF
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M7 17L17 7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round"/>
@@ -946,18 +1053,14 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
             </svg>
           </div>
         </div>
+      </a>
+    </figure>
 
-      </div>
-    </a>
-  </figure>
+  </div>
 
-</div>
+  <p class="note">These documents outline system intent, architecture, and delivery approach.</p>
 
-<p class="note">
-  These documents outline system intent, architecture, and delivery approach.
-</p>
-
-<!-- BOTTOM TEMPLATE -->
+  <!-- BOTTOM TEMPLATE -->
   <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
     <div class="info-head">
       <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
