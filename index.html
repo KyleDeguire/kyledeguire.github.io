@@ -6,6 +6,7 @@
   <title>Kyle Deguire | AI & Emerging Tech Portfolio</title>
   <meta name="theme-color" content="#f7f9fc">
 
+  <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-RA69z8VuW_SdU9foaJWrk.js"></script>
   <script>
     window.plausible = window.plausible || function(){ (plausible.q = plausible.q || []).push(arguments) }
@@ -26,6 +27,8 @@
       --radius-sm: 6px;
       --shadow-sm: 0 8px 24px rgba(0,0,0,0.06);
       --shadow-lg: 0 14px 32px rgba(0,0,0,0.10);
+      --hero-grad-a: #eef4ff;
+      --hero-grad-b: #ffffff;
 
       --pill-demo-bg: #d9e8ff;
       --pill-demo-fg: #084c9e;
@@ -35,6 +38,10 @@
       --pill-progress-fg: #7a6200;
       --pill-progress-bd: #f2df91;
 
+      --pill-planned-bg: #f3f5f8;
+      --pill-planned-fg: #475569;
+      --pill-planned-bd: #d9e1ea;
+
       --pill-journey-bg: #e6f7e8;
       --pill-journey-fg: #2d7a36;
       --pill-journey-bd: #b9e5bf;
@@ -42,26 +49,34 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
       margin: 0;
       background: var(--bg-page);
       color: var(--text-main);
     }
 
     a { color: var(--blue-link); text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
 
-    main {
-      max-width: 900px;
-      margin: 40px auto 60px;
-      padding: 0 20px;
+    .hero {
+      background: radial-gradient(circle at 20% 20%, var(--hero-grad-a) 0%, var(--hero-grad-b) 60%);
+      border-bottom: 1px solid var(--border-card);
+      padding: 32px 20px 28px;
+      text-align: center;
+    }
+    .hero-inner { max-width: 800px; margin: 0 auto; }
+    .name { color: var(--blue-dark); font-size: 1.4rem; font-weight: 600; margin-bottom: 6px; }
+
+    /* SMALL FORMAT CHANGE (requested): slightly larger intro text */
+    .tagline {
+      font-size: 1.03rem;
+      color: var(--text-dim);
+      margin: 0 auto;
+      max-width: 600px;
     }
 
-    .section-head {
-      color: var(--blue-dark);
-      font-size: 1.25rem;
-      font-weight: 650;
-      margin-bottom: 18px;
-      letter-spacing: 0.2px;
-    }
+    main { max-width: 900px; margin: 32px auto 60px; padding: 0 20px 40px; }
+    .section-head { color: var(--blue-dark); font-size: 1.25rem; font-weight: 650; margin-bottom: 18px; letter-spacing: 0.2px; }
 
     .projects-grid {
       display: grid;
@@ -74,196 +89,200 @@
       border: 1px solid var(--border-card);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-sm);
-      padding: 20px;
+      padding: 20px 20px 16px;
       display: flex;
       flex-direction: column;
+      min-height: 160px;
+      transition: box-shadow .18s ease, transform .18s ease;
+    }
+    .project-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
     }
 
     .project-topline {
       display: flex;
+      flex-wrap: nowrap;
+      align-items: baseline;
       justify-content: space-between;
       gap: 10px;
       margin-bottom: 10px;
     }
 
-    .project-title {
-      flex: 1;
-      min-width: 0;
-    }
+    .project-title { flex: 1 1 auto; min-width: 0; }
 
     .project-title a {
       display: block;
-      font-size: 1.2rem;
-      font-weight: 650;
-      line-height: 1.25;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
 
-    /* RAG titles may wrap */
-    .project-title.multiline a {
-      white-space: normal;
-      overflow: visible;
-      text-overflow: unset;
-    }
-
-    /* Desktop-only FAA RAG line control */
-    .faa-rag-title span {
-      display: block;
+      font-size: 1.2rem;
+      font-weight: 650;
+      color: var(--blue-link);
+      line-height: 1.25;
+      letter-spacing: 0.1px;
     }
 
     .status-pill {
+      border-radius: var(--radius-sm);
       font-size: 0.72rem;
       font-weight: 600;
+      line-height: 1.2;
       padding: 4px 8px;
-      border-radius: var(--radius-sm);
       white-space: nowrap;
       border: 1px solid transparent;
+      flex: 0 0 auto;
     }
 
-    .demo {
-      background: var(--pill-demo-bg);
-      color: var(--pill-demo-fg);
-      border-color: var(--pill-demo-bd);
+    .demo     { background: var(--pill-demo-bg);     color: var(--pill-demo-fg);     border-color: var(--pill-demo-bd); }
+    .in-progress { background: var(--pill-progress-bg); color: var(--pill-progress-fg); border-color: var(--pill-progress-bd); }
+    .planned  { background: var(--pill-planned-bg);  color: var(--pill-planned-fg);  border-color: var(--pill-planned-bd); }
+    .journey  { background: var(--pill-journey-bg);  color: var(--pill-journey-fg);  border-color: var(--pill-journey-bd); }
+
+    .project-desc { font-size: 0.98rem; margin-bottom: 12px; }
+    .tech-line { font-size: 0.86rem; color: var(--text-dim); }
+
+    .section-divider {
+      margin: 36px 0 24px;
+      border: 0;
+      border-top: 1px solid var(--border-card);
     }
 
-    .in-progress {
-      background: var(--pill-progress-bg);
-      color: var(--pill-progress-fg);
-      border-color: var(--pill-progress-bd);
+    footer {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 24px 20px 0;
+      border-top: 1px solid var(--border-card);
+      text-align: center;
+      font-size: 0.8rem;
+      color: #566173;
     }
 
-    .journey {
-      background: var(--pill-journey-bg);
-      color: var(--pill-journey-fg);
-      border-color: var(--pill-journey-bd);
-    }
-
-    .project-desc {
-      font-size: 0.98rem;
-      margin-bottom: 12px;
-    }
-
-    .tech-line {
-      font-size: 0.86rem;
-      color: var(--text-dim);
-    }
-
-    /* MOBILE ONLY */
+    /* Mobile: keep it readable */
     @media (max-width: 520px) {
+      .tagline { font-size: 1.06rem; } /* small bump remains tasteful */
 
-      /* VisionAI stays on one line */
+      /* Keep VisionAI on one line on phones */
       .visionai-title a {
         letter-spacing: -0.2px;
-        font-size: 1.15rem;
         white-space: nowrap;
-      }
-
-      /* Remove forced FAA line breaks on mobile */
-      .faa-rag-title span {
-        display: inline;
-      }
-
-      .project-title.multiline a {
-        font-size: 1.12rem;
-        line-height: 1.3;
       }
     }
   </style>
 </head>
 
 <body>
-
-<main>
-  <div class="section-head">Applied AI Projects</div>
-
-  <div class="projects-grid">
-
-    <!-- TOP LEFT -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title">
-          <a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a>
-        </div>
-        <div class="status-pill demo">Demo</div>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="name">Kyle Deguire</div>
+      <div class="tagline">
+        AI Strategy & Adoption Consultant. I design and build practical AI workflows that cut manual effort,
+        surface insight faster, and can be deployed in the real world, not just in slides.
       </div>
-      <div class="project-desc">Agentic workflow that collects AI news, filters noise, summarizes what matters, and generates weekly executive audio briefings.</div>
-      <div class="tech-line">Stack: summarization · TTS · automation</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-head">Applied AI Projects</div>
+
+    <div class="projects-grid">
+
+      <!-- ORDER CHANGE ONLY (matches your desktop + mobile order) -->
+      <!-- 1) Top left (desktop) / first (mobile): FAA RAG -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
+            <a href="rag-cirs/">RAG AI: FAA Regulatory Info Search App</a>
+          </div>
+          <div class="status-pill demo">Demo</div>
+        </div>
+        <div class="project-desc">
+          Aviation regulatory search built for high-trust answers. Retrieves and cites FAA source text so users can verify every response fast.
+        </div>
+        <div class="tech-line">Focus: retrieval · citations · verification</div>
+      </div>
+
+      <!-- 2) Top right (desktop) / second (mobile): Weekly Audio Feed -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
+            <a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a>
+          </div>
+          <div class="status-pill demo">Demo</div>
+        </div>
+        <div class="project-desc">
+          Agentic workflow that collects AI news, filters noise, summarizes what matters, and generates weekly executive audio briefings.
+        </div>
+        <div class="tech-line">Stack: summarization · TTS · automation</div>
+      </div>
+
+      <!-- 3) Bottom left (desktop) / third (mobile): VisionAI -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title visionai-title">
+            <a href="vision-ai/">VisionAI: Emotion Detection</a>
+          </div>
+          <div class="status-pill demo">Demo</div>
+        </div>
+        <div class="project-desc">
+          Computer vision model predicting facial emotion in real time. TensorFlow → TFLite → iPhone deployment.
+        </div>
+        <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
+      </div>
+
+      <!-- 4) Bottom right (desktop) / fourth (mobile): RAG Security -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
+            <a href="#">RAG AI: Security & Compliance Code Generator</a>
+          </div>
+          <div class="status-pill in-progress">In Progress</div>
+        </div>
+        <div class="project-desc">
+          Compliance-aware code generator. Retrieves actual framework controls (HIPAA, NIST, SOC 2, PCI-DSS) via RAG to prevent hallucination.
+          Auto-selects relevant standards per project.
+        </div>
+        <div class="tech-line">Targets: SDLC · security · governance</div>
+      </div>
+
     </div>
 
-    <!-- TOP RIGHT -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title multiline faa-rag-title">
-          <a href="rag-cirs/">
-            <span>RAG AI: FAA Regulatory Info</span>
-            <span>Search App</span>
-          </a>
+    <hr class="section-divider">
+
+    <div class="section-head">AI Journey and Credentials</div>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title"><a href="ai-journey/">AI Journey Blog Series</a></div>
+          <div class="status-pill journey">Blog Series</div>
         </div>
-        <div class="status-pill demo">Demo</div>
+        <div class="project-desc">Bi-weekly reflections on moving from strategy to hands-on AI work and back again.</div>
+        <div class="tech-line">Parts 1–3 · VisionAI · RAG · Coursework</div>
       </div>
-      <div class="project-desc">Aviation regulatory search built for high-trust answers. Retrieves and cites FAA source text so users can verify every response fast.</div>
-      <div class="tech-line">Focus: retrieval · citations · verification</div>
+
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title"><a href="credentials/">Certificates & Training</a></div>
+          <div class="status-pill journey">Credentials</div>
+        </div>
+        <div class="project-desc">Formal education grouped by depth, rigor, and skill type.</div>
+        <div class="tech-line">Wharton · Google · IBM</div>
+      </div>
+
     </div>
 
-    <!-- BOTTOM LEFT -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title multiline">
-          <a href="#">RAG AI: Security & Compliance Code Generator</a>
-        </div>
-        <div class="status-pill in-progress">In Progress</div>
-      </div>
-      <div class="project-desc">
-        Compliance-aware code generator. Retrieves actual framework controls (HIPAA, NIST, SOC 2, PCI-DSS) via RAG to prevent hallucination.
-        Auto-selects relevant standards per project.
-      </div>
-      <div class="tech-line">Targets: SDLC · security · governance</div>
+  </main>
+
+  <footer>
+    <div>© 2025 Kyle Deguire</div>
+    <div>
+      <a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> ·
+      <a href="https://github.com/kyledeguire">GitHub</a>
     </div>
-
-    <!-- BOTTOM RIGHT -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title visionai-title">
-          <a href="vision-ai/">VisionAI: Emotion Detection</a>
-        </div>
-        <div class="status-pill demo">Demo</div>
-      </div>
-      <div class="project-desc">Computer vision model predicting facial emotion in real time. TensorFlow → TFLite → iPhone deployment.</div>
-      <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
-    </div>
-
-  </div>
-
-  <div class="section-head" style="margin-top:40px;">AI Journey and Credentials</div>
-
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title">
-          <a href="ai-journey/">AI Journey Blog Series</a>
-        </div>
-        <div class="status-pill journey">Blog Series</div>
-      </div>
-      <div class="project-desc">Bi-weekly reflections on moving from strategy to hands-on AI work and back again.</div>
-      <div class="tech-line">Parts 1–3 · VisionAI · RAG · Coursework</div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title">
-          <a href="credentials/">Certificates & Training</a>
-        </div>
-        <div class="status-pill journey">Credentials</div>
-      </div>
-      <div class="project-desc">Formal education grouped by depth, rigor, and skill type.</div>
-      <div class="tech-line">Wharton · Google · IBM</div>
-    </div>
-
-  </div>
-</main>
+  </footer>
 
 </body>
 </html>
