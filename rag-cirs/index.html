@@ -990,77 +990,101 @@ a.plan-link{
   <hr class="sep" />
 
   <!-- PLANNING DOCS -->
-  <h2 class="h2" style="margin-top:24px;">PRE-PRODUCTION PLANNING</h2>
+<h2 class="h2" style="margin-top:24px;">PRE-PRODUCTION PLANNING</h2>
 
-  <div class="grid plan-grid">
+<div class="grid plan-grid">
 
-    <figure class="plan-card">
-      <a class="plan-link" href="Airline%20FAA%20RAG%20-%20Summary.pdf" target="_blank" rel="noopener">
-        <div class="plan-thumb" aria-hidden="true">
-          <div class="plan-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
-              <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
-            </svg>
-          </div>
+  <figure class="plan-card">
+    <a class="plan-link" href="Airline%20FAA%20RAG%20-%20Summary.pdf" target="_blank" rel="noopener">
+      <div class="plan-thumb" aria-hidden="true">
+
+        <!-- NEW: watermark icon -->
+        <div class="plan-watermark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="rgba(15,23,42,.9)" stroke-width="1.5"/>
+            <path d="M14 3v5h5" stroke="rgba(15,23,42,.9)" stroke-width="1.5"/>
+            <path d="M8.5 13h7" stroke="rgba(15,23,42,.9)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8.5 16h6" stroke="rgba(15,23,42,.9)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
         </div>
 
-        <div class="plan-body">
-          <div>
-            <div class="plan-kicker">
-              Planning brief <span class="plan-badge">PDF</span>
-            </div>
-            <h3 class="plan-title">Airline FAA RAG — Summary</h3>
-            <p class="plan-desc">Executive overview of scope, business value, and system intent, written for stakeholders and decision makers.</p>
-          </div>
-
-          <div class="plan-cta">
-            Open PDF
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round"/>
-              <path d="M10 7h7v7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+        <!-- Existing small icon (kept) -->
+        <div class="plan-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
+            <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
+          </svg>
         </div>
-      </a>
-    </figure>
+      </div>
 
-    <figure class="plan-card">
-      <a class="plan-link" href="Airline%20FAA%20RAG%20-%20Tech%20plan.pdf" target="_blank" rel="noopener">
-        <div class="plan-thumb" aria-hidden="true">
-          <div class="plan-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
-              <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
-            </svg>
+      <div class="plan-body">
+        <div>
+          <div class="plan-kicker">
+            Planning brief <span class="plan-badge">PDF</span>
           </div>
+          <h3 class="plan-title">Airline FAA RAG — Summary</h3>
+          <p class="plan-desc">Executive overview of scope, business value, and system intent, written for stakeholders and decision makers.</p>
         </div>
 
-        <div class="plan-body">
-          <div>
-            <div class="plan-kicker">
-              Technical design <span class="plan-badge">PDF</span>
-            </div>
-            <h3 class="plan-title">Airline FAA RAG — Tech Plan</h3>
-            <p class="plan-desc">Architecture, data flow, and deployment approach, with implementation notes for scaling and hardening.</p>
-          </div>
-
-          <div class="plan-cta">
-            Open PDF
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round"/>
-              <path d="M10 7h7v7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+        <div class="plan-cta">
+          Open PDF
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 17L17 7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 7h7v7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-      </a>
-    </figure>
+      </div>
+    </a>
+  </figure>
 
-  </div>
+  <figure class="plan-card">
+    <a class="plan-link" href="Airline%20FAA%20RAG%20-%20Tech%20plan.pdf" target="_blank" rel="noopener">
+      <div class="plan-thumb" aria-hidden="true">
 
-  <p class="note">These documents outline system intent, architecture, and delivery approach.</p>
+        <!-- NEW: watermark icon -->
+        <div class="plan-watermark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="rgba(15,23,42,.9)" stroke-width="1.5"/>
+            <path d="M14 3v5h5" stroke="rgba(15,23,42,.9)" stroke-width="1.5"/>
+            <path d="M8.5 13h7" stroke="rgba(15,23,42,.9)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8.5 16h6" stroke="rgba(15,23,42,.9)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
 
-  <!-- BOTTOM TEMPLATE -->
+        <!-- Existing small icon (kept) -->
+        <div class="plan-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.7"/>
+            <path d="M14 3v5h5" stroke="white" stroke-width="1.7"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="plan-body">
+        <div>
+          <div class="plan-kicker">
+            Technical design <span class="plan-badge">PDF</span>
+          </div>
+          <h3 class="plan-title">Airline FAA RAG — Tech Plan</h3>
+          <p class="plan-desc">Architecture, data flow, and deployment approach, with implementation notes for scaling and hardening.</p>
+        </div>
+
+        <div class="plan-cta">
+          Open PDF
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 17L17 7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 7h7v7" stroke="#0a66c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+  </figure>
+
+</div>
+
+<p class="note">These documents outline system intent, architecture, and delivery approach.</p>
+
+<!-- BOTTOM TEMPLATE -->
   <section class="info-card" aria-labelledby="details" style="margin-top:26px;">
     <div class="info-head">
       <h2 id="details" class="subtitle" style="margin:0;">Technical details</h2>
