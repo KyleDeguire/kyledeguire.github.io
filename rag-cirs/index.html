@@ -137,13 +137,17 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 
 /* Carousel controls */
 .carousel-btn{
-  position:absolute;top:50%;transform:translateY(-50%);
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
   width:44px;height:44px;border-radius:999px;
   border:1px solid rgba(226,232,240,.9);
   background:rgba(255,255,255,.92);
   box-shadow:0 4px 14px rgba(0,0,0,.12);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;
+  z-index:10;       /* ADD */
+  opacity:.95;      /* ADD */
 }
 .carousel-btn:hover{filter:brightness(.98);}
 .carousel-btn:active{transform:translateY(-50%) scale(.98);}
