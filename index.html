@@ -67,7 +67,6 @@
     .hero-inner { max-width: 800px; margin: 0 auto; }
     .name { color: var(--blue-dark); font-size: 1.4rem; font-weight: 600; margin-bottom: 6px; }
 
-    /* Slightly enlarged intro text (requested earlier) */
     .tagline {
       font-size: 1.03rem;
       color: var(--text-dim);
@@ -108,7 +107,6 @@
 
     .project-topline {
       display: flex;
-      flex-wrap: nowrap;
       align-items: baseline;
       justify-content: space-between;
       gap: 10px;
@@ -120,12 +118,8 @@
       min-width: 0;
     }
 
-    /* Default: single-line titles */
     .project-title a {
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       font-size: 1.2rem;
       font-weight: 650;
       color: var(--blue-link);
@@ -133,27 +127,21 @@
       letter-spacing: 0.1px;
     }
 
-    /* Allow wrapping for RAG titles (desktop + mobile) */
     .project-title.multiline a {
       white-space: normal;
-      overflow: visible;
-      text-overflow: unset;
     }
 
     .status-pill {
       border-radius: var(--radius-sm);
       font-size: 0.72rem;
       font-weight: 600;
-      line-height: 1.2;
       padding: 4px 8px;
-      white-space: nowrap;
       border: 1px solid transparent;
-      flex: 0 0 auto;
+      white-space: nowrap;
     }
 
     .demo { background: var(--pill-demo-bg); color: var(--pill-demo-fg); border-color: var(--pill-demo-bd); }
     .in-progress { background: var(--pill-progress-bg); color: var(--pill-progress-fg); border-color: var(--pill-progress-bd); }
-    .planned { background: var(--pill-planned-bg); color: var(--pill-planned-fg); border-color: var(--pill-planned-bd); }
     .journey { background: var(--pill-journey-bg); color: var(--pill-journey-fg); border-color: var(--pill-journey-bd); }
 
     .project-desc { font-size: 0.98rem; margin-bottom: 12px; }
@@ -175,13 +163,20 @@
       color: #566173;
     }
 
+    /* ===== MOBILE TYPOGRAPHY TUNING ===== */
     @media (max-width: 520px) {
       .tagline { font-size: 1.06rem; }
 
-      /* VisionAI stays on one line on mobile */
+      /* VisionAI stays tight */
       .visionai-title a {
         letter-spacing: -0.2px;
         white-space: nowrap;
+      }
+
+      /* RAG title – deliberate two-line cadence */
+      .rag-title a {
+        letter-spacing: 0.08em;
+        line-height: 1.15;
       }
     }
   </style>
@@ -206,7 +201,7 @@
       <!-- FAA RAG -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title multiline">
+          <div class="project-title multiline rag-title">
             <a href="rag-cirs/">
               RAG AI: FAA Regulatory Info<br>
               Search App
@@ -246,24 +241,6 @@
           Computer vision model predicting facial emotion in real time. TensorFlow → TFLite → iPhone deployment.
         </div>
         <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
-      </div>
-
-      <!-- Security RAG -->
-      <div class="project-card">
-        <div class="project-topline">
-          <div class="project-title multiline">
-            <a href="#">
-              RAG AI: Security & Compliance<br>
-              Code Generator
-            </a>
-          </div>
-          <div class="status-pill in-progress">In Progress</div>
-        </div>
-        <div class="project-desc">
-          Compliance-aware code generator. Retrieves actual framework controls (HIPAA, NIST, SOC 2, PCI-DSS) via RAG to prevent hallucination.
-          Auto-selects relevant standards per project.
-        </div>
-        <div class="tech-line">Targets: SDLC · security · governance</div>
       </div>
 
     </div>
