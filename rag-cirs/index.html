@@ -100,7 +100,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 /* iOS layout */
 .ios-layout{
   display:grid;
-  grid-template-columns:0.68fr 1.32fr; /* smaller screenshot column */
+  grid-template-columns:0.68fr 1.32fr;
   gap:14px;
   align-items:stretch;
 }
@@ -137,17 +137,15 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 
 /* Carousel controls */
 .carousel-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
+  position:absolute;top:50%;transform:translateY(-50%);
   width:44px;height:44px;border-radius:999px;
   border:1px solid rgba(226,232,240,.9);
   background:rgba(255,255,255,.92);
   box-shadow:0 4px 14px rgba(0,0,0,.12);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;
-  z-index:10;       /* ADD */
-  opacity:.95;      /* ADD */
+  z-index:10;     /* ensures both arrows appear and are clickable */
+  opacity:.95;
 }
 .carousel-btn:hover{filter:brightness(.98);}
 .carousel-btn:active{transform:translateY(-50%) scale(.98);}
@@ -168,7 +166,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
   position:relative;
   display:flex;
   flex-direction:column;
-  justify-content:space-between; /* bottom aligns with carousel bottom */
+  justify-content:space-between;
 }
 
 /* Light blue logo band + iOS-style icon */
@@ -185,7 +183,7 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 .ios-logo{
   width:120px;height:120px;
   object-fit:contain;
-  border-radius:22px; /* iOS app icon rounding */
+  border-radius:22px;
   background:#ffffff;
   box-shadow:
     0 8px 22px rgba(0,0,0,.18),
@@ -260,11 +258,11 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 }
 .roi-num{
   font-size:28px;font-weight:900;letter-spacing:-.25px;line-height:1.15;
-  white-space:nowrap; /* one-line money + ROI */
+  white-space:nowrap;
 }
 .roi-lbl{
   margin-top:8px;font-weight:900;font-size:16px;
-  min-height:2.2em;display:flex;align-items:flex-end; /* equal label height */
+  min-height:2.2em;display:flex;align-items:flex-end;
 }
 .roi-det{margin-top:8px;opacity:.92;font-size:16px;line-height:1.55;}
 
@@ -332,15 +330,15 @@ figcaption{padding:10px 12px;font-weight:600;font-size:14px;text-align:center;bo
 }
 .step .t{
   font-weight:900;font-size:16px;
-  min-height:2.6em;display:flex;align-items:flex-end; /* align headings */
+  min-height:2.6em;display:flex;align-items:flex-end;
 }
 .step .tech{
   margin-top:6px;color:var(--muted);font-size:16px;
-  min-height:2.2em;display:flex;align-items:flex-end; /* align tech line */
+  min-height:2.2em;display:flex;align-items:flex-end;
 }
 .step .d{
   margin-top:6px;color:var(--fg);font-size:16px;line-height:1.55;
-  min-height:3.2em; /* align body text */
+  min-height:3.2em;
 }
 @media (min-width:980px){
   .pipeline-row{grid-template-columns:repeat(7,1fr);overflow:visible;}
