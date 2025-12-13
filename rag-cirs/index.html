@@ -401,7 +401,10 @@ hr.sep{border:none;border-top:1px solid rgba(226,232,240,.9);margin:26px 0 0;}
 /* ===========================
    PRE-PRODUCTION PLANNING (premium doc cards)
    =========================== */
-.plan-grid{ margin-top:clamp(14px,2.2vw,22px); }
+
+.plan-grid{
+  margin-top:clamp(14px,2.2vw,22px);
+}
 
 figure.plan-card{
   margin:0;
@@ -426,7 +429,7 @@ a.plan-link{
   align-items:stretch;
 }
 
-/* Left “thumbnail” area */
+/* Left thumbnail */
 .plan-thumb{
   flex:0 0 160px;
   border-radius:14px;
@@ -444,22 +447,42 @@ a.plan-link{
   position:relative;
   overflow:hidden;
 }
-.plan-thumb::after{
-  content:"";
+
+/* Large watermark icon */
+.plan-watermark{
   position:absolute;
-  right:-60px;
-  bottom:-70px;
-  width:220px;height:220px;
-  border-radius:999px;
-  background:rgba(255,140,66,.10);
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:.14;
+  pointer-events:none;
 }
+
+.plan-watermark svg{
+  width:90px;
+  height:90px;
+}
+
+.plan-watermark svg path{
+  stroke: rgba(55, 65, 81, 0.75); /* medium-dark gray */
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Small corner icon */
 .plan-icon{
   position:absolute;
-  top:12px; left:12px;
-  width:44px;height:44px;
+  top:12px;
+  left:12px;
+  width:44px;
+  height:44px;
   border-radius:14px;
   background:var(--brand);
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   box-shadow:0 10px 22px rgba(10,102,194,.22);
 }
 
@@ -471,6 +494,7 @@ a.plan-link{
   justify-content:space-between;
   min-width:0;
 }
+
 .plan-kicker{
   display:inline-flex;
   align-items:center;
@@ -482,6 +506,7 @@ a.plan-link{
   color:rgba(15,23,42,.65);
   margin-bottom:8px;
 }
+
 .plan-badge{
   font-size:12px;
   font-weight:900;
@@ -499,6 +524,7 @@ a.plan-link{
   line-height:1.2;
   color:var(--fg);
 }
+
 .plan-desc{
   margin:0 0 12px;
   color:var(--muted);
@@ -521,21 +547,9 @@ a.plan-link{
 }
 
 @media (max-width:620px){
-  a.plan-link{ flex-direction:column; }
-  .plan-thumb{ flex:0 0 auto; height:160px; }
+  a.plan-link{flex-direction:column;}
+  .plan-thumb{flex:0 0 auto;height:160px;}
 }
-</style>
-</head>
-
-<body>
-<main class="container">
-
-  <div class="header">
-    <div>
-      <h1 class="title">RAG CIRS: FAA Compliance Assistant</h1>
-    </div>
-  </div>
-
   <!-- TOP TEMPLATE -->
   <section class="info-card" aria-labelledby="overview">
     <div class="info-head">
