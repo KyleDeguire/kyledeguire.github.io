@@ -67,7 +67,7 @@
     .hero-inner { max-width: 800px; margin: 0 auto; }
     .name { color: var(--blue-dark); font-size: 1.4rem; font-weight: 600; margin-bottom: 6px; }
 
-    /* SMALL FORMAT CHANGE (requested): slightly larger intro text */
+    /* Slightly enlarged intro text (requested earlier) */
     .tagline {
       font-size: 1.03rem;
       color: var(--text-dim);
@@ -76,7 +76,13 @@
     }
 
     main { max-width: 900px; margin: 32px auto 60px; padding: 0 20px 40px; }
-    .section-head { color: var(--blue-dark); font-size: 1.25rem; font-weight: 650; margin-bottom: 18px; letter-spacing: 0.2px; }
+    .section-head {
+      color: var(--blue-dark);
+      font-size: 1.25rem;
+      font-weight: 650;
+      margin-bottom: 18px;
+      letter-spacing: 0.2px;
+    }
 
     .projects-grid {
       display: grid;
@@ -109,19 +115,29 @@
       margin-bottom: 10px;
     }
 
-    .project-title { flex: 1 1 auto; min-width: 0; }
+    .project-title {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
+    /* Default: single-line titles */
     .project-title a {
       display: block;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-
       font-size: 1.2rem;
       font-weight: 650;
       color: var(--blue-link);
       line-height: 1.25;
       letter-spacing: 0.1px;
+    }
+
+    /* Allow wrapping for RAG titles (desktop + mobile) */
+    .project-title.multiline a {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
     }
 
     .status-pill {
@@ -135,10 +151,10 @@
       flex: 0 0 auto;
     }
 
-    .demo     { background: var(--pill-demo-bg);     color: var(--pill-demo-fg);     border-color: var(--pill-demo-bd); }
+    .demo { background: var(--pill-demo-bg); color: var(--pill-demo-fg); border-color: var(--pill-demo-bd); }
     .in-progress { background: var(--pill-progress-bg); color: var(--pill-progress-fg); border-color: var(--pill-progress-bd); }
-    .planned  { background: var(--pill-planned-bg);  color: var(--pill-planned-fg);  border-color: var(--pill-planned-bd); }
-    .journey  { background: var(--pill-journey-bg);  color: var(--pill-journey-fg);  border-color: var(--pill-journey-bd); }
+    .planned { background: var(--pill-planned-bg); color: var(--pill-planned-fg); border-color: var(--pill-planned-bd); }
+    .journey { background: var(--pill-journey-bg); color: var(--pill-journey-fg); border-color: var(--pill-journey-bd); }
 
     .project-desc { font-size: 0.98rem; margin-bottom: 12px; }
     .tech-line { font-size: 0.86rem; color: var(--text-dim); }
@@ -159,11 +175,10 @@
       color: #566173;
     }
 
-    /* Mobile: keep it readable */
     @media (max-width: 520px) {
-      .tagline { font-size: 1.06rem; } /* small bump remains tasteful */
+      .tagline { font-size: 1.06rem; }
 
-      /* Keep VisionAI on one line on phones */
+      /* VisionAI stays on one line on mobile */
       .visionai-title a {
         letter-spacing: -0.2px;
         white-space: nowrap;
@@ -188,12 +203,14 @@
 
     <div class="projects-grid">
 
-      <!-- ORDER CHANGE ONLY (matches your desktop + mobile order) -->
-      <!-- 1) Top left (desktop) / first (mobile): FAA RAG -->
+      <!-- FAA RAG -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title">
-            <a href="rag-cirs/">RAG AI: FAA Regulatory Info Search App</a>
+          <div class="project-title multiline">
+            <a href="rag-cirs/">
+              RAG AI: FAA Regulatory Info<br>
+              Search App
+            </a>
           </div>
           <div class="status-pill demo">Demo</div>
         </div>
@@ -203,7 +220,7 @@
         <div class="tech-line">Focus: retrieval · citations · verification</div>
       </div>
 
-      <!-- 2) Top right (desktop) / second (mobile): Weekly Audio Feed -->
+      <!-- Weekly Audio Feed -->
       <div class="project-card">
         <div class="project-topline">
           <div class="project-title">
@@ -217,7 +234,7 @@
         <div class="tech-line">Stack: summarization · TTS · automation</div>
       </div>
 
-      <!-- 3) Bottom left (desktop) / third (mobile): VisionAI -->
+      <!-- VisionAI -->
       <div class="project-card">
         <div class="project-topline">
           <div class="project-title visionai-title">
@@ -231,11 +248,14 @@
         <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
       </div>
 
-      <!-- 4) Bottom right (desktop) / fourth (mobile): RAG Security -->
+      <!-- Security RAG -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title">
-            <a href="#">RAG AI: Security & Compliance Code Generator</a>
+          <div class="project-title multiline">
+            <a href="#">
+              RAG AI: Security & Compliance<br>
+              Code Generator
+            </a>
           </div>
           <div class="status-pill in-progress">In Progress</div>
         </div>
@@ -253,7 +273,6 @@
     <div class="section-head">AI Journey and Credentials</div>
 
     <div class="projects-grid">
-
       <div class="project-card">
         <div class="project-topline">
           <div class="project-title"><a href="ai-journey/">AI Journey Blog Series</a></div>
@@ -271,7 +290,6 @@
         <div class="project-desc">Formal education grouped by depth, rigor, and skill type.</div>
         <div class="tech-line">Wharton · Google · IBM</div>
       </div>
-
     </div>
 
   </main>
