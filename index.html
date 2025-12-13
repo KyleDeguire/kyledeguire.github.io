@@ -6,245 +6,309 @@
   <title>Kyle Deguire | AI & Emerging Tech Portfolio</title>
   <meta name="theme-color" content="#f7f9fc">
 
-  <!-- Privacy-friendly analytics -->
+  <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-RA69z8VuW_SdU9foaJWrk.js"></script>
+  <script>
+    window.plausible = window.plausible || function(){ (plausible.q = plausible.q || []).push(arguments) }
+    plausible.init = plausible.init || function(options){ plausible.o = options || {} }
+    plausible.init();
+  </script>
 
   <style>
     :root {
-      --blue-dark:#0a3a73;
-      --blue-link:#0a66c2;
-      --bg-page:#f7f9fc;
-      --bg-card:#ffffff;
-      --border-card:#e2e8f0;
-      --text-main:#0f172a;
-      --text-dim:#475569;
-      --radius-lg:14px;
-      --radius-sm:6px;
-      --shadow-sm:0 8px 24px rgba(0,0,0,0.06);
-      --shadow-lg:0 14px 32px rgba(0,0,0,0.10);
+      --blue-dark: #0a3a73;
+      --blue-link: #0a66c2;
+      --bg-page: #f7f9fc;
+      --bg-card: #ffffff;
+      --border-card: #e2e8f0;
+      --text-main: #0f172a;
+      --text-dim: #475569;
+      --radius-lg: 14px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 8px 24px rgba(0,0,0,0.06);
+      --shadow-lg: 0 14px 32px rgba(0,0,0,0.10);
+      --hero-grad-a: #eef4ff;
+      --hero-grad-b: #ffffff;
 
-      --pill-demo-bg:#d9e8ff;
-      --pill-demo-fg:#084c9e;
-      --pill-demo-bd:#99c3ff;
+      --pill-demo-bg: #d9e8ff;
+      --pill-demo-fg: #084c9e;
+      --pill-demo-bd: #99c3ff;
 
-      --pill-progress-bg:#fff6d6;
-      --pill-progress-fg:#7a6200;
-      --pill-progress-bd:#f2df91;
+      --pill-progress-bg: #fff6d6;
+      --pill-progress-fg: #7a6200;
+      --pill-progress-bd: #f2df91;
 
-      --pill-journey-bg:#e6f7e8;
-      --pill-journey-fg:#2d7a36;
-      --pill-journey-bd:#b9e5bf;
+      --pill-planned-bg: #f3f5f8;
+      --pill-planned-fg: #475569;
+      --pill-planned-bd: #d9e1ea;
+
+      --pill-journey-bg: #e6f7e8;
+      --pill-journey-fg: #2d7a36;
+      --pill-journey-bd: #b9e5bf;
     }
 
     body {
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-      background:var(--bg-page);
-      color:var(--text-main);
-      line-height:1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      background: var(--bg-page);
+      color: var(--text-main);
     }
 
-    a { color:var(--blue-link); text-decoration:none; font-weight:500; }
-    a:hover { text-decoration:underline; }
+    a { color: var(--blue-link); text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
 
-    header {
-      text-align:center;
-      padding:32px 20px 28px;
-      border-bottom:1px solid var(--border-card);
-      background:#eef4ff;
+    .hero {
+      background: radial-gradient(circle at 20% 20%, var(--hero-grad-a) 0%, var(--hero-grad-b) 60%);
+      border-bottom: 1px solid var(--border-card);
+      padding: 32px 20px 28px;
+      text-align: center;
     }
-
-    .name {
-      color:var(--blue-dark);
-      font-size:1.4rem;
-      font-weight:600;
-      margin-bottom:6px;
-    }
+    .hero-inner { max-width: 800px; margin: 0 auto; }
+    .name { color: var(--blue-dark); font-size: 1.4rem; font-weight: 600; margin-bottom: 6px; }
 
     .tagline {
-      font-size:1.03rem;
-      color:var(--text-dim);
-      max-width:600px;
-      margin:0 auto;
+      font-size: 1.03rem;
+      color: var(--text-dim);
+      margin: 0 auto;
+      max-width: 600px;
     }
 
-    main {
-      max-width:900px;
-      margin:32px auto 60px;
-      padding:0 20px;
-    }
-
+    main { max-width: 900px; margin: 32px auto 60px; padding: 0 20px 40px; }
     .section-head {
-      color:var(--blue-dark);
-      font-size:1.25rem;
-      font-weight:650;
-      margin-bottom:18px;
+      color: var(--blue-dark);
+      font-size: 1.25rem;
+      font-weight: 650;
+      margin-bottom: 18px;
+      letter-spacing: 0.2px;
     }
 
     .projects-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));
-      gap:20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%,360px), 1fr));
+      gap: 20px;
     }
 
     .project-card {
-      background:var(--bg-card);
-      border:1px solid var(--border-card);
-      border-radius:var(--radius-lg);
-      box-shadow:var(--shadow-sm);
-      padding:20px 20px 16px;
-      display:flex;
-      flex-direction:column;
-      transition:.18s;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 20px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      min-height: 160px;
+      transition: box-shadow .18s ease, transform .18s ease;
     }
-
     .project-card:hover {
-      box-shadow:var(--shadow-lg);
-      transform:translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
     }
 
     .project-topline {
-      display:flex;
-      align-items:baseline;
-      gap:10px;
-      justify-content:space-between;
-      margin-bottom:10px;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .project-title {
-      flex:1;
-      min-width:0;
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
+    /* Default: single-line titles */
     .project-title a {
-      display:block;
-      font-size:1.2rem;
-      font-weight:650;
-      color:var(--blue-link);
-      line-height:1.25;
-      white-space:normal;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.2rem;
+      font-weight: 650;
+      color: var(--blue-link);
+      line-height: 1.25;
+      letter-spacing: 0.1px;
+    }
+
+    /* Allow wrapping for selected titles */
+    .project-title.multiline a {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
     }
 
     .status-pill {
-      font-size:0.72rem;
-      font-weight:600;
-      padding:4px 8px;
-      border-radius:var(--radius-sm);
-      border:1px solid transparent;
-      white-space:nowrap;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 4px 8px;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      flex: 0 0 auto;
     }
 
-    .demo { background:var(--pill-demo-bg); color:var(--pill-demo-fg); border-color:var(--pill-demo-bd); }
-    .in-progress { background:var(--pill-progress-bg); color:var(--pill-progress-fg); border-color:var(--pill-progress-bd); }
-    .journey { background:var(--pill-journey-bg); color:var(--pill-journey-fg); border-color:var(--pill-journey-bd); }
+    .demo { background: var(--pill-demo-bg); color: var(--pill-demo-fg); border-color: var(--pill-demo-bd); }
+    .in-progress { background: var(--pill-progress-bg); color: var(--pill-progress-fg); border-color: var(--pill-progress-bd); }
+    .planned { background: var(--pill-planned-bg); color: var(--pill-planned-fg); border-color: var(--pill-planned-bd); }
+    .journey { background: var(--pill-journey-bg); color: var(--pill-journey-fg); border-color: var(--pill-journey-bd); }
 
-    .project-desc { font-size:0.98rem; margin-bottom:12px; }
-    .tech-line { font-size:0.86rem; color:var(--text-dim); }
+    .project-desc { font-size: 0.98rem; margin-bottom: 12px; }
+    .tech-line { font-size: 0.86rem; color: var(--text-dim); }
 
-    /* ===== MOBILE TYPOGRAPHY TUNING (ONLY CHANGE) ===== */
-    @media (max-width:520px) {
+    .section-divider {
+      margin: 36px 0 24px;
+      border: 0;
+      border-top: 1px solid var(--border-card);
+    }
 
-      /* FAA RAG: tighten just enough to keep first line intact */
-      .rag-title a {
-        letter-spacing:-0.15px;
+    footer {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 24px 20px 0;
+      border-top: 1px solid var(--border-card);
+      text-align: center;
+      font-size: 0.8rem;
+      color: #566173;
+    }
+
+    @media (max-width: 520px) {
+      .tagline { font-size: 1.06rem; }
+
+      /* VisionAI stays on one line on mobile */
+      .visionai-title a {
+        letter-spacing: -0.2px;
+        white-space: nowrap;
       }
 
-      /* VisionAI stays as-is */
-      .visionai-title a {
-        letter-spacing:-0.2px;
-        white-space:nowrap;
+      /* FIX: Slightly tighten RAG title on mobile to keep:
+         "RAG AI: FAA Regulatory Info" on one line
+         and "Search App" on the next line (since you already have <br>) */
+      .rag-title a{
+        letter-spacing: -0.25px;
       }
     }
   </style>
 </head>
 
 <body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="name">Kyle Deguire</div>
+      <div class="tagline">
+        AI Strategy & Adoption Consultant. I design and build practical AI workflows that cut manual effort,
+        surface insight faster, and can be deployed in the real world, not just in slides.
+      </div>
+    </div>
+  </header>
 
-<header>
-  <div class="name">Kyle Deguire</div>
-  <div class="tagline">
-    AI Strategy & Adoption Consultant. I design and build practical AI workflows that cut manual effort,
-    surface insight faster, and work in the real world.
-  </div>
-</header>
+  <main>
+    <div class="section-head">Applied AI Projects</div>
 
-<main>
+    <div class="projects-grid">
 
-  <div class="section-head">Applied AI Projects</div>
-
-  <div class="projects-grid">
-
-    <!-- FAA RAG -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title rag-title">
-          <a href="rag-cirs/">
-            RAG AI: FAA Regulatory Info<br>
-            Search App
-          </a>
+      <!-- FAA RAG -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title multiline rag-title">
+            <a href="rag-cirs/">
+              RAG AI: FAA Regulatory Info<br>
+              Search App
+            </a>
+          </div>
+          <div class="status-pill demo">Demo</div>
         </div>
-        <div class="status-pill demo">Demo</div>
+        <div class="project-desc">
+          Aviation regulatory search built for high-trust answers. Retrieves and cites FAA source text so users can verify every response fast.
+        </div>
+        <div class="tech-line">Focus: retrieval · citations · verification</div>
       </div>
-      <div class="project-desc">
-        Aviation regulatory search built for high-trust answers with verifiable FAA citations.
+
+      <!-- Weekly Audio Feed -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title">
+            <a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a>
+          </div>
+          <div class="status-pill demo">Demo</div>
+        </div>
+        <div class="project-desc">
+          Agentic workflow that collects AI news, filters noise, summarizes what matters, and generates weekly executive audio briefings.
+        </div>
+        <div class="tech-line">Stack: summarization · TTS · automation</div>
       </div>
-      <div class="tech-line">Focus: retrieval · citations · verification</div>
+
+      <!-- VisionAI -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title visionai-title">
+            <a href="vision-ai/">VisionAI: Emotion Detection</a>
+          </div>
+          <div class="status-pill demo">Demo</div>
+        </div>
+        <div class="project-desc">
+          Computer vision model predicting facial emotion in real time. TensorFlow → TFLite → iPhone deployment.
+        </div>
+        <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
+      </div>
+
+      <!-- Security RAG (RESTORED) -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title multiline">
+            <a href="#">
+              RAG AI: Security & Compliance<br>
+              Code Generator
+            </a>
+          </div>
+          <div class="status-pill in-progress">In Progress</div>
+        </div>
+        <div class="project-desc">
+          Compliance-aware code generator. Retrieves actual framework controls (HIPAA, NIST, SOC 2, PCI-DSS) via RAG to prevent hallucination.
+          Auto-selects relevant standards per project.
+        </div>
+        <div class="tech-line">Targets: SDLC · security · governance</div>
+      </div>
+
     </div>
 
-    <!-- Weekly Audio -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title">
-          <a href="ai-weekly-audio-briefings/">AI Weekly Audio Feed</a>
+    <hr class="section-divider">
+
+    <div class="section-head">AI Journey and Credentials</div>
+
+    <div class="projects-grid">
+      <!-- AI Journey Blog Series (RESTORED) -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title"><a href="ai-journey/">AI Journey Blog Series</a></div>
+          <div class="status-pill journey">Blog Series</div>
         </div>
-        <div class="status-pill demo">Demo</div>
+        <div class="project-desc">Bi-weekly reflections on moving from strategy to hands-on AI work and back again.</div>
+        <div class="tech-line">Parts 1–3 · VisionAI · RAG · Coursework</div>
       </div>
-      <div class="project-desc">
-        Agentic pipeline that filters AI news and produces executive audio briefings.
+
+      <!-- Certificates & Training (RESTORED) -->
+      <div class="project-card">
+        <div class="project-topline">
+          <div class="project-title"><a href="credentials/">Certificates & Training</a></div>
+          <div class="status-pill journey">Credentials</div>
+        </div>
+        <div class="project-desc">Formal education grouped by depth, rigor, and skill type.</div>
+        <div class="tech-line">Wharton · Google · IBM</div>
       </div>
-      <div class="tech-line">Summarization · TTS · automation</div>
     </div>
 
-    <!-- VisionAI -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title visionai-title">
-          <a href="vision-ai/">VisionAI: Emotion Detection</a>
-        </div>
-        <div class="status-pill demo">Demo</div>
-      </div>
-      <div class="project-desc">
-        Real-time facial emotion detection deployed on iPhone.
-      </div>
-      <div class="tech-line">TensorFlow · OpenCV · iOS</div>
+  </main>
+
+  <footer>
+    <div>© 2025 Kyle Deguire</div>
+    <div>
+      <a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> ·
+      <a href="https://github.com/kyledeguire">GitHub</a>
     </div>
-
-    <!-- RAG Security -->
-    <div class="project-card">
-      <div class="project-topline">
-        <div class="project-title">
-          <a href="#">
-            RAG AI: Security & Compliance<br>
-            Code Generator
-          </a>
-        </div>
-        <div class="status-pill in-progress">In Progress</div>
-      </div>
-      <div class="project-desc">
-        Compliance-aware code generation using real controls (NIST, HIPAA, SOC 2) retrieved via RAG.
-      </div>
-      <div class="tech-line">Security · governance · SDLC</div>
-    </div>
-
-  </div>
-
-</main>
-
-<footer style="text-align:center;font-size:0.8rem;color:#566173;">
-  © 2025 Kyle Deguire ·
-  <a href="https://www.linkedin.com/in/kyledeguire">LinkedIn</a> ·
-  <a href="https://github.com/kyledeguire">GitHub</a>
-</footer>
+  </footer>
 
 </body>
 </html>
