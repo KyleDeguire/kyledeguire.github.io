@@ -93,24 +93,38 @@
       transform: translateY(-2px);
     }
 
+    /* Keep title + status on one line, let title take the space up to the pill */
     .project-topline {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: baseline;
       justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
-    .project-title a { font-size: 1rem; font-weight: 600; color: var(--blue-link); }
+    .project-title { flex: 1 1 auto; min-width: 0; }
+    .project-title a {
+      display: block;
+      white-space: nowrap;           /* one line */
+      overflow: hidden;              /* safety on very small screens */
+      text-overflow: ellipsis;       /* should rarely trigger, but prevents ugly wrapping */
+
+      /* Bigger, but still controlled so the longest title sits near the status pill */
+      font-size: clamp(1.10rem, 0.85vw + 0.95rem, 1.26rem);
+      font-weight: 650;
+      color: var(--blue-link);
+      letter-spacing: 0.1px;
+    }
 
     .status-pill {
       border-radius: var(--radius-sm);
-      font-size: 0.7rem;
-      font-weight: 500;
+      font-size: 0.72rem;
+      font-weight: 600;
       line-height: 1.2;
       padding: 4px 8px;
       white-space: nowrap;
       border: 1px solid transparent;
+      flex: 0 0 auto;
     }
 
     .demo     { background: var(--pill-demo-bg);     color: var(--pill-demo-fg);     border-color: var(--pill-demo-bd); }
@@ -118,8 +132,9 @@
     .planned  { background: var(--pill-planned-bg);  color: var(--pill-planned-fg);  border-color: var(--pill-planned-bd); }
     .journey  { background: var(--pill-journey-bg);  color: var(--pill-journey-fg);  border-color: var(--pill-journey-bd); }
 
-    .project-desc { font-size: 0.9rem; margin-bottom: 12px; }
-    .tech-line { font-size: 0.8rem; color: var(--text-dim); }
+    /* Description + tech bumped up 1–2 sizes for readability */
+    .project-desc { font-size: 0.98rem; margin-bottom: 12px; }
+    .tech-line { font-size: 0.86rem; color: var(--text-dim); }
 
     .section-divider {
       margin: 36px 0 24px;
@@ -135,6 +150,18 @@
       text-align: center;
       font-size: 0.8rem;
       color: #566173;
+    }
+
+    /* Phone tuning: keep it readable without titles wrapping */
+    @media (max-width: 520px) {
+      .name { font-size: 1.5rem; }
+      .tagline { font-size: 1.0rem; }
+
+      .project-title a {
+        font-size: clamp(1.06rem, 1.2vw + 0.95rem, 1.18rem);
+      }
+      .project-desc { font-size: 1.02rem; }
+      .tech-line { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -173,22 +200,29 @@
         <div class="tech-line">Stack: TensorFlow · OpenCV · iOS</div>
       </div>
 
+      <!-- UPDATED: RAG title, status, and snazzed-up description -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title"><a href="rag-cirs/">RAG CIRS</a></div>
-          <div class="status-pill in-progress">In Progress</div>
+          <div class="project-title"><a href="rag-cirs/">RAG AI: FAA Regulatory Info Search App</a></div>
+          <div class="status-pill demo">Demo</div>
         </div>
-        <div class="project-desc">RAG system for regulated environments. Reliable, citation-first answers for compliance workflows.</div>
-        <div class="tech-line">Focus: retrieval · citations · accuracy</div>
+        <div class="project-desc">
+          Aviation regulatory search built for high-trust answers. Retrieves and cites FAA source text so users can verify every response fast.
+        </div>
+        <div class="tech-line">Focus: retrieval · citations · verification</div>
       </div>
 
+      <!-- UPDATED: new project name + exact description you provided -->
       <div class="project-card">
         <div class="project-topline">
-          <div class="project-title"><a href="#">Process Automation Assistant</a></div>
+          <div class="project-title"><a href="#">RAG AI: Security & Compliance Code Generator</a></div>
           <div class="status-pill planned">Planned</div>
         </div>
-        <div class="project-desc">Internal agent concept to remove manual PMO/reporting work for analysts.</div>
-        <div class="tech-line">Targets: ops · reporting · PMO</div>
+        <div class="project-desc">
+          Compliance-aware code generator. Retrieves actual framework controls (HIPAA, NIST, SOC 2, PCI-DSS) via RAG to prevent hallucination.
+          Auto-selects relevant standards per project.
+        </div>
+        <div class="tech-line">Targets: SDLC · security · governance</div>
       </div>
 
     </div>
