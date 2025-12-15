@@ -272,6 +272,7 @@ body{
   border-radius:var(--radius);
   box-shadow:var(--shadow);
   padding:14px 14px 12px;
+  position:relative;
 }
 .pipeline-row{
   display:grid;
@@ -319,6 +320,27 @@ body{
 }
 @media (min-width:980px){
   .pipeline-row{grid-template-columns:repeat(7,1fr);overflow:visible;}
+}
+
+/* Pipeline controls (ADDED) */
+.pipeline-btn{
+  position:absolute;top:52%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:999px;
+  border:1px solid rgba(226,232,240,.9);
+  background:rgba(255,255,255,.92);
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  z-index:10;
+  opacity:.95;
+}
+.pipeline-btn:hover{filter:brightness(.98);}
+.pipeline-btn:active{transform:translateY(-50%) scale(.98);}
+.pipeline-btn.left{left:10px;}
+.pipeline-btn.right{right:10px;}
+.pipeline-btn[disabled]{opacity:.45;cursor:default;pointer-events:none;}
+@media (min-width:980px){
+  .pipeline-btn{display:none !important;}
 }
 
 /* Stack badges */
@@ -833,7 +855,19 @@ a.plan-link{
   <section class="section" aria-labelledby="pipeline">
     <h2 id="pipeline" class="h2">7-STEP PROCESSING PIPELINE</h2>
     <div class="pipeline">
-      <div class="pipeline-row" aria-label="Pipeline steps">
+      <button class="pipeline-btn left" type="button" aria-label="Scroll pipeline left" id="pipePrev" style="display:none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <button class="pipeline-btn right" type="button" aria-label="Scroll pipeline right" id="pipeNext" style="display:none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="pipeline-row" aria-label="Pipeline steps" id="pipeRow">
         <div class="step">
           <div class="badge">1</div>
           <div class="t">Document ingestion</div>
@@ -1177,6 +1211,95 @@ a.plan-link{
         btn.querySelector('span').textContent = (open ? '▲ Hide detailed assumptions and formulas' : '▼ View detailed assumptions and formulas');
       });
     }
+
+    // Pipeline arrows (ADDED)
+    const pipeRow = document.getElementById('pipeRow');
+    const pipePrev = document.getElementById('pipePrev');
+    const pipeNext = document.getElementById('pipeNext');
+
+    function pipeHasOverflow(){
+      if(!pipeRow) return false;
+      return pipeRow.scrollWidth > pipeRow.clientWidth + 2;
+    }
+
+    function pipeSteps(){
+      if(!pipeRow) return [];
+      return Array.from(pipeRow.querySelectorAll('.step'));
+    }
+
+    function pipeUpdateButtons(){
+      if(!pipeRow || !pipePrev || !pipeNext) return;
+
+      const overflow = pipeHasOverflow();
+      const isMobileLike = window.matchMedia('(max-width: 979px)').matches;
+
+      const show = overflow && isMobileLike;
+      pipePrev.style.display = show ? 'flex' : 'none';
+      pipeNext.style.display = show ? 'flex' : 'none';
+
+      if(!show) return;
+
+      const maxScroll = pipeRow.scrollWidth - pipeRow.clientWidth;
+      const sl = pipeRow.scrollLeft;
+
+      pipePrev.disabled = sl <= 2;
+      pipeNext.disabled = sl >= (maxScroll - 2);
+    }
+
+    function pipeScrollTo(left){
+      if(!pipeRow) return;
+      pipeRow.scrollTo({ left, behavior: 'smooth' });
+    }
+
+    function pipeGoNext(){
+      if(!pipeRow) return;
+      const steps = pipeSteps();
+      if(steps.length === 0) return;
+
+      const sl = pipeRow.scrollLeft;
+      const epsilon = 6;
+
+      const nextStep = steps.find(s => s.offsetLeft > (sl + epsilon));
+      if(nextStep){
+        pipeScrollTo(nextStep.offsetLeft);
+      } else {
+        pipeScrollTo(pipeRow.scrollWidth);
+      }
+    }
+
+    function pipeGoPrev(){
+      if(!pipeRow) return;
+      const steps = pipeSteps();
+      if(steps.length === 0) return;
+
+      const sl = pipeRow.scrollLeft;
+      const epsilon = 6;
+
+      let prevStep = null;
+      for(let k = 0; k < steps.length; k++){
+        const s = steps[k];
+        if(s.offsetLeft < (sl - epsilon)) prevStep = s;
+      }
+
+      if(prevStep){
+        pipeScrollTo(prevStep.offsetLeft);
+      } else {
+        pipeScrollTo(0);
+      }
+    }
+
+    if(pipePrev) pipePrev.addEventListener('click', pipeGoPrev);
+    if(pipeNext) pipeNext.addEventListener('click', pipeGoNext);
+
+    if(pipeRow){
+      pipeRow.addEventListener('scroll', () => {
+        pipeUpdateButtons();
+      }, { passive:true });
+    }
+
+    window.addEventListener('resize', pipeUpdateButtons);
+
+    pipeUpdateButtons();
   })();
   </script>
 
